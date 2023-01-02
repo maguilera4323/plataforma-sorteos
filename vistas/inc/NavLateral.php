@@ -1,0 +1,29 @@
+<?php
+//verifica si hay sesiones iniciadas
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+?>
+
+<div class="container">
+  <nav>
+  <figure class="full-box nav-lateral-avatar">
+			<img src="<?php echo SERVERURL; ?>vistas/assets/avatar/Avatar.png" width="150" height="150"
+      class="img-fluid" alt="Avatar">
+			<figcaption class="roboto-medium text-center">
+        <br>
+				<small style="color:white;"><?php echo $_SESSION['usuario_login']?></small>
+				<br><small class="roboto-condensed-light"><?php echo $_SESSION['nombre_usuario']?> </small>
+				<br><small class="roboto-condensed-light"><?php echo $_SESSION['rol']?> </small>
+			</figcaption>
+		</figure>
+  <a href="<?php echo SERVERURL?>home/"><i class="fas fa-home"></i> &nbsp; Inicio</a>
+    <a href="<?php echo SERVERURL?>proveedores/"><i class="fas fa-boxes"></i> &nbsp; Proveedores</a>
+    <a href="<?php echo SERVERURL?>insumos/"><i class="fas fa-dolly-flatbed"></i> &nbsp; Insumos</a>
+    <a href="<?php echo SERVERURL?>compras/"><i class="fas fa-shopping-cart"></i> &nbsp; Compras</a>
+    <a href="<?php echo SERVERURL?>inventario/"><i class="fas fa-warehouse"></i> &nbsp; Inventario</a>
+    <button type="button" class="btn btn-primary"><i class="fas fa-users-cog"></i> &nbsp; Editar Perfil</button>
+    <a href="<?php echo SERVERURL?>salir/"><button type="button" 
+	  class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> &nbsp; Salir</button></a>
+   
+  </nav>

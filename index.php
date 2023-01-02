@@ -1,10 +1,7 @@
 <?php
-require_once("./modelos/prueba.php");
+	
+	require_once "./config/app.php";
+	require_once "./controladores/vistasControlador.php";
 
-$mensaje=new Prueba();
-$datos=$mensaje->mostrarMensaje('mensaje',1);
-foreach ($datos as $fila){
-    $mensaje=$fila['mensaje'];
-}
-
-echo $mensaje;
+	$plantilla = new vistasControlador();
+	$plantilla->obtener_plantilla_controlador();
