@@ -64,16 +64,19 @@ include("./modelos/obtenerDatos.php");
            <div class="col-lg-12">
             <table id="tablaUsuarios" class="table-striped table-bordered text-center">
                 <thead>
-                 <tr>
-                    <th>User_Id</th>
-                    <th>userName</th>                               
-                    <th>LastName</th>  
-                    <th>Gender</th>
-                    <th>Password</th>
-                    <th>Status</th>
+                 <tr class="text-center">
+                    <th>ID</th>
+                    <th>Nombre</th>                               
+                    <th>RTN</th>  
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Direccion</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
                 </tr>
                 </thead>
                 <tbody>
+                
                 </tbody>
             </table>
            </div>
@@ -87,7 +90,7 @@ include("./modelos/obtenerDatos.php");
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Nuevo Proveedor</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
 
@@ -98,25 +101,29 @@ include("./modelos/obtenerDatos.php");
 				<label class="color-label">Nombre</label>
 				<input type="text" class="form-control" name="nombre_proveedor_nuevo" id="cliente_dni" maxlength="27" required>
 			</div>
+            <br>
 			<div class="form-group">
 				<label class="color-label">RTN</label>
 				<input type="text" class="form-control" name="rtn_proveedor_nuevo" id="cliente_dni" maxlength="27" required>
 			</div>
+            <br>
 			<div class="form-group">
 				<label class="color-label">Correo</label>
 				<input type="text" class="form-control" name="correo_proveedor_nuevo" id="cliente_dni" maxlength="27" required>
 			</div>
+            <br>
 			<div class="form-group">
 				<label class="color-label">Telefono</label>
 				<input type="text" class="form-control" name="telefono_proveedor_nuevo" id="cliente_dni" maxlength="27" required>
 			</div>
+            <br>
 			<div class="form-group">
 				<label class="color-label">Dirección</label>
 				<input type="text" class="form-control" name="direccion_proveedor_nuevo" id="cliente_dni" maxlength="27" required>
 			</div>
 			<br>
 			<button type="submit" class="btn btn-primary">Guardar</button>
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 			</form>
       </div>
     </div>
