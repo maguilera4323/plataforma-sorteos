@@ -1,7 +1,7 @@
 <?php
 	//verifica si hay sesiones iniciadas
 	if (session_status() !== PHP_SESSION_ACTIVE) {
-		session_start();
+	 	session_start();
 	}
 
 	//verifica si la variable del contador está creada

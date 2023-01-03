@@ -1,4 +1,7 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+   session_start();
+}
 require_once ("./modelos/loginModelo.php");
 
 class loginUsuarios extends Usuario{
@@ -18,7 +21,7 @@ class loginUsuarios extends Usuario{
 				$array['id_rol'] = $fila['id_rol'];
          }
 
-         if($array['nombre']!=''){
+         if(isset($array['nombre'])){
                switch ($array['estado']){
 						case 'Activo':
 							// session_start();

@@ -1,3 +1,7 @@
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/sweetalert2.min.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/sweetalert2.css">
+
 <!-- archivos de la libreria Bootstrap -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/bootstrap-grid.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/bootstrap-grid.min.css">
@@ -32,7 +36,9 @@
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/svg-with-js.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/svg-with-js.min.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/v4-shims.css">
-<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/v4-shims.min.css">
+
 
 <!-- Datatables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css">
+
+

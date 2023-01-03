@@ -2,7 +2,7 @@
 <!-- jQuery V3.6.3 -->
 <script src="<?php echo SERVERURL; ?>vistas/js/jquery-3.6.3.min.js" ></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/jquery-3.6.3.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js" ></script>
@@ -15,6 +15,12 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/bootstrap.js" ></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/bootstrap.min.js" ></script>
 
+<!-- SweetAlert2 -->
+<script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.all.js" ></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.all.min.js" ></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.min.js" ></script>
+
 <!-- Creadas por el programador -->
 <script src="<?php echo SERVERURL; ?>vistas/js/funciones.js" ></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/alertas.js" ></script>
 
