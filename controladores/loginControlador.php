@@ -73,7 +73,6 @@ class loginUsuarios extends Usuario{
                      $array['usuario'] = $fila['usuario'];
                      $array['estado'] = $fila['estado_usuario'];
                   }
-                  echo $array['usuario'];
                   
                   //Switch que valida si el usuario encontrado está activo
                   //si está inactivo, está bloqueado o es un usuario nuevo no se sigue la verificación para bloquearlo
@@ -111,8 +110,8 @@ class loginUsuarios extends Usuario{
                         //si no existe el usuario y la contraseña en la base de datos
                         $_SESSION['respuesta'] = 'Datos incorrectos';
                         return header("Location:".SERVERURL."login/");
-                        die();
                         }
+                        die();
                }
 
     }
