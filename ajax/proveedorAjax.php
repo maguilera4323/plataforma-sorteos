@@ -11,15 +11,17 @@
 
 		/*--------- Agregar un proveedor ---------*/
 		if(isset($_POST['nombre_proveedor_nuevo'])){
-			echo $ins_proveedor->agregar_proveedor_controlador();
+			echo $ins_proveedor->agregarProveedor();
 			die();
 		}
 		
+		/*--------- Editar un proveedor ---------*/
 		if(isset($_POST['nombre_proveedor_actu']) ){
-			echo $ins_proveedor->actualizar_proveedor_controlador();
+			echo $ins_proveedor->actualizarProveedor();
 			die();
 		}
 		
+		/*--------- Eliminar un proveedor ---------*/
 		if(isset($_POST['id_proveedor_del']) ){
 			echo $ins_proveedor->eliminarProveedor();
 			die();

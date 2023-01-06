@@ -7,68 +7,66 @@ if($peticionAjax){
 }
 
 
-class proveedorControlador extends proveedorModelo
-{
+class proveedorControlador extends proveedorModelo{
 
-	/*--------- Controlador agregar proveedor ---------*/
-	public function agregar_proveedor_controlador()
-	{
-		$Nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_proveedor_nuevo']));
-		$Rtn=ConexionBD::limpiar_cadena($_POST['rtn_proveedor_nuevo']);
-		$Telefono=ConexionBD::limpiar_cadena($_POST['telefono_proveedor_nuevo']);
-		$Correo=ConexionBD::limpiar_cadena($_POST['correo_proveedor_nuevo']);
-		$Direccion=ConexionBD::limpiar_cadena($_POST['direccion_proveedor_nuevo']);
+	
+	public function agregarProveedor(){
+		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_proveedor_nuevo']));
+		$rtn=ConexionBD::limpiar_cadena($_POST['rtn_proveedor_nuevo']);
+		$telefono=ConexionBD::limpiar_cadena($_POST['telefono_proveedor_nuevo']);
+		$correo=ConexionBD::limpiar_cadena($_POST['correo_proveedor_nuevo']);
+		$direccion=ConexionBD::limpiar_cadena($_POST['direccion_proveedor_nuevo']);
 		
-		/*== Verificando integridad de los datos ==*/
-		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$Nombre)){
+		//validaciones de datos
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El Nombre no coincide con el formato solicitado",
+				"Texto"=>"El nombre no coincide con el formato solicitado",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 
-		if(ConexionBD::verificar_datos("[0-9]{1,14}",$Rtn)){
+		if(ConexionBD::verificar_datos("[0-9]{1,14}",$rtn)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El RTN no coincide con el formato solicitado",
+				"Texto"=>"El RTN no admite letras o caracteres especiales",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 		
-		if(ConexionBD::verificar_datos("[0-9]{1,20}",$Telefono)){
+		if(ConexionBD::verificar_datos("[0-9]{1,20}",$telefono)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El telefono no coincide con el formato solicitado",
+				"Texto"=>"Este campo solo admite números",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 
-		if(ConexionBD::verificar_datos("[a-z@_0-9.]{1,30}",$Correo)){
+		if(ConexionBD::verificar_datos("[a-z@_0-9.]{1,30}",$correo)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El Correo no coincide con el formato solicitado",
+				"Texto"=>"El correo no coincide con el formato solicitado",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 
-		if(ConexionBD::verificar_datos("[A-Za-zÑñ0-9 .,]{1,250}",$Direccion)){
+		if(ConexionBD::verificar_datos("[A-Za-zÑñ0-9 .,]{1,250}",$direccion)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"La Dirección no coincide con el formato solicitado",
+				"Texto"=>"La dirección no coincide con el formato solicitado",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
@@ -76,13 +74,13 @@ class proveedorControlador extends proveedorModelo
 		}
 	
 					
-			/*== AGREGAR PROVEEDOR ==*/
+			//arreglo enviado al modelo para ser usado en una sentencia INSERT
 			$datos_proveedor_reg=[
-				"nombre"=>$Nombre,
-				"rtn"=>$Rtn,
-				"telefono"=>$Telefono,
-				"correo"=>$Correo,
-				"direccion"=>$Direccion
+				"nombre"=>$nombre,
+				"rtn"=>$rtn,
+				"telefono"=>$telefono,
+				"correo"=>$correo,
+				"direccion"=>$direccion
 			];
 
 			$agregar_proveedor=proveedorModelo::agregar_proveedor_modelo($datos_proveedor_reg);
@@ -90,7 +88,7 @@ class proveedorControlador extends proveedorModelo
 			if($agregar_proveedor->rowCount()==1){
 				$alerta=[
 					"Alerta"=>"recargar",
-					"Titulo"=>"Proveedor registrado",
+					"Titulo"=>"Proveedor Registrado",
 					"Texto"=>"Los datos del proveedor han sido registrados con exito",
 					"Tipo"=>"success"
 				];
@@ -105,10 +103,137 @@ class proveedorControlador extends proveedorModelo
 				];
 			}
 			echo json_encode($alerta);
+	} 
+
+
+
+	public function actualizarProveedor(){	
+		$id_actualizar=ConexionBD::limpiar_cadena($_POST['id_actualizacion']);
+		$nombre=ConexionBD::limpiar_cadena($_POST['nombre_proveedor_actu']);
+		$rtn=ConexionBD::limpiar_cadena($_POST['rtn_proveedor_actu']);
+		$telefono=ConexionBD::limpiar_cadena($_POST['telefono_proveedor_actu']);
+		$correo=ConexionBD::limpiar_cadena($_POST['correo_proveedor_actu']);
+		$direccion=ConexionBD::limpiar_cadena($_POST['direccion_proveedor_actu']);
+
+			//validaciones de datos ingresados
+			if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"El nombre no coincide con el formato solicitado",
+					"Tipo"=>"error"
+				];
+				echo json_encode($alerta);
+				exit();
+			}
+
+			if(ConexionBD::verificar_datos("[0-9]{1,14}",$rtn)){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"El RTN no admite letras o caracteres especiales",
+					"Tipo"=>"error"
+				];
+				echo json_encode($alerta);
+				exit();
+			}
+			
+			if(ConexionBD::verificar_datos("[0-9]{1,20}",$telefono)){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"Este campo solo admite números",
+					"Tipo"=>"error"
+				];
+				echo json_encode($alerta);
+				exit();
+			}
+
+			if(ConexionBD::verificar_datos("[a-z@_0-9.]{1,30}",$correo)){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"El correo no coincide con el formato solicitado",
+					"Tipo"=>"error"
+				];
+				echo json_encode($alerta);
+				exit();
+			}
+
+			if(ConexionBD::verificar_datos("[A-Za-zÑñ0-9 .,]{1,100}",$direccion)){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"La dirección no coincide con el formato solicitado",
+					"Tipo"=>"error"
+				];
+				echo json_encode($alerta);
+				exit();
+			}
+		
+	
+			//arreglo enviado al modelo
+		$datos_proveedor_actu=
+			[
+				"nombre"=>$nombre,
+				"rtn"=>$rtn,
+				"telefono"=>$telefono,
+				"correo"=>$correo,
+				"direccion"=>$direccion,
+						
+			];
+
+			$actualizar_proveedor=proveedorModelo::actualizar_proveedor_modelo($datos_proveedor_actu,$id_actualizar);
+
+			if($actualizar_proveedor->rowCount()==1)
+			{
+				$alerta=[
+					"Alerta"=>"recargar",
+					"Titulo"=>"Proveedor Actualizado",
+					"Texto"=>"Proveedor Actualizado exitosamente",
+					"Tipo"=>"success"
+				];
+			}else
+			{
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"No hemos podido actualizar el proveedor",
+					"Tipo"=>"error"
+				];
+			}
+			echo json_encode($alerta);	
+	} 
+
+	public function eliminarProveedor(){
+			$id=ConexionBD::limpiar_cadena(($_POST['id_proveedor_del']));
+			$array=array();
+			$valor='';
+		
+		$eliminarproveedor=proveedorModelo::eliminar_proveedor_modelo($id);
+			if($eliminarproveedor->rowCount()==1){
+				$alerta=[
+					"Alerta"=>"recargar",
+					"Titulo"=>"Proveedor Eliminado",
+					"Texto"=>"El Proveedor fue eliminado del sistema",
+					"Tipo"=>"success"
+				];
+
+				echo json_encode($alerta);
 
 			
-	} /* Fin controlador */
+			}else{
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ha ocurrido un error",
+					"Texto"=>"El proveedor no puede ser borrado",
+					"Tipo"=>"error"
+				];echo json_encode($alerta);
+			}
+			
+			exit();
 
-
+			
+	}
 	
 }
