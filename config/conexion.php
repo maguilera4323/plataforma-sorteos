@@ -20,7 +20,7 @@ class ConexionBD{
         }
     }
 
-    /*--------- Funcion limpiar cadenas ---------*/
+    /*--------- Funcion limpiar cadena ---------*/
 		protected static function limpiar_cadena($cadena){
 			$cadena=trim($cadena);
 			$cadena=stripslashes($cadena);
