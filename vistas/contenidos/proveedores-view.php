@@ -113,6 +113,24 @@ include("./modelos/obtenerDatos.php");
 
     </table>
 
+    <!-- <br>
+    <table id="tablaUsuarios">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>RTN</th>
+                <th>Teléfono</th>
+                <th>Correo electronico</th>
+                <th>Dirección</th>
+                <th>Actualizar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+    </table>
+ -->
 </div>
 
 
