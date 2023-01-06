@@ -16,8 +16,9 @@ include("./modelos/obtenerDatos.php");
     <button type="submit" class="btn btn-success mx-auto btn-lg"><i class="fas fa-file-excel"></i> &nbsp;Descargar Excel</button>
 </div>
 <br>
+<input type="text" class="filtro" placeholder="Filtrar insumos">
 <div class="table-responsive">
-    <table id="datos-usuario" class="table table-bordered table-striped text-center">
+    <table id="datos-usuario" class="table table-bordered table-striped text-center datos-usuario">
         <thead>
             <tr>
                 <th>ID</th>
@@ -57,4 +58,6 @@ include("./modelos/obtenerDatos.php");
     </table>
 
 </div>
+
+
 

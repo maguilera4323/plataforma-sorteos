@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/estilos-vistas.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/navlateral.css">
 
+
 <!-- Archivos de libreria de iconos FontAwesome -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/all.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/all.min.css">
@@ -36,7 +37,6 @@
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/svg-with-js.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/svg-with-js.min.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/v4-shims.css">
-
 
 <!-- Datatables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css">

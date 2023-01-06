@@ -10,8 +10,6 @@
 <!-- Boostrap -->
 <script src="<?php echo SERVERURL; ?>vistas/js/bootstrap.bundle.js" ></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/bootstrap.bundle.min.js" ></script>
-<!-- <script src="<?php echo SERVERURL; ?>vistas/js/bootstrap.esm.js" ></script>
-<script src="<?php echo SERVERURL; ?>vistas/js/bootstrap.esm.min.js" ></script> -->
 <script src="<?php echo SERVERURL; ?>vistas/js/bootstrap.js" ></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/bootstrap.min.js" ></script>
 
@@ -19,6 +17,10 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.all.js" ></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.all.min.js" ></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.min.js" ></script>
+
+<!-- Ligne PaginateJs -->
+<script src="<?php echo SERVERURL; ?>vistas/js/paginate.js" ></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/paginate.min.js" ></script>
 
 <!-- Creadas por el programador -->
 <script src="<?php echo SERVERURL; ?>vistas/js/funciones.js" ></script>

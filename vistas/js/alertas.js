@@ -37,7 +37,7 @@ function enviar_formulario_ajax(e){
 	Swal.fire({
 		title: '¿Estás seguro?',
 		text: texto_alerta,
-		type: 'question',
+		icon: 'question',
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
@@ -63,16 +63,15 @@ function alertas_ajax(alerta){
 	if(alerta.Alerta==="simple"){
 		Swal.fire({
 			title: alerta.Titulo,
-			icon: 'info',
 			text: alerta.Texto,
-			type: alerta.Tipo,
+			icon: alerta.Tipo,
 			confirmButtonText: 'Aceptar'
 		});
 	}else if(alerta.Alerta==="recargar"){
 		Swal.fire({
 			title: alerta.Titulo,
 			text: alerta.Texto,
-			type: alerta.Tipo,
+			icon: alerta.Tipo,
 			confirmButtonText: 'Aceptar'
 		}).then((result) => {
 			if(result.value){
@@ -83,7 +82,7 @@ function alertas_ajax(alerta){
 		Swal.fire({
 			title: alerta.Titulo,
 			text: alerta.Texto,
-			type: alerta.Tipo,
+			icon: alerta.Tipo,
 			confirmButtonText: 'Aceptar'
 		}).then((result) => {
 			if(result.value){
