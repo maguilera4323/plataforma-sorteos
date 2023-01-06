@@ -6,6 +6,7 @@
 
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js" ></script>
+<script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
 
 <!-- Boostrap -->
 <script src="<?php echo SERVERURL; ?>vistas/js/bootstrap.bundle.js" ></script>
