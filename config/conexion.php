@@ -18,14 +18,14 @@ class ConexionBD{
             echo 'Error en la conexion a la BD :'.$e->getMessage();
         }
     }
-
+    
 	/*--------- Funcion para encriptar la contraseña ---------*/
 	public function EncriptaClave($string){
 		return password_hash($string, PASSWORD_DEFAULT, ['cost' => 12]);
 	}
 
+    /*--------- Funcion limpiar cadena ---------*/
 
-    /*--------- Funcion limpiar cadenas ---------*/
 		protected static function limpiar_cadena($cadena){
 			$cadena=trim($cadena);
 			$cadena=stripslashes($cadena);
