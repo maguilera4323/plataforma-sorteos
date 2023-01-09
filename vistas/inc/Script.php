@@ -23,7 +23,8 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/paginate.js" ></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/paginate.min.js" ></script>
 
-<!-- Creadas por el programador -->
+<!-- Otras funciones añadidas por el programador -->
 <script src="<?php echo SERVERURL; ?>vistas/js/funciones.js" ></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/alertas.js" ></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/invoiceFacturacion.js" ></script>
 
