@@ -19,6 +19,7 @@ class loginUsuarios extends Usuario{
 				$array['estado'] = $fila['estado_usuario'];
 				$array['rol'] = $fila['rol'];
 				$array['id_rol'] = $fila['id_rol'];
+            $array['foto_usuario'] = $fila['foto_usuario'];
          }
 
          if(isset($array['nombre'])){
@@ -33,6 +34,7 @@ class loginUsuarios extends Usuario{
 							$_SESSION['rol']=$array['rol'];
 							$_SESSION['id_rol']=$array['id_rol'];
 							$_SESSION['token_login']=md5(uniqid(mt_rand(),true));
+                     $_SESSION['foto_login']=$array['foto_usuario'];
 							/* $datos_bitacora = [
 								"id_objeto" => 1,
 								"fecha" => date('Y-m-d H:i:s'),

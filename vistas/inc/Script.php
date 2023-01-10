@@ -20,11 +20,13 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.min.js" ></script>
 
 <!-- Ligne PaginateJs -->
-<script src="<?php echo SERVERURL; ?>vistas/js/paginate.js" ></script>
-<script src="<?php echo SERVERURL; ?>vistas/js/paginate.min.js" ></script>
+<!-- <script src="<?php echo SERVERURL; ?>vistas/js/paginate.js" ></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/paginate.min.js" ></script> -->
 
 <!-- Otras funciones añadidas por el programador -->
-<script src="<?php echo SERVERURL; ?>vistas/js/funciones.js" ></script>
-<script src="<?php echo SERVERURL; ?>vistas/js/alertas.js" ></script>
-<script src="<?php echo SERVERURL; ?>vistas/js/invoiceFacturacion.js" ></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/funciones.js"></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/alertas.js"></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/invoiceFacturacion.js"></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/paginador.js"></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/paginador.min.js"></script>
 

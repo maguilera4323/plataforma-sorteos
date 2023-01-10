@@ -26,6 +26,7 @@ include("./modelos/obtenerDatosCompras.php");
                 <th>Estado</th>
                 <th>Fecha</th>
                 <th>Total</th>
+                <th>Ver Más</th>
                 <th>Actualizar</th>
                 <th>Eliminar</th>
             </tr>
@@ -44,8 +45,10 @@ include("./modelos/obtenerDatosCompras.php");
                 <td><?php echo $fila['estado_compra']; ?></td>
                 <td><?php echo $fila['fech_compra']; ?></td>
                 <td><?php echo $fila['total_compra']; ?></td>
-                <td><i class="fas fa-trash-alt" style="color:red; justify-items:center;"></i></td>
+                <td><a href="<?php echo SERVERURL; ?>detallecompras/<?php echo $fila['id_compra']?>">
+                <i class="fas fa-exclamation-circle" style="color:black; justify-items:center;"></i></a></td>    
                 <td><i class="fas fa-pen"></i></td>
+                <td><i class="fas fa-trash-alt" style="color:red; justify-items:center;"></i></td>
                 </tr>
 
 

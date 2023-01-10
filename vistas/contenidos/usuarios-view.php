@@ -5,10 +5,11 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
+include("./modelos/obtenerDatosUsuarios.php"); 
 include("./modelos/obtenerDatos.php"); 
 ?>
 
-<h3 style="padding:5rem;"><i class="fas fa-box-open"></i> &nbsp; INSUMOS </h3>
+<h3 style="padding:5rem;"><i class="fas fa-users-cog"></i> &nbsp; USUARIOS </h3>
 
 <div class="botones-proveedores">
 	<div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR INSUMO</div>
@@ -22,11 +23,11 @@ include("./modelos/obtenerDatos.php");
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Usuario</th>
                 <th>Nombre</th>
-                <th>Categoria</th>
-                <th>Cantidad Maxima</th>
-                <th>Cantidad Minima</th>
-                <th>Unidad de medida</th>
+                <th>Estado</th>
+                <th>Rol</th>
+                <th>Correo Electronico</th>
                 <th>Actualizar</th>
                 <th>Eliminar</th>
             </tr>
@@ -34,19 +35,19 @@ include("./modelos/obtenerDatos.php");
         <tbody>
 			<?php
             //se hace una instancia a la clase
-                $datos=new obtenerDatosTablas();
-                $resultado=$datos->datosTablas('insumos');
+                $datos=new obtenerDatosUsuarios();
+                $resultado=$datos->datosUsuarios();
                 foreach ($resultado as $fila){
             ?>
             <tr>
-                <td><?php echo $fila['id_insumo']; ?></td>
-                <td><?php echo $fila['nom_insumo']; ?></td>
-                <td><?php echo $fila['categoria']; ?></td>
-                <td><?php echo $fila['cant_max']; ?></td>
-                <td><?php echo $fila['cant_min']; ?></td>
-                <td><?php echo $fila['unidad_medida']; ?></td>
+                <td><?php echo $fila['id_usuario']; ?></td>
+                <td><?php echo $fila['usuario']; ?></td>
+                <td><?php echo $fila['nombre_usuario']; ?></td>
+                <td><?php echo $fila['estado_usuario']; ?></td>
+                <td><?php echo $fila['rol']; ?></td>
+                <td><?php echo $fila['correo_electronico']; ?></td>
                 <td>
-				<div data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_insumo'];?>">
+				<div data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_usuario'];?>">
 					<i class="fas fa-sync-alt"></i>
 				</div>
 						<!-- Modal actualizar-->
@@ -110,7 +111,7 @@ include("./modelos/obtenerDatos.php");
 			    </td>
 				<td>
 					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/insumoAjax.php" method="POST" data-form="delete" autocomplete="off">
-					<input type="hidden" pattern="" class="form-control" name="id_insumo_del" value="<?php echo $fila['id_insumo'] ?>">	
+					<input type="hidden" pattern="" class="form-control" name="id_insumo_del" value="<?php echo $fila['id_usuario'] ?>">	
 					<button type="submit" class="btn btn-warning">
 						<i class="far fa-trash-alt"></i>
 					</button>
@@ -140,44 +141,60 @@ include("./modelos/obtenerDatos.php");
 
       </div>
       <div class="modal-body" id="modal-actualizar">
-			<form action="<?php echo SERVERURL; ?>ajax/insumoAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
+			<form action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
 			<div class="form-group">
-				<label class="color-label">Nombre</label>
-				<input type="text" class="form-control" name="nombre_insumo_nuevo" id="cliente_dni" maxlength="27" required>
+                <label class="color-label">Usuario</label>
+				<input type="text" class="form-control" name="usuario_nuevo" id="nom_usuario" 
+				style="text-transform:uppercase;" required="" >
+			</div>
+            <br>
+            <div class="form-group">
+                    <label class="color-label">Nombre</label>
+					<input type="text" class="form-control" name="nombre_usuario_nuevo" id="nombre_usuario" 
+					style="text-transform:uppercase;" required="" >
 			</div>
             <br>
 			<div class="form-group">
-				<label class="color-label">Categoria</label>
-					<select class="form-control" name="categoria_insumo_nuevo" id="unidad_insumo_nuevo" required>
-						<option value="" selected="" disabled="">Seleccione una opción</option>
-						<option value="1">Comestibles</option>
-						<option value="2">Utensillos</option>
-						<option value="3">Varios</option>
+				<label class="color-label">Estado</label>
+                    <select class="form-control" name="estado_nuevo" disabled>
+						<option value="1" selected="">Activo</option>
+						<option value="2">Inactivo</option>
+						<option value="3">Bloqueado</option>
 					</select>
 			</div>
             <br>
-			<div class="form-group">
-				<label class="color-label">Cantidad Maxima</label>
-				<input type="number" class="form-control" name="cant_max_nuevo" id="cliente_dni" maxlength="27" required>
+			<div class="form-group contrasena">
+				<label class="color-label">Contraseña</label>
+				<input type="password" class="form-control" name="contrasena_nuevo" id="contrasena" pattern="[a-zA-Z0-9!#%&/()=?¡*+_$@.-]{8,100}" maxlength="10" required="" >
+<!-- 				<span onclick="mosContrasena()"><i class="fas fa-eye-slash icon-clave" style="color:black;"></i></span> -->
+			</div>
+            <br>
+			<div class="form-group conf-contrasena">
+				<label class="color-label">Confirmar Contraseña</label>
+				<input type="password" class="form-control" name="conf_contrasena_nuevo" id="conf_contra" pattern="[a-zA-Z0-9!#%&/()=?¡*+_$@.-]{8,100}" maxlength="10" required="" >
+				<!-- <span onclick="mosConfContrasena()"><i class="fas fa-eye-slash icon-confclave" style="color:black;"></i></span> -->
 			</div>
             <br>
 			<div class="form-group">
-				<label class="color-label">Cantidad Minima</label>
-				<input type="number" class="form-control" name="cant_min_nuevo" id="cliente_dni" maxlength="27" required>
-			</div>
-            <br>
-			<div class="form-group">
-				<label class="color-label">Unidad de medida</label>
-						<select class="form-control" name="unidad_insumo_nuevo" id="unidad_insumo_nuevo" required>
-							<option value="" selected="" disabled="">Seleccione una opción</option>
-							<option value="1">LB</option>
-							<option value="2">UN</option>
-							<option value="3">L</option>
-							<option value="4">GAL</option>
-                            <option value="5">BOLSAS</option>
-					    </select>
+				<label class="color-label">Correo</label>
+				<input type="email" class="form-control" name="correo_electronico_nuevo" id="correo_electronico" required="">
 			</div>
 			<br>
+            <div class="form-group">
+				<label class="color-label">Roles</label>
+				<select class="form-control" name="rol_nuevo" required>
+					<option value="" selected="" disabled="">Seleccione una opción</option>
+						<?php
+							$datos=new obtenerDatosTablas();
+                            $resultado=$datos->datosTablas('roles');
+                            foreach ($resultado as $fila){
+									echo '<option value="'.$fila['id_rol'].'">'.$fila['rol'].'</option>';
+								}
+						?>
+				</select>
+			</div>
+            <br>
+            <input type="file" class="form-control" name="imagen_nuevo" id="imagen" maxlength="256" placeholder="Imagen">
 			<button type="submit" class="btn btn-primary">Guardar</button>
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 			</form>

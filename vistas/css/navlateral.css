@@ -60,8 +60,8 @@ nav img{
 :root{
   --width:280px;
   --pading:10px;
-  --bgcoolor:rgb(52,52,52);
-  --hovercolor:rgb(23,23,23);
+  --bgcoolor:rgb(0, 0, 0);
+  --hovercolor:rgb(37, 37, 37);
   --width-collapsed:50px;
 }
 
@@ -215,7 +215,7 @@ body{
 
 .menu-expanded{
   width:var(--width);
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .menu-expanded #header #title{

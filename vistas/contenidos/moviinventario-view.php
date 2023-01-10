@@ -5,16 +5,16 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./modelos/obtenerDatosInventario.php"); 
+include("./modelos/obtenerDatosMovimientos.php"); 
 ?>
 
-<h3 style="padding:5rem;"><i class="fas fa-warehouse"></i> &nbsp; INVENTARIO </h3>
+<h3 style="padding:5rem;"><i class="fas fa-dolly"></i> &nbsp; MOVIMIENTOS DE INVENTARIO </h3>
 
 <div class="botones-proveedores">
 	<button type="submit" class="btn btn-danger mx-auto btn-lg"><i class="fas fa-file-pdf"></i> &nbsp;Descargar PDF</button>
     <button type="submit" class="btn btn-success mx-auto btn-lg"><i class="fas fa-file-excel"></i> &nbsp;Descargar Excel</button>
-    <a href="<?php echo SERVERURL?>moviinventario/">
-    <button type="submit" class="btn btn-dark mx-auto btn-lg"><i class="fas fa-dolly"></i> &nbsp;Ver Movimientos de Inventario</button>
+    <a href="<?php echo SERVERURL?>inventario/">
+    <button type="submit" class="btn btn-dark mx-auto btn-lg"><i class="fas fa-file-excel"></i> &nbsp;Regresar al Inventario</button>
     </a>
 </div>
 <br>
@@ -22,22 +22,28 @@ include("./modelos/obtenerDatosInventario.php");
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>
-                <th>Nombre</th>
+                <th>Insumo</th>
                 <th>Cantidad</th>
-                <th>Ver Más</th>
+                <th>Tipo</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Comentario</th>
             </tr>
         </thead>
         <tbody>
 			<?php
             //se hace una instancia a la clase
-                $datos=new obtenerDatosInventario();
-                $resultado=$datos->datosInventario();
+                $datos=new obtenerDatosMovimientos();
+                $resultado=$datos->datosMovimientos();
                 foreach ($resultado as $fila){
             ?>
             <tr>
                 <td><?php echo $fila['nom_insumo']; ?></td>
-                <td><?php echo $fila['cant_existencia']; ?></td>
-                <td><i class="fas fa-trash-alt" style="color:red; justify-items:center;"></i></td>
+                <td><?php echo $fila['cant_movimiento']; ?></td>
+                <td><?php echo $fila['tipo_movimiento']; ?></td>
+                <td><?php echo $fila['fecha_movimiento']; ?></td>
+                <td><?php echo $fila['usuario']; ?></td>
+                <td><?php echo $fila['comentario']; ?></td>
             </tr>
 
 

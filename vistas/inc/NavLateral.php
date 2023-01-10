@@ -30,7 +30,6 @@ if (session_status() == PHP_SESSION_NONE) {
 
   <div id="sidemenu" class="menu-collapsed">
     <div id="header">
-      <div id="title"><span>INVERSIONES SASUKE</span></div>
       <div id="menu-btn">
         <div class="btn-hamburger"></div>
         <div class="btn-hamburger"></div>
@@ -39,7 +38,7 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
 
     <div id="profile">
-      <div id="photo"><img src="<?php echo SERVERURL; ?>vistas/assets/img/a.jpg" width="100" height="100" alt=""></div>
+      <div id="photo"><img src="<?php echo $_SESSION['foto_login']; ?>" width="100" height="100" alt=""></div>
       <div id="name"><span><?php echo $_SESSION['usuario_login']?></span></div>
       <div id="user"><?php echo $_SESSION['nombre_usuario']?></div>
       <div id="user"><?php echo $_SESSION['rol']?></div>
@@ -58,7 +57,7 @@ if (session_status() == PHP_SESSION_NONE) {
         </a>
 
         <a href="<?php echo SERVERURL?>insumos/">
-          <div class="icon"><i class="fas fa-dolly-flatbed"></i></div>
+          <div class="icon"><i class="fas fa-box-open"></i></div>
           <div class="title">Insumos</div>
         </a>
 
@@ -71,8 +70,12 @@ if (session_status() == PHP_SESSION_NONE) {
           <div class="icon"><i class="fas fa-warehouse"></i></div>
           <div class="title">Inventario</div>
         </a>
+
+        <a href="<?php echo SERVERURL?>config/">
+          <div class="icon"><i class="fas fa-wrench"></i></div>
+          <div class="title">Configuración</div>
+        </a>
       </div>
     </div>
 
-    <div id="main-container">Holaa</div>
   </div>
