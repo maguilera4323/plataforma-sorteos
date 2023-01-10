@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 ?>
 
-<div class="container">
+<!-- <div class="container">
   <nav>
   <figure class="full-box nav-lateral-avatar">
 			<img src="<?php echo SERVERURL; ?>vistas/assets/avatar/Avatar.png" width="150" height="150"
@@ -26,4 +26,53 @@ if (session_status() == PHP_SESSION_NONE) {
     <a href="<?php echo SERVERURL?>salir/"><button type="button" 
 	  class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> &nbsp; Salir</button></a>
    
-  </nav>
+  </nav>  -->
+
+  <div id="sidemenu" class="menu-collapsed">
+    <div id="header">
+      <div id="title"><span>INVERSIONES SASUKE</span></div>
+      <div id="menu-btn">
+        <div class="btn-hamburger"></div>
+        <div class="btn-hamburger"></div>
+        <div class="btn-hamburger"></div>
+      </div>
+    </div>
+
+    <div id="profile">
+      <div id="photo"><img src="<?php echo SERVERURL; ?>vistas/assets/img/a.jpg" width="100" height="100" alt=""></div>
+      <div id="name"><span><?php echo $_SESSION['usuario_login']?></span></div>
+      <div id="user"><?php echo $_SESSION['nombre_usuario']?></div>
+      <div id="user"><?php echo $_SESSION['rol']?></div>
+    </div> 
+
+    <div id="menu-items">
+      <div class="item">
+        <a href="<?php echo SERVERURL?>home/">
+          <div class="icon"><i class="fas fa-home"></i></div>
+          <div class="title">Inicio</div>
+        </a>
+
+        <a href="<?php echo SERVERURL?>proveedores/">
+          <div class="icon"><i class="fas fa-boxes"></i></div>
+          <div class="title">Proveedores</div>
+        </a>
+
+        <a href="<?php echo SERVERURL?>insumos/">
+          <div class="icon"><i class="fas fa-dolly-flatbed"></i></div>
+          <div class="title">Insumos</div>
+        </a>
+
+        <a href="<?php echo SERVERURL?>compras/">
+          <div class="icon"><i class="fas fa-shopping-cart"></i></div>
+          <div class="title">Compras</div>
+        </a>
+
+        <a href="<?php echo SERVERURL?>inventario/">
+          <div class="icon"><i class="fas fa-warehouse"></i></div>
+          <div class="title">Inventario</div>
+        </a>
+      </div>
+    </div>
+
+    <div id="main-container">Holaa</div>
+  </div>

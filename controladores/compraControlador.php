@@ -30,11 +30,12 @@ class compraControlador extends compraModelo{
 	} 
 
 	public function agregarDetalleCompra(){
-		for ($i = 0; $i < 2; $i++) {
+		for ($i = 0; $i <count($_POST['nombreInsumo']); $i++) {
 		$insumo=ConexionBD::limpiar_cadena($_POST['nombreInsumo'][$i]);
 		$cantidad=ConexionBD::limpiar_cadena($_POST['cantidad'][$i]);
 		$precio=ConexionBD::limpiar_cadena($_POST['precio'][$i]);
 		$id_compra=ConexionBD::limpiar_cadena($_POST['idCompra']);
+		$estado=ConexionBD::limpiar_cadena($_POST['estado_nuevo']);
 
 /* 		echo $insumo . ' ';
 		echo $cantidad . ' ';
@@ -46,7 +47,8 @@ class compraControlador extends compraModelo{
 				"ins"=>$insumo,
 				"cant"=>$cantidad,
 				"prec"=>$precio,
-				"id_compra"=>$id_compra
+				"id_compra"=>$id_compra,
+				"estado"=>$estado
 			];
 
 			$agregar_detalle_compra=compraModelo::agregar_detallecompra_modelo($datos_detallecompra_reg); 
@@ -54,10 +56,11 @@ class compraControlador extends compraModelo{
 
 		if($i>0){
 			$alerta=[
-				"Alerta"=>"recargar",
+				"Alerta"=>"redireccionar",
 				"Titulo"=>"Compra Realizada",
 				"Texto"=>"Compra realizada exitosamente",
-				"Tipo"=>"success"
+				"Tipo"=>"success",
+				"Link"=>"compras"
 			];
 		}else{
 			$alerta=[

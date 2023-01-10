@@ -37,7 +37,7 @@
 		<!-- Page content -->
 		<section class="full-box page-content">
 			<?php 
-				/* include "./vistas/inc/Navbar.php"; */
+				include "./vistas/inc/Navbar.php"; 
 				include  $vistas;
 			?>
 		</section>

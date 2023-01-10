@@ -20,12 +20,13 @@
 
 		protected function agregar_detallecompra_modelo($datos){
 			$sql=ConexionBD::getConexion()->prepare("INSERT INTO detalle_compra(id_compra,id_insumo,cantidad_comprada,
-			precio_costo) VALUES(?,?,?,?)");
+			precio_costo,estado_compra) VALUES(?,?,?,?,?)");
 
 			$sql->bindParam(1,$datos['id_compra']);
 			$sql->bindParam(2,$datos['ins']);
 			$sql->bindParam(3,$datos['cant']);
 			$sql->bindParam(4,$datos['prec']);
+			$sql->bindParam(5,$datos['estado']);
 			$sql->execute();
 			return $sql;						
 		}

@@ -89,7 +89,17 @@ function alertas_ajax(alerta){
 				document.querySelector(".FormularioAjax").reset();
 			}
 		});
-	}else if(alerta.Alerta=="redireccionar"){
-		window.location.href=alerta.URL;
+	}else if(alerta.Alerta==="redireccionar"){
+		Swal.fire({
+			title: alerta.Titulo,
+			text: alerta.Texto,
+			icon: alerta.Tipo,
+			confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.value) {
+            // Hicieron click en "Sí"
+			window.location.href("http//localhost/sistema-inventario/"+alerta.Link+"/");
+        }
+    });
 	}
 }
