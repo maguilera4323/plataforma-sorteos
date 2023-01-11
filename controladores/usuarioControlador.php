@@ -18,6 +18,7 @@ class usuarioControlador extends usuarioModelo{
 		$conf_contrasena=ConexionBD::limpiar_cadena($_POST['conf_contrasena_nuevo']);
 		$correo=ConexionBD::limpiar_cadena($_POST['correo_electronico_nuevo']);
 		$rol=ConexionBD::limpiar_cadena($_POST['rol_nuevo']);
+		$creado_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
 		$creacion=date('y-m-d H:i:s');
 
 
@@ -26,6 +27,8 @@ class usuarioControlador extends usuarioModelo{
 		$carpeta='../vistas/assets/usuarios';
 		$ruta=$carpeta.'/'.$nombre_img;
 		move_uploaded_file($temporal,$carpeta.'/'. $nombre_img);
+
+		$clave=ConexionBD::EncriptaClave($contrasena);
 
 		
 		//validaciones de datos
@@ -79,11 +82,12 @@ class usuarioControlador extends usuarioModelo{
 				"usuario"=>$usuario,
 				"nom"=>$nombre,
 				"est"=>$estado,
-				"cont"=>$contrasena,
+				"cont"=>$clave,
 				"correo"=>$correo,
 				"rol"=>$rol,
 				"imagen"=>$ruta,
-				"fecha_creacion"=>$creacion
+				"fecha_creacion"=>$creacion,
+				"creado_por"=>$creado_por
 			];
 
 			$agregar_usuario=usuarioModelo::agregar_usuario_modelo($datos_usuario_reg);

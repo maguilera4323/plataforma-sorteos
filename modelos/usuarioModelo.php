@@ -16,7 +16,7 @@
 			$sql->bindParam(5,$datos['rol']);
 			$sql->bindParam(6,$datos['correo']);
 			$sql->bindParam(7,$datos['imagen']);
-			$sql->bindParam(8,$datos['usuario']);
+			$sql->bindParam(8,$datos['creado_por']);
 			$sql->bindParam(9,$datos['fecha_creacion']);
 			$sql->execute();
 			return $sql;								

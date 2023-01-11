@@ -36,12 +36,7 @@ class compraControlador extends compraModelo{
 		$precio=ConexionBD::limpiar_cadena($_POST['precio'][$i]);
 		$id_compra=ConexionBD::limpiar_cadena($_POST['idCompra']);
 		$estado=ConexionBD::limpiar_cadena($_POST['estado_nuevo']);
-
-/* 		echo $insumo . ' ';
-		echo $cantidad . ' ';
-		echo $precio; */
-	
-					
+				
  			//arreglo enviado al modelo para ser usado en una sentencia INSERT
 			$datos_detallecompra_reg=[
 				"ins"=>$insumo,
@@ -57,11 +52,13 @@ class compraControlador extends compraModelo{
 		if($i>0){
 			$alerta=[
 				"Alerta"=>"redireccionar",
-				"Titulo"=>"Compra Realizada",
-				"Texto"=>"Compra realizada exitosamente",
+				"Titulo"=>"Compra Registrada",
+				"Texto"=>"Los datos de la compra han sido registrados en el sistema",
 				"Tipo"=>"success",
-				"Link"=>"compras"
+				"URL"=>'compras/'
 			];
+			echo json_encode($alerta);
+		
 		}else{
 			$alerta=[
 				"Alerta"=>"simple",
@@ -69,8 +66,9 @@ class compraControlador extends compraModelo{
 				"Texto"=>"No hemos podido guardar la compra",
 				"Tipo"=>"error"
 			];
+			echo json_encode($alerta);
 		}
-		echo json_encode($alerta);
+		
 } 
 
 

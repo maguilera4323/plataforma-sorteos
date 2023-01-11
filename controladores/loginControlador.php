@@ -10,8 +10,17 @@ class loginUsuarios extends Usuario{
         $usuario=$datos['usuario'];
         $contrasena=$datos['password'];
         $array=array();
+
+        //se obtiene el hash de la contraseña para validar el inicio de sesion
+		$recuperarHash=new Usuario();
+		$hash_BD = $recuperarHash->obtenerContrasenaHash($usuario);
+			foreach($hash_BD as $fila){
+				$hash=$fila['contrasena'];
+			}
+
+      if (password_verify($contrasena, $hash)){
 			$verificarDatos = new Usuario(); //se crea una instancia en el archivo modelo de Login
-			$respuesta = $verificarDatos->accesoUsuario($usuario, $contrasena); //datos recibidos del archivo modelo de Login
+			$respuesta = $verificarDatos->accesoUsuario($usuario, $hash); //datos recibidos del archivo modelo de Login
 			foreach ($respuesta as $fila) {
 				$array['id'] = $fila['id_usuario'];
 				$array['nombre'] = $fila['nombre_usuario'];
@@ -22,39 +31,40 @@ class loginUsuarios extends Usuario{
             $array['foto_usuario'] = $fila['foto_usuario'];
          }
 
-         if(isset($array['nombre'])){
-               switch ($array['estado']){
-						case 'Activo':
-							// session_start();
-							//datos que se envian para uso del sistema
-							$_SESSION['id_login']=$array['id'];
-							$_SESSION['usuario_login']=$array['usuario'];
-							$_SESSION['nombre_usuario']=($array['nombre']);
-							$_SESSION['estado']=$array['estado'];
-							$_SESSION['rol']=$array['rol'];
-							$_SESSION['id_rol']=$array['id_rol'];
-							$_SESSION['token_login']=md5(uniqid(mt_rand(),true));
-                     $_SESSION['foto_login']=$array['foto_usuario'];
-							/* $datos_bitacora = [
-								"id_objeto" => 1,
-								"fecha" => date('Y-m-d H:i:s'),
-								"id_usuario" => $fila['id_usuario'],
-								"accion" => "Inicio de sesion",
-								"descripcion" => "El usuario ".$_SESSION['usuario_login']." entró al sistema"
-							];
-							Bitacora::guardar_bitacora($datos_bitacora); */
-							return header("Location:".SERVERURL."home/");
-							break;
-							case 'Inactivo':
-								$_SESSION['respuesta'] = 'Usuario inactivo';
-								return header("Location:".SERVERURL."login/");
-							break;
-							case 'Bloqueado':
-								$_SESSION['respuesta'] = 'Usuario bloqueado';
-								return header("Location:".SERVERURL."login/");
-							break; 
-						die();
-					}
+            if(isset($array['nombre'])){
+                  switch ($array['estado']){
+                     case 'Activo':
+                        // session_start();
+                        //datos que se envian para uso del sistema
+                        $_SESSION['id_login']=$array['id'];
+                        $_SESSION['usuario_login']=$array['usuario'];
+                        $_SESSION['nombre_usuario']=($array['nombre']);
+                        $_SESSION['estado']=$array['estado'];
+                        $_SESSION['rol']=$array['rol'];
+                        $_SESSION['id_rol']=$array['id_rol'];
+                        $_SESSION['token_login']=md5(uniqid(mt_rand(),true));
+                        $_SESSION['foto_login']=$array['foto_usuario'];
+                        /* $datos_bitacora = [
+                           "id_objeto" => 1,
+                           "fecha" => date('Y-m-d H:i:s'),
+                           "id_usuario" => $fila['id_usuario'],
+                           "accion" => "Inicio de sesion",
+                           "descripcion" => "El usuario ".$_SESSION['usuario_login']." entró al sistema"
+                        ];
+                        Bitacora::guardar_bitacora($datos_bitacora); */
+                        return header("Location:".SERVERURL."home/");
+                        break;
+                        case 'Inactivo':
+                           $_SESSION['respuesta'] = 'Usuario inactivo';
+                           return header("Location:".SERVERURL."login/");
+                        break;
+                        case 'Bloqueado':
+                           $_SESSION['respuesta'] = 'Usuario bloqueado';
+                           return header("Location:".SERVERURL."login/");
+                        break; 
+                     die();
+                  }
+               }
                 
              }else{
                  //en caso de que el hash no concuerde con el de la contraseña ingresada

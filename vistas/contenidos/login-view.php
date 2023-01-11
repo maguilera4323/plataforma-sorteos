@@ -32,6 +32,7 @@
 					<div class="login-wrap py-5">
 		      	<div class="img d-flex align-items-center justify-content-center"></div>
 				  <?php
+				  echo $_SESSION['contador_intentos'];
 				 if(isset($_SESSION['respuesta'])){
 					switch($_SESSION['respuesta']){
 						case 'Contraseña incorrecta':

@@ -12,7 +12,7 @@ include("./modelos/obtenerDatos.php");
 <h3 style="padding:5rem;"><i class="fas fa-users-cog"></i> &nbsp; USUARIOS </h3>
 
 <div class="botones-proveedores">
-	<div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR INSUMO</div>
+	<div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR USUARIO</div>
 	<button type="submit" class="btn btn-danger mx-auto btn-lg"><i class="fas fa-file-pdf"></i> &nbsp;Descargar PDF</button>
     <button type="submit" class="btn btn-success mx-auto btn-lg"><i class="fas fa-file-excel"></i> &nbsp;Descargar Excel</button>
 </div>
@@ -195,7 +195,8 @@ include("./modelos/obtenerDatos.php");
 			</div>
             <br>
             <input type="file" class="form-control" name="imagen_nuevo" id="imagen" maxlength="256" placeholder="Imagen">
-			<button type="submit" class="btn btn-primary">Guardar</button>
+            <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
+            <button type="submit" class="btn btn-primary">Guardar</button>
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 			</form>
       </div>

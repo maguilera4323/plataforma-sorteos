@@ -90,6 +90,7 @@ function alertas_ajax(alerta){
 			}
 		});
 	}else if(alerta.Alerta==="redireccionar"){
+		let link='http//localhost/sistema-inventario/';
 		Swal.fire({
 			title: alerta.Titulo,
 			text: alerta.Texto,
@@ -98,7 +99,7 @@ function alertas_ajax(alerta){
     }).then((result) => {
         if (result.value) {
             // Hicieron click en "Sí"
-			window.location.href("http//localhost/sistema-inventario/"+alerta.Link+"/");
+			window.location.href=link+alerta.URL;
         }
     });
 	}

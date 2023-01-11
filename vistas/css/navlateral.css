@@ -84,6 +84,7 @@ body{
 
 #sidemenu{
   background-color: var(--bgcoolor);
+  z-index: 1;
   color:white;
   position:fixed;
   height: 100%;
@@ -149,13 +150,13 @@ body{
 }
 
 #sidemenu #profile #photo{
-  border-radius: 50%;
-  width: 60%;
+  border-radius: 40%;
+  width: 100%;
 }
 
 #sidemenu #profile #photo, #sidemenu #profile #name{
   font-size: 16px;
-  padding: var(--pading);
+  padding: 5px;
   overflow: hidden;
 }
 
