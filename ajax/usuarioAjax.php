@@ -2,7 +2,7 @@
 	$peticionAjax=true;
 	require_once "../config/app.php";
 
-	if(isset($_POST['usuario_nuevo']) || isset($_POST['nombre_insumo_act']) || isset($_POST['id_insumo_del']))
+	if(isset($_POST['usuario_nuevo']) || isset($_POST['usuario_act']) || isset($_POST['id_usuario_del']))
 	{
 		/*--------- Instancia al controlador ---------*/
 		require_once "../controladores/usuarioControlador.php";
@@ -15,15 +15,15 @@
 			die();
 		}
 		
-		/*--------- Editar un proveedor ---------*/
-		if(isset($_POST['nombre_insumo_act']) ){
-			echo $ins_insumo->actualizarInsumo();
+		/*--------- Editar un usuario ---------*/
+		if(isset($_POST['usuario_act'])){
+			echo $ins_usuario->actualizarUsuario();
 			die();
 		}
 		
-		/*--------- Eliminar un insumo ---------*/
-		if(isset($_POST['id_insumo_del']) ){
-			echo $ins_insumo->eliminarInsumo();
+		/*--------- Eliminar un usuario ---------*/
+		if(isset($_POST['id_usuario_del']) ){
+			echo $ins_usuario->eliminarUsuario();
 			die();
 		}
 	}

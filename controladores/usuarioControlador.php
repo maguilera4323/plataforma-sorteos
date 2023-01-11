@@ -32,49 +32,50 @@ class usuarioControlador extends usuarioModelo{
 
 		
 		//validaciones de datos
-		/* if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El nombre no coincide con el formato solicitado",
+				"Texto"=>"El campo Nombre solo acepta letras y espacios",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 
-		if(ConexionBD::verificar_datos("[0-9]{1,14}",$cantidad_max)){
+		if(ConexionBD::verificar_datos("[A-Z]{1,30}",$usuario)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"Este campo no admite letras o caracteres especiales",
+				"Texto"=>"El campo Usuario solo acepta letras, sin espacios ni carácteres especiales",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 
-		if(ConexionBD::verificar_datos("[0-9]{1,14}",$cantidad_min)){
+		if(ConexionBD::verificar_datos("[a-zA-Z0-9$@.-]{5,10}",$contrasena) ){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"Este campo no admite letras o caracteres especiales",
+				"Texto"=>"La contraseña no coincide con el formato solicitado",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
-		}
+		} 
+
+		if($contrasena!=$conf_contrasena){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"Las contraseñas no coinciden. Ingreselas nuevamente.",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		} 
 		
-		if($cantidad_max<$cantidad_min){
-			$alerta=[
-				"Alerta"=>"simple",
-				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"La cantidad máxima no puede ser menor que la cantidad minina",
-				"Tipo"=>"error"
-			];
-			echo json_encode($alerta);
-			exit();
-		} */
 	
 					
 			//arreglo enviado al modelo para ser usado en una sentencia INSERT
@@ -114,103 +115,94 @@ class usuarioControlador extends usuarioModelo{
 
 
 
-	public function actualizarInsumo(){	
-		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_insumo_act']));
-		$categoria=ConexionBD::limpiar_cadena($_POST['categoria_insumo_act']);
-		$cantidad_max=ConexionBD::limpiar_cadena($_POST['cant_max_act']);
-		$cantidad_min=ConexionBD::limpiar_cadena($_POST['cant_min_act']);
-		$unidad_medida=ConexionBD::limpiar_cadena($_POST['unidad_insumo_act']);
-		$id_actualizar=ConexionBD::limpiar_cadena($_POST['id_actualizacion']);
+	public function actualizarUsuario(){	
+		$usuario=ConexionBD::limpiar_cadena(strtoupper($_POST['usuario_act']));
+		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_usuario_act']));
+		$estado=ConexionBD::limpiar_cadena($_POST['estado_act']);
+		$correo=ConexionBD::limpiar_cadena($_POST['correo_electronico_act']);
+		$rol=ConexionBD::limpiar_cadena($_POST['rol_act']);
+		$modif_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
+		$modificacion=date('y-m-d H:i:s');
+		$id_actualizacion=ConexionBD::limpiar_cadena($_POST['usuario_id']);
 
-			//validaciones de datos ingresados
-			if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
-				$alerta=[
-					"Alerta"=>"simple",
-					"Titulo"=>"Ocurrió un error inesperado",
-					"Texto"=>"El nombre no coincide con el formato solicitado",
-					"Tipo"=>"error"
-				];
-				echo json_encode($alerta);
-				exit();
-			}
-	
-			if(ConexionBD::verificar_datos("[0-9]{1,14}",$cantidad_max)){
-				$alerta=[
-					"Alerta"=>"simple",
-					"Titulo"=>"Ocurrió un error inesperado",
-					"Texto"=>"Este campo no admite letras o caracteres especiales",
-					"Tipo"=>"error"
-				];
-				echo json_encode($alerta);
-				exit();
-			}
-	
-			if(ConexionBD::verificar_datos("[0-9]{1,14}",$cantidad_min)){
-				$alerta=[
-					"Alerta"=>"simple",
-					"Titulo"=>"Ocurrió un error inesperado",
-					"Texto"=>"Este campo no admite letras o caracteres especiales",
-					"Tipo"=>"error"
-				];
-				echo json_encode($alerta);
-				exit();
-			}
-			
-			if($cantidad_max<$cantidad_min){
-				$alerta=[
-					"Alerta"=>"simple",
-					"Titulo"=>"Ocurrió un error inesperado",
-					"Texto"=>"La cantidad máxima no puede ser menor que la cantidad minina",
-					"Tipo"=>"error"
-				];
-				echo json_encode($alerta);
-				exit();
-			}
-		
-	
-			//arreglo enviado al modelo
-		$datos_insumo_actu=
-			[
-				"nombre"=>$nombre,
-				"cat"=>$categoria,
-				"cant_max"=>$cantidad_max,
-				"cant_min"=>$cantidad_min,
-				"unid"=>$unidad_medida
+
+		$nombre_img=($_FILES['imagen_act']['name']);//ADQUIERE LA IMAGEN
+		$temporal=$_FILES['imagen_act']['tmp_name'];
+		$carpeta='../vistas/assets/usuarios';
+		$ruta=$carpeta.'/'.$nombre_img;
+		move_uploaded_file($temporal,$carpeta.'/'. $nombre_img);
+
+
+				//validaciones de datos
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Nombre solo acepta letras y espacios",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		if(ConexionBD::verificar_datos("[A-Z]{1,30}",$usuario)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Usuario solo acepta letras, sin espacios ni carácteres especiales",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}	
+					
+			//arreglo enviado al modelo para ser usado en una sentencia INSERT
+			$datos_usuario_act=[
+				"usuario"=>$usuario,
+				"nom"=>$nombre,
+				"est"=>$estado,
+				"correo"=>$correo,
+				"rol"=>$rol,
+				"imagen"=>$ruta,
+				"fecha_modif"=>$modificacion,
+				"modif_por"=>$modif_por
 			];
 
-			$actualizar_insumo=insumoModelo::actualizar_insumo_modelo($datos_insumo_actu,$id_actualizar);
+			$actualizar_usuario=usuarioModelo::actualizar_usuario_modelo($datos_usuario_act,$id_actualizacion);
 
-			if($actualizar_insumo->rowCount()==1){
+			if($actualizar_usuario->rowCount()==1){
 				$alerta=[
 					"Alerta"=>"recargar",
-					"Titulo"=>"Insumo Actualizado",
-					"Texto"=>"Insumo Actualizado exitosamente",
+					"Titulo"=>"Usuario Actualizacion",
+					"Texto"=>"Los datos del usuario han sido actualizados con exito",
 					"Tipo"=>"success"
 				];
+
+				
 			}else{
 				$alerta=[
 					"Alerta"=>"simple",
 					"Titulo"=>"Ocurrió un error inesperado",
-					"Texto"=>"No hemos podido actualizar el insumo",
+					"Texto"=>"No hemos podido actualizar el usuario",
 					"Tipo"=>"error"
 				];
 			}
-			echo json_encode($alerta);	
+			echo json_encode($alerta);
 	} 
 
 
 
-	public function eliminarInsumo(){
-			$id=ConexionBD::limpiar_cadena(($_POST['id_insumo_del']));
+	public function eliminarUsuario(){
+			$id=ConexionBD::limpiar_cadena(($_POST['id_usuario_del']));
 			$array=array();
 			$valor='';
 		
-		$eliminarInsumo=insumoModelo::eliminar_insumo_modelo($id);
-			if($eliminarInsumo->rowCount()==1){
+		$eliminarUsuario=usuarioModelo::eliminar_usuario_modelo($id);
+			if($eliminarUsuario->rowCount()==1){
 				$alerta=[
 					"Alerta"=>"recargar",
-					"Titulo"=>"Insumo Eliminado",
-					"Texto"=>"El insumo fue eliminado del sistema",
+					"Titulo"=>"Usuario Inactivado",
+					"Texto"=>"El usuario seleccionado fue inactivado",
 					"Tipo"=>"success"
 				];
 
@@ -221,7 +213,7 @@ class usuarioControlador extends usuarioModelo{
 				$alerta=[
 					"Alerta"=>"simple",
 					"Titulo"=>"Ha ocurrido un error",
-					"Texto"=>"El insumo no puede ser borrado",
+					"Texto"=>"Ha ocurrido un error desconocido durante la operación",
 					"Tipo"=>"error"
 				];echo json_encode($alerta);
 			}

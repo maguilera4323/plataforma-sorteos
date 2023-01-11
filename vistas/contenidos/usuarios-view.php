@@ -51,58 +51,82 @@ include("./modelos/obtenerDatos.php");
 					<i class="fas fa-sync-alt"></i>
 				</div>
 						<!-- Modal actualizar-->
-                    <div class="modal fade" id="ModalAct<?php echo $fila['id_insumo'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="ModalAct<?php echo $fila['id_usuario'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Actualizar Insumo</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuario</h5>
                                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
 
                             </div>
                             <div class="modal-body" id="modal-actualizar">
-                            <form action="<?php echo SERVERURL; ?>ajax/insumoAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
-                                    <div class="form-group">
-                                        <label class="color-label">Nombre</label>
-                                        <input type="text" class="form-control" name="nombre_insumo_act" maxlength="27" value="<?php echo $fila['nom_insumo']?>" required>
-                                    </div>
-                                    <br>
-                                    <div class="form-group">
-                                        <label class="color-label">Categoria</label>
-                                            <select class="form-control" name="categoria_insumo_act" required>
-                                                <option value="1" <?php if ($fila['categoria'] == 'Comestibles'): ?> selected<?php endif; ?>>Comestibles</option>
-                                                <option value="2" <?php if ($fila['categoria'] == 'Utensillos'): ?> selected<?php endif; ?>>Utensillos</option>
-                                                <option value="3" <?php if ($fila['categoria'] == 'Varios'): ?> selected<?php endif; ?>>Varios</option>
-                                            </select>
-                                    </div>
-                                    <br>
-                                    <div class="form-group">
-                                        <label class="color-label">Cantidad Maxima</label>
-                                        <input type="number" class="form-control" name="cant_max_act" value="<?php echo $fila['cant_max']?>" maxlength="27" required>
-                                    </div>
-                                    <br>
-                                    <div class="form-group">
-                                        <label class="color-label">Cantidad Minima</label>
-                                        <input type="number" class="form-control" name="cant_min_act" value="<?php echo $fila['cant_min']?>" maxlength="27" required>
-                                    </div>
-                                    <br>
-                                    <div class="form-group">
-                                        <label class="color-label">Unidad de medida</label>
-                                                <select class="form-control" name="unidad_insumo_act" required>
-													<option value="1" <?php if ($fila['unidad_medida'] == 'LB'): ?>selected<?php endif; ?>>LB</option>
-													<option value="2" <?php if ($fila['unidad_medida'] == 'UN'): ?>selected<?php endif; ?>>UN</option>
-													<option value="3" <?php if ($fila['unidad_medida'] == 'L'): ?>selected<?php endif; ?>>L</option>
-													<option value="4" <?php if ($fila['unidad_medida'] == 'GAL'): ?>selected<?php endif; ?>>GAL</option>
-                                                    <option value="5" <?php if ($fila['unidad_medida'] == 'BOLSAS'): ?>selected<?php endif; ?>>BOLSAS</option>
+                            <form action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
+                            <div class="row">
+                                            <div class="col-10 col-md-6">
+                                                <div class="form-group">
+                                                    <label class="color-label">Usuario</label>
+                                                    <input type="text" class="form-control" name="usuario_act" id="nom_usuario" 
+                                                    style="text-transform:uppercase;" value="<?php echo $fila['usuario']?>" required="" >
+                                                </div>
+                                            </div>
+                                            <div class="col-10 col-md-6">
+                                                <div class="form-group">
+                                                    <label class="color-label">Nombre</label>
+                                                    <input type="text" class="form-control" name="nombre_usuario_act" id="nombre_usuario" 
+                                                    style="text-transform:uppercase;" value="<?php echo $fila['nombre_usuario']?>" required="" >
+                                                </div>
+                                            </div>
+                                            <div class="col-10 col-md-6">
+                                                <br>
+                                                <label class="color-label">Estado</label>
+                                                <select class="form-control" name="estado_act">
+                                                    <option value="1" <?php if ($fila['estado_usuario'] == 'Activo'): ?> selected<?php endif; ?>>Activo</option>
+                                                    <option value="2" <?php if ($fila['estado_usuario'] == 'Inactivo'): ?> selected<?php endif; ?>>Inactivo</option>
+                                                    <option value="3" <?php if ($fila['estado_usuario'] == 'Bloqueado'): ?> selected<?php endif; ?>>Bloqueado</option>
                                                 </select>
+                                            </div>
+                                            
+                                            <div class="col-10 col-md-6">
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="color-label">Roles</label>
+                                                        <select class="form-control" name="rol_act" required>
+                                                                <?php
+                                                                    $datos=new obtenerDatosTablas();
+                                                                    $resultado=$datos->datosTablas('roles');
+                                                                    foreach ($resultado as $valores){
+                                                                        //validación para obtener el valor guardado en la base de datos
+															            //y que este se muestre seleccionado en la base de datos
+                                                                        if($fila['id_rol']==$valores['id_rol']){
+                                                                            echo '<option value="'.$valores['id_rol'].'" selected>'.$valores['rol'].'</option>';
+                                                                        //validación para obtener los demás valores de la base de datos para el select
+                                                                        }elseif($fila['id_rol']!=$valores['id_rol']){
+                                                                            echo '<option value="'.$valores['id_rol'].'">'.$valores['rol'].'</option>';
+                                                                        }
+                                                                    }
+                                                                ?>
+                                                        </select>
+                                                </div>
+                                            </div>
                                     </div>
-                                    <div class="col-12 col-md-4">
-										<div class="form-group">
-											<input type="hidden" pattern="" class="form-control" name="id_actualizacion" value="<?php echo $fila['id_insumo']; ?>">
-										</div>
-									</div>
+                                    
                                     <br>
+                                    <div class="form-group">
+                                        <label class="color-label">Correo</label>
+                                        <input type="email" class="form-control" name="correo_electronico_act" id="correo_electronico" value="<?php echo $fila['correo_electronico']?>"required="">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="color-label">Fotografía</label>
+                                        <input type="file" class="form-control" name="imagen_act" id="imagen" maxlength="256" placeholder="Imagen">
+                                        <!-- <img src="<?php echo $fila['foto_usuario']; ?>" width="100" height="100" alt="">
+                                        <img src="<?php echo $_SESSION['foto_login']; ?>" width="100" height="100" alt=""> -->
+                                    </div>
+                                    <br>
+                                    <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
+                                    <input type="hidden" value="<?php echo $fila['id_usuario']; ?>" class="form-control" name="usuario_id">
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 </form>
@@ -110,8 +134,8 @@ include("./modelos/obtenerDatos.php");
                         </div>
 			    </td>
 				<td>
-					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/insumoAjax.php" method="POST" data-form="delete" autocomplete="off">
-					<input type="hidden" pattern="" class="form-control" name="id_insumo_del" value="<?php echo $fila['id_usuario'] ?>">	
+					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
+					<input type="hidden" pattern="" class="form-control" name="id_usuario_del" value="<?php echo $fila['id_usuario'] ?>">	
 					<button type="submit" class="btn btn-warning">
 						<i class="far fa-trash-alt"></i>
 					</button>
@@ -142,59 +166,76 @@ include("./modelos/obtenerDatos.php");
       </div>
       <div class="modal-body" id="modal-actualizar">
 			<form action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
-			<div class="form-group">
-                <label class="color-label">Usuario</label>
-				<input type="text" class="form-control" name="usuario_nuevo" id="nom_usuario" 
-				style="text-transform:uppercase;" required="" >
-			</div>
-            <br>
-            <div class="form-group">
-                    <label class="color-label">Nombre</label>
-					<input type="text" class="form-control" name="nombre_usuario_nuevo" id="nombre_usuario" 
-					style="text-transform:uppercase;" required="" >
-			</div>
-            <br>
-			<div class="form-group">
-				<label class="color-label">Estado</label>
-                    <select class="form-control" name="estado_nuevo" disabled>
-						<option value="1" selected="">Activo</option>
-						<option value="2">Inactivo</option>
-						<option value="3">Bloqueado</option>
-					</select>
-			</div>
-            <br>
-			<div class="form-group contrasena">
-				<label class="color-label">Contraseña</label>
-				<input type="password" class="form-control" name="contrasena_nuevo" id="contrasena" pattern="[a-zA-Z0-9!#%&/()=?¡*+_$@.-]{8,100}" maxlength="10" required="" >
-<!-- 				<span onclick="mosContrasena()"><i class="fas fa-eye-slash icon-clave" style="color:black;"></i></span> -->
-			</div>
-            <br>
-			<div class="form-group conf-contrasena">
-				<label class="color-label">Confirmar Contraseña</label>
-				<input type="password" class="form-control" name="conf_contrasena_nuevo" id="conf_contra" pattern="[a-zA-Z0-9!#%&/()=?¡*+_$@.-]{8,100}" maxlength="10" required="" >
-				<!-- <span onclick="mosConfContrasena()"><i class="fas fa-eye-slash icon-confclave" style="color:black;"></i></span> -->
-			</div>
+			<div class="row">
+					<div class="col-10 col-md-6">
+						<div class="form-group">
+                            <label class="color-label">Usuario</label>
+				            <input type="text" class="form-control" name="usuario_nuevo" id="nom_usuario" 
+				            style="text-transform:uppercase;" required="" >
+						</div>
+					</div>
+					<div class="col-10 col-md-6">
+						<div class="form-group">
+                            <label class="color-label">Nombre</label>
+					        <input type="text" class="form-control" name="nombre_usuario_nuevo" id="nombre_usuario" 
+					        style="text-transform:uppercase;" required="" >
+						</div>
+					</div>
+                    <div class="col-10 col-md-6">
+                        <br>
+                        <label class="color-label">Estado</label>
+                        <select class="form-control" name="estado_nuevo" disabled>
+                            <option value="1" selected="">Activo</option>
+                            <option value="2">Inactivo</option>
+                            <option value="3">Bloqueado</option>
+                        </select>
+					</div>
+					
+					<div class="col-10 col-md-6">
+                        <br>
+						<div class="form-group">
+                            <label class="color-label">Roles</label>
+                                <select class="form-control" name="rol_nuevo" required>
+                                    <option value="" selected="" disabled="">Seleccione una opción</option>
+                                        <?php
+                                            $datos=new obtenerDatosTablas();
+                                            $resultado=$datos->datosTablas('roles');
+                                            foreach ($resultado as $fila){
+                                                echo '<option value="'.$fila['id_rol'].'">'.$fila['rol'].'</option>';
+                                                }
+                                        ?>
+                                </select>
+						</div>
+					</div>
+
+                    <div class="col-10 col-md-6">
+                        <br>
+						<div class="form-group">
+                            <label class="color-label">Contraseña</label>
+				            <input type="password" class="form-control" name="contrasena_nuevo" id="contrasena" pattern="[a-zA-Z0-9!#%&/()=?¡*+_$@.-]{5,10}" maxlength="10" required="" >
+<!-- 				        <span onclick="mosContrasena()"><i class="fas fa-eye-slash icon-clave" style="color:black;"></i></span> -->
+						</div>
+					</div>
+
+                    <div class="col-10 col-md-6">
+                        <br>
+                        <label class="color-label">Confirmar Contraseña</label>
+				        <input type="password" class="form-control" name="conf_contrasena_nuevo" id="conf_contra" pattern="[a-zA-Z0-9!#%&/()=?¡*+_$@.-]{5,10}" maxlength="10" required="" >
+				        <!-- <span onclick="mosConfContrasena()"><i class="fas fa-eye-slash icon-confclave" style="color:black;"></i></span> -->
+					</div>
+            </div>
+            
             <br>
 			<div class="form-group">
 				<label class="color-label">Correo</label>
 				<input type="email" class="form-control" name="correo_electronico_nuevo" id="correo_electronico" required="">
 			</div>
-			<br>
+            <br>
             <div class="form-group">
-				<label class="color-label">Roles</label>
-				<select class="form-control" name="rol_nuevo" required>
-					<option value="" selected="" disabled="">Seleccione una opción</option>
-						<?php
-							$datos=new obtenerDatosTablas();
-                            $resultado=$datos->datosTablas('roles');
-                            foreach ($resultado as $fila){
-									echo '<option value="'.$fila['id_rol'].'">'.$fila['rol'].'</option>';
-								}
-						?>
-				</select>
+				<label class="color-label">Fotografía</label>
+                <input type="file" class="form-control" name="imagen_nuevo" id="imagen" maxlength="256" placeholder="Imagen">
 			</div>
             <br>
-            <input type="file" class="form-control" name="imagen_nuevo" id="imagen" maxlength="256" placeholder="Imagen">
             <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
             <button type="submit" class="btn btn-primary">Guardar</button>
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
