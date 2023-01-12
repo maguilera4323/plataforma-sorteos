@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 include("./modelos/obtenerDatosDetalleCompras.php"); 
 ?>
 
-<h3 style="padding:5rem;"><i class="fas fa-shopping-cart"></i> &nbsp; DETALLE DE COMPRAS </h3>
+<h3 style="padding:3rem;"><i class="fas fa-shopping-cart"></i> &nbsp; DETALLE DE COMPRAS </h3>
         <?php
 			//variables para generar la url completa del sitio y obtener el id del registro
 			$host= $_SERVER["HTTP_HOST"];

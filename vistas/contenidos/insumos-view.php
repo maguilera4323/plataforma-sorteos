@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 include("./modelos/obtenerDatos.php"); 
 ?>
 
-<h3 style="padding:5rem;"><i class="fas fa-box-open"></i> &nbsp; INSUMOS </h3>
+<h3 style="padding:3rem;"><i class="fas fa-box-open"></i> &nbsp; INSUMOS </h3>
 
 <div class="botones-proveedores">
 	<div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR INSUMO</div>
@@ -63,12 +63,12 @@ include("./modelos/obtenerDatos.php");
                             <div class="modal-body" id="modal-actualizar">
                             <form action="<?php echo SERVERURL; ?>ajax/insumoAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
                                     <div class="form-group">
-                                        <label class="color-label">Nombre</label>
+                                        <label class="label-actualizar" style="float: left;">Nombre</label>
                                         <input type="text" class="form-control" name="nombre_insumo_act" maxlength="27" value="<?php echo $fila['nom_insumo']?>" required>
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <label class="color-label">Categoria</label>
+                                        <label class="label-actualizar">Categoria</label>
                                             <select class="form-control" name="categoria_insumo_act" required>
                                                 <option value="1" <?php if ($fila['categoria'] == 'Comestibles'): ?> selected<?php endif; ?>>Comestibles</option>
                                                 <option value="2" <?php if ($fila['categoria'] == 'Utensillos'): ?> selected<?php endif; ?>>Utensillos</option>
@@ -77,17 +77,17 @@ include("./modelos/obtenerDatos.php");
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <label class="color-label">Cantidad Maxima</label>
+                                        <label class="label-actualizar">Cantidad Maxima</label>
                                         <input type="number" class="form-control" name="cant_max_act" value="<?php echo $fila['cant_max']?>" maxlength="27" required>
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <label class="color-label">Cantidad Minima</label>
+                                        <label class="label-actualizar">Cantidad Minima</label>
                                         <input type="number" class="form-control" name="cant_min_act" value="<?php echo $fila['cant_min']?>" maxlength="27" required>
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <label class="color-label">Unidad de medida</label>
+                                        <label class="label-actualizar">Unidad de medida</label>
                                                 <select class="form-control" name="unidad_insumo_act" required>
 													<option value="1" <?php if ($fila['unidad_medida'] == 'LB'): ?>selected<?php endif; ?>>LB</option>
 													<option value="2" <?php if ($fila['unidad_medida'] == 'UN'): ?>selected<?php endif; ?>>UN</option>

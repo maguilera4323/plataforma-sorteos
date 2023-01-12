@@ -9,7 +9,7 @@ include("./modelos/obtenerDatosUsuarios.php");
 include("./modelos/obtenerDatos.php"); 
 ?>
 
-<h3 style="padding:5rem;"><i class="fas fa-users-cog"></i> &nbsp; USUARIOS </h3>
+<h3 style="padding:3rem;"><i class="fas fa-users-cog"></i> &nbsp; USUARIOS </h3>
 
 <div class="botones-proveedores">
 	<div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR USUARIO</div>
@@ -66,21 +66,21 @@ include("./modelos/obtenerDatos.php");
                             <div class="row">
                                             <div class="col-10 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="color-label">Usuario</label>
+                                                    <label class="label-actualizar">Usuario</label>
                                                     <input type="text" class="form-control" name="usuario_act" id="nom_usuario" 
                                                     style="text-transform:uppercase;" value="<?php echo $fila['usuario']?>" required="" >
                                                 </div>
                                             </div>
                                             <div class="col-10 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="color-label">Nombre</label>
+                                                    <label class="label-actualizar">Nombre</label>
                                                     <input type="text" class="form-control" name="nombre_usuario_act" id="nombre_usuario" 
                                                     style="text-transform:uppercase;" value="<?php echo $fila['nombre_usuario']?>" required="" >
                                                 </div>
                                             </div>
                                             <div class="col-10 col-md-6">
                                                 <br>
-                                                <label class="color-label">Estado</label>
+                                                <label class="label-actualizar">Estado</label>
                                                 <select class="form-control" name="estado_act">
                                                     <option value="1" <?php if ($fila['estado_usuario'] == 'Activo'): ?> selected<?php endif; ?>>Activo</option>
                                                     <option value="2" <?php if ($fila['estado_usuario'] == 'Inactivo'): ?> selected<?php endif; ?>>Inactivo</option>
@@ -91,7 +91,7 @@ include("./modelos/obtenerDatos.php");
                                             <div class="col-10 col-md-6">
                                                 <br>
                                                 <div class="form-group">
-                                                    <label class="color-label">Roles</label>
+                                                    <label class="label-actualizar">Roles</label>
                                                         <select class="form-control" name="rol_act" required>
                                                                 <?php
                                                                     $datos=new obtenerDatosTablas();
@@ -114,12 +114,12 @@ include("./modelos/obtenerDatos.php");
                                     
                                     <br>
                                     <div class="form-group">
-                                        <label class="color-label">Correo</label>
+                                        <label class="label-actualizar">Correo</label>
                                         <input type="email" class="form-control" name="correo_electronico_act" id="correo_electronico" value="<?php echo $fila['correo_electronico']?>"required="">
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <label class="color-label">Fotografía</label>
+                                        <label class="label-actualizar">Fotografía</label>
                                         <input type="file" class="form-control" name="imagen_act" id="imagen" maxlength="256" placeholder="Imagen">
                                         <!-- <img src="<?php echo $fila['foto_usuario']; ?>" width="100" height="100" alt="">
                                         <img src="<?php echo $_SESSION['foto_login']; ?>" width="100" height="100" alt=""> -->

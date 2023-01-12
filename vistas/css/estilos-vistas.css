@@ -2,7 +2,76 @@
   padding-left: 16rem;
 }
 
-div .color-label{ 
-  text-align: left;
+/* alinear los label en los formularios de actualizacion de datos */
+div .label-actualizar{ 
+  float: left;
 }
 
+
+/* Dropdown de navbar */
+.boton-dropdown{
+  color:rgb(255, 255, 255);
+  background-color: transparent;
+  border:none;
+  padding: 10px;
+  margin-left: 20px;
+  margin-right: 30px;
+}
+
+.dropdown .boton-dropdown{
+  justify-content: center;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+  font-size:15px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  overflow: auto;
+  
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  display: block;
+  color: #ffffff;
+  background-color: rgb(33,37,41);
+  padding: 8px;
+  text-decoration: none;
+}
+
+
+.dropdown-content a:hover {
+  color: #FFFFFF;
+  background-color: #00A4BD;
+}
+
+
+/* pagina de error */
+.error-404 img{
+    display: block;
+    margin: 0 auto;
+}
+
+.error-404 h3{
+  color:black;
+  text-decoration: solid;
+  font-style: italic;
+}
+
+.error-404 p{
+  font-size:20px;
+}
+
+.error-404 button{
+  display: block;
+  margin: 0 auto;
+  font-size:18px;
+}

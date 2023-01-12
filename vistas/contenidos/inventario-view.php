@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 include("./modelos/obtenerDatosInventario.php"); 
 ?>
 
-<h3 style="padding:5rem;"><i class="fas fa-warehouse"></i> &nbsp; INVENTARIO </h3>
+<h3 style="padding:3rem;"><i class="fas fa-warehouse"></i> &nbsp; INVENTARIO </h3>
 
 <div class="botones-proveedores">
 	<button type="submit" class="btn btn-danger mx-auto btn-lg"><i class="fas fa-file-pdf"></i> &nbsp;Descargar PDF</button>

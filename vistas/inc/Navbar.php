@@ -1,6 +1,9 @@
-<div>
-	<nav class="navbar navbar-dark bg-dark" style="justify-content:right;">
-		<a href="<?php echo SERVERURL; ?>salir/">
-		<button type="button" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i>&nbsp; Cerrar Sesión  </button></a>
-	</nav>
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="justify-content:right;">
+  <div class="dropdown">
+    <button class="boton-dropdown float-right"><i class="fas fa-user-circle"></i> &nbsp;<?php echo $_SESSION['usuario_login']?></button>
+    <div class="dropdown-content">
+      <a href="<?php echo SERVERURL?>perfil/"><i class="fas fa-user-edit"></i>&nbsp; Perfil</a>
+      <a href="<?php echo SERVERURL?>salir/"><i class="fas fa-power-off"></i>&nbsp; Cerrar Sesión</a>
+    </div>
+  </div>
+</nav>

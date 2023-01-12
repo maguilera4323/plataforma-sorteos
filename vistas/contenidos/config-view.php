@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 include("./modelos/obtenerDatos.php"); 
 ?>
 
-<h3 style="padding:5rem;"><i class="fas fa-wrench"></i> &nbsp; CONFIGURACION </h3>
+<h3 style="padding:3rem;"><i class="fas fa-wrench"></i> &nbsp; CONFIGURACION </h3>
 
 <div class="row row-cols-4 row-cols-md-3 g-3 text-center">
   <div class="col">

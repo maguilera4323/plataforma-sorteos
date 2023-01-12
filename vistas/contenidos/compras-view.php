@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 include("./modelos/obtenerDatosCompras.php"); 
 ?>
 
-<h3 style="padding:5rem;"><i class="fas fa-shopping-cart"></i> &nbsp; COMPRAS </h3>
+<h3 style="padding:3rem;"><i class="fas fa-shopping-cart"></i> &nbsp; COMPRAS </h3>
 
 <div class="botones-proveedores">
     <a href="<?php echo SERVERURL?>nuevacompra/"><div class="btn btn-dark btn-lg"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR COMPRA</div></a>

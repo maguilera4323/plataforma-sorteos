@@ -17,7 +17,7 @@ include("./modelos/obtenerDatos.php");
 </div>
 <br>
 <div class="table-responsive">
-    <table id="datos-usuario" class="table table-bordered table-striped ">
+    <table id="datos-usuario" class="table table-bordered text-center table-striped ">
         <thead>
             <tr>
                 <th>ID</th>
@@ -62,27 +62,27 @@ include("./modelos/obtenerDatos.php");
                             <div class="modal-body">
 									<form action="<?php echo SERVERURL; ?>ajax/proveedorAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
 									<div class="form-group">
-											<label class="color-label">Nombre</label>
+											<label class="label-actualizar">Nombre</label>
 											<input type="text" class="form-control" name="nombre_proveedor_actu" value="<?php echo $fila['nom_proveedor']?>"  required>
 										</div>
                                         <br>
 										<div class="form-group">
-											<label class="color-label">RTN</label>
+											<label class="label-actualizar">RTN</label>
 											<input type="text" class="form-control" name="rtn_proveedor_actu" value="<?php echo $fila['rtn_proveedor']?>" required>
 										</div>
                                         <br>
 										<div class="form-group">
-											<label class="color-label">Correo</label>
+											<label class="label-actualizar">Correo</label>
 											<input type="text" class="form-control" name="correo_proveedor_actu" value="<?php echo $fila['correo_proveedor']?>" required>
 										</div>
                                         <br>
 										<div class="form-group">
-											<label class="color-label">Telefono</label>
+											<label class="label-actualizar">Telefono</label>
 											<input type="text" class="form-control" name="telefono_proveedor_actu" value="<?php echo $fila['tel_proveedor']?>" required>
 										</div>
                                         <br>
 										<div class="form-group">
-											<label class="color-label">Dirección</label>
+											<label class="label-actualizar">Dirección</label>
 											<input type="text" class="form-control" name="direccion_proveedor_actu" value="<?php echo $fila['dir_proveedor']?>" required>
 										</div>
                                         <br>
