@@ -1,6 +1,6 @@
 <?php
     $peticion=true;
-	include("obtenerDatos.php");
+	include("./DatosTablas/obtenerDatos.php");
 	
 	//este archivo se encarga de extraer los datos de la tabla insumos para usarlos en la tabla de Nueva Compra
 	//en el apartado donde se agregan los productos

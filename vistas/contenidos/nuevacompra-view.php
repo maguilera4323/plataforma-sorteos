@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./modelos/obtenerDatos.php"); 
+include("./modelos/DatosTablas/obtenerDatos.php"); 
 ?>
 
 <h3 style="padding:5rem;"><i class="fas fa-shopping-cart"></i> &nbsp; NUEVA COMPRA </h3>
@@ -135,7 +135,7 @@ include("./modelos/obtenerDatos.php");
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
 					<br>
 					<div class="form-group">
-						<a href="<?php echo SERVERURL; ?>facturacion-list/"><input value="Salir" 
+						<a href="<?php echo SERVERURL; ?>compras/"><input value="Salir" 
 						class="btn btn-success submit_btn invoice-save-btm" style="font-size:20px; border: 2px solid #777574;"></a>
 					</div>
 				</div>

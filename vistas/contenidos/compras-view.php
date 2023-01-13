@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./modelos/obtenerDatosCompras.php"); 
+include("./modelos/DatosTablas/obtenerDatosCompras.php"); 
 ?>
 
 <h3 style="padding:3rem;"><i class="fas fa-shopping-cart"></i> &nbsp; COMPRAS </h3>
@@ -47,8 +47,13 @@ include("./modelos/obtenerDatosCompras.php");
                 <td><?php echo $fila['total_compra']; ?></td>
                 <td><a href="<?php echo SERVERURL; ?>detallecompras/<?php echo $fila['id_compra']?>">
                 <i class="fas fa-exclamation-circle" style="color:black; justify-items:center;"></i></a></td>    
-                <td><i class="fas fa-pen"></i></td>
-                <td><i class="fas fa-trash-alt" style="color:red; justify-items:center;"></i></td>
+                <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_compra'];?>">
+					<i class="fas fa-sync-alt"></i>
+                </button></td>
+                <td>
+                <button type="submit" class="btn btn-danger">
+						<i class="far fa-trash-alt"></i>
+					</button></td>
                 </tr>
 
 

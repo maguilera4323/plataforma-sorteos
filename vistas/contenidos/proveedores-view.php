@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./modelos/obtenerDatos.php"); 
+include("./modelos/DatosTablas/obtenerDatos.php"); 
 ?>
 
 <h3 style="padding:5rem;"><i class="fas fa-boxes"></i> &nbsp; PROVEEDORES </h3>
@@ -45,9 +45,9 @@ include("./modelos/obtenerDatos.php");
                 <td><?php echo $fila['correo_proveedor']; ?></td>
                 <td><?php echo $fila['dir_proveedor']; ?></td>
                 <td>
-				<div data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_proveedor'];?>">
+				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_proveedor'];?>">
 					<i class="fas fa-sync-alt"></i>
-				</div>
+                </button>
 						<!-- Modal actualizar-->
                     <div class="modal fade" id="ModalAct<?php echo $fila['id_proveedor'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -100,7 +100,7 @@ include("./modelos/obtenerDatos.php");
                 <td>
                     <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/proveedorAjax.php" method="POST" data-form="delete" autocomplete="off">
                     <input type="hidden" pattern="" class="form-control" name="id_proveedor_del" value="<?php echo $fila['id_proveedor'] ?>">
-                    <button type="submit" style="border: none; background-color:transparent;"><i class="far fa-trash-alt" style="color:red;"></i></button>
+                    <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                     </form>
                 </td>
                 </tr>

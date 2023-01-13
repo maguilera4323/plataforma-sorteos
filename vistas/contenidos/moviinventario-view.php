@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./modelos/obtenerDatosMovimientos.php"); 
+include("./modelos/DatosTablas/obtenerDatosMovimientos.php"); 
 ?>
 
 <h3 style="padding:3rem;"><i class="fas fa-dolly"></i> &nbsp; MOVIMIENTOS DE INVENTARIO </h3>

@@ -4,8 +4,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-//llamado al archivo de funciones para obtener los datos de la tabla
-include("./modelos/obtenerDatos.php"); 
 ?>
 
 <h3 style="padding:3rem;"><i class="fas fa-wrench"></i> &nbsp; CONFIGURACION </h3>
@@ -22,12 +20,14 @@ include("./modelos/obtenerDatos.php");
 </a>
   </div>
   <div class="col">
+  <a href="<?php echo SERVERURL?>parametros/">
     <div class="card">
       <div class="card-body">
-      <h5 class="card-title text-center"><i class="fas fa-wrench" style="font-size:30px;"></i></h5>
-        <p class="card-text text-center" style="font-size:30px;">Roles</p>
+      <h5 class="card-title text-center"><i class="fas fa-list-alt" style="font-size:30px; color:black;"></i></h5>
+        <p class="card-text text-center" style="font-size:30px; color:black;">Parámetros</p>
       </div>
     </div>
+    </a>
   </div>
   <div class="col">
     <div class="card">

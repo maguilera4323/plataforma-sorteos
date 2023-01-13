@@ -6,7 +6,7 @@
 		protected static function obtener_vistas_modelo($vistas){
 
 			$listaBlanca=["home","proveedores","insumos","compras","nuevacompra","detallecompras","inventario","moviinventario",
-			"config","usuarios","salir"];
+			"config","usuarios","parametros","salir"];
 			if(in_array($vistas, $listaBlanca)){
 				if(is_file("./vistas/contenidos/".$vistas."-view.php")){
 					$contenido="./vistas/contenidos/".$vistas."-view.php";

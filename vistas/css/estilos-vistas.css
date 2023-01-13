@@ -75,3 +75,23 @@ div .label-actualizar{
   margin: 0 auto;
   font-size:18px;
 }
+
+
+/* botones de las vistas de Configuracion */
+.col .card:hover {
+  color: #FFFFFF;
+  background-color: #00A4BD;
+}
+
+
+/* Tablas de las vistas */
+#datos-usuario{     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 16px;   text-align: left;    border-collapse: collapse; }
+
+#datos-usuario th {     font-size: 18px;     font-weight: normal;     padding: 8px;     background: #0184a5;
+    border-top: 4px solid #0184a5;    border-bottom: 1px solid #fff; color: rgb(0, 0, 0); }
+
+#datos-usuario td {    padding: 8px;     background: #dae2e2;     border-bottom: 1px solid #fff;
+    color: rgb(47, 48, 48);    border-top: 1px solid transparent; }
+
+#datos-usuario tr:hover td { background: #d0dafd; color: #339; }

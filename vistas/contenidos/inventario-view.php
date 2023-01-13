@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./modelos/obtenerDatosInventario.php"); 
+include("./modelos/DatosTablas/obtenerDatosInventario.php"); 
 ?>
 
 <h3 style="padding:3rem;"><i class="fas fa-warehouse"></i> &nbsp; INVENTARIO </h3>
@@ -37,7 +37,7 @@ include("./modelos/obtenerDatosInventario.php");
             <tr>
                 <td><?php echo $fila['nom_insumo']; ?></td>
                 <td><?php echo $fila['cant_existencia']; ?></td>
-                <td><i class="fas fa-trash-alt" style="color:red; justify-items:center;"></i></td>
+                <td><i class="fas fa-exclamation-circle" style="color:black; justify-items:center;"></i></td>
             </tr>
 
 

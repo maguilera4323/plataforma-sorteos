@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./modelos/obtenerDatos.php"); 
+include("./modelos/DatosTablas/obtenerDatos.php"); 
 ?>
 
 <h3 style="padding:3rem;"><i class="fas fa-box-open"></i> &nbsp; INSUMOS </h3>
@@ -16,7 +16,6 @@ include("./modelos/obtenerDatos.php");
     <button type="submit" class="btn btn-success mx-auto btn-lg"><i class="fas fa-file-excel"></i> &nbsp;Descargar Excel</button>
 </div>
 <br>
-<input type="text" class="filtro" placeholder="Filtrar insumos">
 <div class="table-responsive">
     <table id="datos-usuario" class="table table-bordered table-striped text-center datos-usuario">
         <thead>
@@ -46,9 +45,9 @@ include("./modelos/obtenerDatos.php");
                 <td><?php echo $fila['cant_min']; ?></td>
                 <td><?php echo $fila['unidad_medida']; ?></td>
                 <td>
-				<div data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_insumo'];?>">
+				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_insumo'];?>">
 					<i class="fas fa-sync-alt"></i>
-				</div>
+                </button>
 						<!-- Modal actualizar-->
                     <div class="modal fade" id="ModalAct<?php echo $fila['id_insumo'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -111,7 +110,7 @@ include("./modelos/obtenerDatos.php");
 				<td>
 					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/insumoAjax.php" method="POST" data-form="delete" autocomplete="off">
 					<input type="hidden" pattern="" class="form-control" name="id_insumo_del" value="<?php echo $fila['id_insumo'] ?>">	
-					<button type="submit" class="btn btn-warning">
+					<button type="submit" class="btn btn-danger">
 						<i class="far fa-trash-alt"></i>
 					</button>
 					</form>
