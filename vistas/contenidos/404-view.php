@@ -6,7 +6,7 @@
 		<img src="<?php echo SERVERURL?>vistas/assets/img/komi-removebg-preview.png">
 		<br>
 		<br>
-		<h3 class="text-center">"Komi-san se pregunta porque la página que seleccionó no existe..."</h3>
+		<h3 class="text-center">"Komi-san se pregunta por qué la página que seleccionó no existe..."</h3>
 		<br>
 		<a href="<?php echo SERVERURL?>home/">
 		<button class="btn btn-light">Regresar a la página principal</button></a>
