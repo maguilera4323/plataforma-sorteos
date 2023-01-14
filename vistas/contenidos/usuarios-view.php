@@ -53,6 +53,15 @@ include("./modelos/DatosTablas/obtenerDatos.php");
                 </button>
 						<!-- Modal actualizar-->
                     <div class="modal fade" id="ModalAct<?php echo $fila['id_usuario'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <?php
+                            //validación para impedir la modificación del usuario que está conectado en el sistema
+							if($fila['id_usuario']==$_SESSION['id_login']){
+								echo '<div class="alert alert-warning text-center" style="font-size: 28px;">No se puede actualizar el usuario conectado actualmente
+								<button type="button" class="close" data-dismiss="alert" onclick="window.location.reload()">X</button>
+								</div>
+                                <div class="modal-body" id="modal-actualizar" style="display:none">';
+							}
+						?>
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">

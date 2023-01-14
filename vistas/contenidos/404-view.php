@@ -5,7 +5,6 @@
 		<p class="text-center">Página no encontrada</p>
 		<img src="<?php echo SERVERURL?>vistas/assets/img/komi-removebg-preview.png">
 		<br>
-		<br>
 		<h3 class="text-center">"Komi-san se pregunta por qué la página que seleccionó no existe..."</h3>
 		<br>
 		<a href="<?php echo SERVERURL?>home/">

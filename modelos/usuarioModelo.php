@@ -50,6 +50,38 @@
 			return $sql;
 		}
 
+
+		protected function actualizar_perfil_modelo($dato,$id){
+			if ($dato['imagen']!=''){
+				$sql=ConexionBD::getConexion()->prepare("UPDATE usuarios SET usuario=?,nombre_usuario=?,contrasena=?,
+				correo_electronico=?, foto_usuario=? ,modificado_por=? ,fecha_modificacion=? WHERE id_usuario=?");
+
+				$sql->bindParam(1,$dato['usuario']);
+				$sql->bindParam(2,$dato['nom']);	
+				$sql->bindParam(3,$dato['clave']);			
+				$sql->bindParam(4,$dato['correo']);			
+				$sql->bindParam(5,$dato['imagen']);
+				$sql->bindParam(6,$dato['modif_por']);
+				$sql->bindParam(7,$dato['fecha_modif']);
+				$sql->bindParam(8,$id);
+				$sql->execute();
+			}else{
+				$sql=ConexionBD::getConexion()->prepare("UPDATE usuarios SET usuario=?,nombre_usuario=?,contrasena=?,
+				correo_electronico=? ,modificado_por=? ,fecha_modificacion=? WHERE id_usuario=?");
+
+				$sql->bindParam(1,$dato['usuario']);
+				$sql->bindParam(2,$dato['nom']);	
+				$sql->bindParam(3,$dato['clave']);			
+				$sql->bindParam(4,$dato['correo']);			
+				$sql->bindParam(5,$dato['modif_por']);
+				$sql->bindParam(6,$dato['fecha_modif']);
+				$sql->bindParam(7,$id);
+				$sql->execute();
+			}
+			
+			return $sql;
+		}
+
 		
 		
 	}
