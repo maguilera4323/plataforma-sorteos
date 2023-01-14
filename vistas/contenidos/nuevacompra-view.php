@@ -102,8 +102,8 @@ include("./modelos/DatosTablas/obtenerDatos.php");
                                     ?>
 							</select></td>
 							<td><input type="number" name="cantidad[]" id="cantidad_1" class="form-control quantity" required></td>
-							<td><input type="number" name="precio[]" id="precio_1" class="form-control price" ></td>
-							<td><input type="number" name="total[]" id="total_1" class="form-control total" ></td>
+							<td><input type="number" name="precio[]" id="precio_1" class="form-control price" required></td>
+							<td><input type="number" name="total[]" id="total_1" class="form-control total" readonly></td>
 						</tr>
 					</table>
 				</div>
@@ -120,7 +120,8 @@ include("./modelos/DatosTablas/obtenerDatos.php");
 			</div>
             <div class="col-xs-11 col-sm-4 col-md-3 col-lg-3">
 				<label class="color-label">Total: &nbsp;</label>
-                <input type="number" class="form-control" name="subTotal" step="any" id="subTotal" placeholder="Total">
+                <input type="number" class="form-control" name="subTotal" step="any" id="subTotal" 
+				placeholder="Total" readonly>
             </div>
                 
 						
@@ -140,6 +141,9 @@ include("./modelos/DatosTablas/obtenerDatos.php");
 					</div>
 				</div>
 			</div>
+			<br>
+			<br>
     </form>
 </div>
+
 

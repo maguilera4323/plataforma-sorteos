@@ -9,8 +9,10 @@ include("./modelos/DatosTablas/obtenerDatosUsuarios.php");
 include("./modelos/DatosTablas/obtenerDatos.php"); 
 ?>
 
-<h3 style="padding:3rem;"><i class="fas fa-users-cog"></i> &nbsp; USUARIOS </h3>
-
+<div class="container-usuarios">
+<h3 style="padding:2rem;"><i class="fas fa-users-cog"></i> &nbsp; USUARIOS </h3>
+<hr>
+<br>
 <div class="botones-proveedores">
 	<div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR USUARIO</div>
 	<button type="submit" class="btn btn-danger mx-auto btn-lg"><i class="fas fa-file-pdf"></i> &nbsp;Descargar PDF</button>
@@ -151,6 +153,7 @@ include("./modelos/DatosTablas/obtenerDatos.php");
     </table>
 
 </div>
+</div>
 
 
 <div class="modal fade" id="ModalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -207,24 +210,25 @@ include("./modelos/DatosTablas/obtenerDatos.php");
 						</div>
 					</div>
 
-                    <div class="col-10 col-md-6">
+                    <div class="col-10 col-md-6 contrasena">
                         <br>
-						<div class="form-group">
-                            <label class="color-label">Contraseña</label>
-				            <input type="password" class="form-control" name="contrasena_nuevo" id="contrasena" pattern="[a-zA-Z0-9!#%&/()=?¡*+_$@.-]{5,10}" maxlength="10" required="" >
-<!-- 				        <span onclick="mosContrasena()"><i class="fas fa-eye-slash icon-clave" style="color:black;"></i></span> -->
-						</div>
+                        <label class="color-label">Contraseña</label>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" name="contrasena_reg" id="contrasena" pattern="[a-zA-Z0-9!#%&/()=?¡*+_$@.-]{8,100}" maxlength="10" required="" >
+                            <span onclick="mosContrasena()" class="input-group-text"><i class="fas fa-eye-slash icon-clave" style="color:black;"></i></span>
+                        </div>
 					</div>
 
-                    <div class="col-10 col-md-6">
+                    <div class="col-10 col-md-6 conf-contrasena">
                         <br>
                         <label class="color-label">Confirmar Contraseña</label>
-				        <input type="password" class="form-control" name="conf_contrasena_nuevo" id="conf_contra" pattern="[a-zA-Z0-9!#%&/()=?¡*+_$@.-]{5,10}" maxlength="10" required="" >
-				        <!-- <span onclick="mosConfContrasena()"><i class="fas fa-eye-slash icon-confclave" style="color:black;"></i></span> -->
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" name="conf_contrasena_nuevo" id="conf_contra" pattern="[a-zA-Z0-9!#%&/()=?¡*+_$@.-]{5,10}" maxlength="10" required="" >
+                            <span onclick="mosConfContrasena()" class="input-group-text"><i class="fas fa-eye-slash icon-confclave" style="color:black;"></i></span>
+                        </div>
 					</div>
             </div>
-            
-            <br>
+        
 			<div class="form-group">
 				<label class="color-label">Correo</label>
 				<input type="email" class="form-control" name="correo_electronico_nuevo" id="correo_electronico" required="">

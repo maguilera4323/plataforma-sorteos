@@ -29,4 +29,5 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/invoiceFacturacion.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/paginador.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/paginador.min.js"></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/funciones-usuarios.js"></script>
 

@@ -5,6 +5,11 @@
 /* alinear los label en los formularios de actualizacion de datos */
 div .label-actualizar{ 
   float: left;
+  color:black;
+}
+
+.modal-title{
+  color:black;
 }
 
 
@@ -26,6 +31,7 @@ div .label-actualizar{
   display: inline-block;
   position: relative;
   font-size:15px;
+  z-index: 2;
 }
 
 .dropdown-content {
@@ -78,9 +84,24 @@ div .label-actualizar{
 
 
 /* botones de las vistas de Configuracion */
+.config-container{
+  width: 900px;
+  margin:0 auto;
+}
+
 .col .card:hover {
-  color: #FFFFFF;
   background-color: #00A4BD;
+  color:rgb(167, 167, 167);
+}
+
+.card .card-body i{
+  font-size:30px; 
+  color:black;
+}
+
+.card .card-body p{
+  font-size:30px; 
+  color:rgb(0, 0, 0);
 }
 
 
@@ -95,3 +116,13 @@ div .label-actualizar{
     color: rgb(47, 48, 48);    border-top: 1px solid transparent; }
 
 #datos-usuario tr:hover td { background: #d0dafd; color: #339; }
+
+
+.container-usuarios{
+  margin-top: 30px;
+  background-color: rgb(235, 233, 233);
+}
+
+.perfil #input-pefil{
+  width: 25px;
+}

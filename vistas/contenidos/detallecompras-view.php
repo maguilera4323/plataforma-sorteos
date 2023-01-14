@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./modelos/obtenerDatosDetalleCompras.php"); 
+include("./modelos/DatosTablas/obtenerDatosDetalleCompras.php"); 
 ?>
 
 <h3 style="padding:3rem;"><i class="fas fa-shopping-cart"></i> &nbsp; DETALLE DE COMPRAS </h3>
