@@ -2,8 +2,10 @@
 
 if($peticionAjax){
 	require_once "../modelos/usuarioModelo.php";
+	require_once "../modelos/DatosTablas/obtenerDatosConCondicion.php";
 }else{
 	require_once "./modelos/usuarioModelo.php";
+	require_once "./modelos/DatosTablas/obtenerDatosConCondicion.php";
 }
 
 
@@ -31,7 +33,31 @@ class usuarioControlador extends usuarioModelo{
 		$clave=ConexionBD::EncriptaClave($contrasena);
 
 		
-		//validaciones de datos
+		/* //validaciones de datos
+		$datos=new obtenerDatosCondicionados();
+		$resultado=$datos->datosTablasCondicionados('usuarios','usuario',$usuario);
+        if($resultado->rowCount()==1){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"Ya hay un usuario registrado en la base de datos con el nombre de usuario ingresado",
+				"Tipo"=>"error"
+			];	
+		}else{
+			echo 'registro encontrado';
+		} */
+
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Nombre solo acepta letras y espacios",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
 		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
 			$alerta=[
 				"Alerta"=>"simple",

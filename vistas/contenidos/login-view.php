@@ -67,15 +67,9 @@
 				   required pattern="[A-ZÁÉÍÓÚÜÑa-zñáéíóúüñ0-9!#$%&/=?¡*.-_@\~^]+" title="Ingrese su contraseña sin espacios"/>
 				   <input type="hidden" class="form-control" name="contador" id="contador" value=<?php echo ($_SESSION["contador_intentos"]) ?> >
 				</div>
-				<br>
 	            <div class="form-group d-md-flex">
 						<div class="w-100 text-md-right" id=opcion_rec>
-							<a href="Rec_clave.php">¿Olvidó su contraseña?</a>
-						</div>
-	            </div>
-				<div class="form-group d-md-flex">
-						<div class="w-100 text-md-right">
-							<a href="nuevo_usuario.php" id=opcion_reg>Registrese</a>
+							<a href="<?php echo SERVERURL?>rec-contrasena/">¿Olvidó su contraseña?</a>
 						</div>
 	            </div>
                 <br>
