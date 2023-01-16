@@ -5,7 +5,7 @@ class ConexionBD{
     private static $servidor = "localhost";
     private static $usuario = "root";
     private static $pass = "";
-    protected $db_name = "sistema_inventario";
+    protected $db_name = "dbsorteo";
     protected $conexion;
 
     protected function getConexion(){

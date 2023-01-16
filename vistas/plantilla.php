@@ -14,8 +14,7 @@
 
 		$vistas=$IV->obtener_vistas_controlador();
 
-		if($vistas=="login" || $vistas=="404" || $vistas=="olvido-contrasena" || $vistas=="rec-correo" || $vistas=="rec-preguntas" || $vistas=="cambiocontrasena"
-		 || $vistas=="primer-ingreso" || $vistas=="verifica-codigo" || $vistas=="autoregistro" || $vistas=="preguntasusuario" || $vistas=="rsp" ){
+		if($vistas=="inicio" || $vistas=="login" || $vistas=="404"){
 			require_once "./vistas/contenidos/".$vistas."-view.php";
 
 		}else{
@@ -32,18 +31,17 @@
 	<!-- Main container -->
 	<main class="full-box main-container">
 		<!-- Nav lateral -->
-		<?php include "./vistas/inc/NavLateral.php"; ?>
+		<!-- <?php include "./vistas/inc/NavLateral.php"; ?> -->
 
 		<!-- Page content -->
 		<section class="full-box page-content">
 			<?php 
-				include "./vistas/inc/Navbar.php"; 
+				/* include "./vistas/inc/Navbar.php";  */
 				include  $vistas;
 			?>
 		</section>
 	</main>
 	<?php
-		/* include "./vistas/inc/LogOut.php";  */
 		}
 		include "./vistas/inc/Script.php";
 	?>

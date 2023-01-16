@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.form-register1{
+    width: 400px;
+    background: #ffac5c;
+    padding: 30px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 4px;
+    font-size: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.form-register1 h4{
+
+    font-size: 22px;
+    margin-bottom: 20px;
+
+}
+
+.form-register1 .cajas{
+    margin: 7px;
+    margin-right: 50px;   
+    font-size: 15px;
+
+}
+
+
+.form-register1 h5{
+
+   margin: left;
+
+
+}
