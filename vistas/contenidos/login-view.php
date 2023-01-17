@@ -1,4 +1,3 @@
-
 <?php
 	//verifica si hay sesiones iniciadas
 	if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -19,15 +18,17 @@
 }
 ?>
 
-    <form method="POST" action="">
+    <form method="POST" >
         <section class="form-login">
           <h5>FORMULARIO DE LOGIN</h5>
           <input class="controls" type="text" name="txtusuario" value="" placeholder="Usuario" required>
           <input class="controls" type="password" name="txtcontrasena" value="" placeholder="Contraseña" required>
-          <button type="submit" name="acceder">Iniciar Sesión</button>
+          <button class="buttons" type="submit" name="acceder">Iniciar Sesión</button>
     
             <div class="reset-password">
                 <p><a href="IndexReset.html">¿Olvidastes tu contraseña?</a></p>
             </div>
         </section>
     </form>
+
+
