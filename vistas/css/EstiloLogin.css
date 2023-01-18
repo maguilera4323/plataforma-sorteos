@@ -1,11 +1,3 @@
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-    
-}
-    
-     
 body{
     
     font-family: arial;
@@ -34,7 +26,6 @@ body{
 }
 
 .controls{
-
   width: 100%;
   border: 1px solid #017bab;
   margin-bottom: 15px;
@@ -61,3 +52,12 @@ body{
     background-color: #888;
   }
 
+  .form-login .reset-password a{
+    text-decoration:none;
+    color:white;
+    font-size: 1rem;
+  }
+
+  .form-login .reset-password a:hover{
+      color: gray;
+  }

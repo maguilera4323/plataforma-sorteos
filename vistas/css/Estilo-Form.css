@@ -1,64 +1,148 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* estilos de barra de navegacion */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+ .navigation {
+     height: 55px;
+     background: linear-gradient(45deg, #131516, #1c1f20);
 }
-
-.form-register{
-    width: 400px;
-    background: #ffac5c;
-    padding: 30px;
-    margin: auto;
-    margin-top: 100px;
-    border-radius: 4px;
-    font-size: 'calibri';
-    color: white;
-    box-shadow: 7px 13px 37px #000;
+ .brand {
+     position: absolute;
+     padding-left: 20px;
+     float: left;
+     line-height: 55px;
+     text-transform: uppercase;
+     font-size: 1.4em;
 }
-
-.form-register h4{
-
-    font-size: 22px;
-    margin-bottom: 20px;
-
+ .brand a, .brand a:visited {
+     color: #ffffff;
+     text-decoration: none;
 }
-
-.cajas{
-    width: 100%;
-    background: #ffac5c;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid white;
-    font-size: 18px;
+ .nav-container {
+     max-width: 1000px;
+     margin: 0 auto;
 }
-
-.form-register p{
-    height: 40px;
-    text-align: center;
-    font-size: 18px;
-    line-height: 40px;
+ nav {
+     float: right;
 }
-
-.form-register a{
-    color:white;
-    text-decoration: none;
-
+ nav ul {
+     list-style: none;
+     margin: 0;
+     padding: 0;
 }
-
-.form-register a:hover{ 
-    color: white;
-    text-decoration: underline;
-
+ nav ul li {
+     float: left;
+     position: relative;
 }
-
-.form-register .botons{
-
-    width: 100%;
-    background: #1f53c5;
-    border: none;
-    padding: 12px;
-    color: white;
-    margin: 16px, 0;
-    font-size: 16px;
+ nav ul li a,nav ul li a:visited {
+     display: block;
+     padding: 0 20px;
+     line-height: 55px;
+     color: #fff;
+     background: #3d3d3d ;
+     text-decoration: none;
+}
+ nav ul li a{
+     background: transparent;
+     color: #FFF;
+}
+ nav ul li a:hover, nav ul li a:visited:hover {
+     background: #2581DC;
+     color: #ffffff;
+}
+ .navbar-dropdown li a{
+     background: #2581DC;
+}
+ nav ul li a:not(:only-child):after, nav ul li a:visited:not(:only-child):after {
+     padding-left: 4px;
+     content: ' \025BE';
+}
+ nav ul li ul li {
+     min-width: 190px;
+}
+ nav ul li ul li a {
+     padding: 15px;
+     line-height: 20px;
+}
+ .navbar-dropdown {
+     position: absolute;
+     display: none;
+     z-index: 1;
+     background: #fff;
+     box-shadow: 0 0 35px 0 rgba(0,0,0,0.25);
+}
+/* Mobile navigation */
+ .nav-mobile {
+     display: none;
+     position: absolute;
+     top: 0;
+     right: 0;
+     background: transparent;
+     height: 55px;
+     width: 70px;
+}
+ @media only screen and (max-width: 800px) {
+     .nav-mobile {
+         display: block;
+    }
+     nav {
+         width: 100%;
+         padding: 55px 0 15px;
+    }
+     nav ul {
+         display: none;
+    }
+     nav ul li {
+         float: none;
+    }
+     nav ul li a {
+         padding: 15px;
+         line-height: 20px;
+         background: #262626;
+    }
+     nav ul li ul li a {
+         padding-left: 30px;
+    }
+     .navbar-dropdown {
+         position: static;
+}
+ @media screen and (min-width:800px) {
+     .nav-list {
+         display: block !important;
+    }
+}
+ #navbar-toggle {
+     position: absolute;
+     left: 18px;
+     top: 15px;
+     cursor: pointer;
+     padding: 10px 35px 16px 0px;
+}
+ #navbar-toggle span, #navbar-toggle span:before, #navbar-toggle span:after {
+     cursor: pointer;
+     border-radius: 1px;
+     height: 3px;
+     width: 30px;
+     background: #ffffff;
+     position: absolute;
+     display: block;
+     content: '';
+     transition: all 300ms ease-in-out;
+}
+ #navbar-toggle span:before {
+     top: -10px;
+}
+ #navbar-toggle span:after {
+     bottom: -10px;
+}
+ #navbar-toggle.active span {
+     background-color: transparent;
+}
+ #navbar-toggle.active span:before, #navbar-toggle.active span:after {
+     top: 0;
+}
+ #navbar-toggle.active span:before {
+     transform: rotate(45deg);
+}
+ #navbar-toggle.active span:after {
+     transform: rotate(-45deg);
 }

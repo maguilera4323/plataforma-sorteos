@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/Estilo-Form.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/EstiloLogin.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/reset.min.css">
 <!-- 
     
  ES ESTE EARHCIVO QUE GENER EL ERROR
@@ -29,6 +30,21 @@
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/bootstrap.rtl.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/bootstrap.rtl.min.css">
+
+<!-- Archivos de libreria de iconos FontAwesome -->
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/all.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/all.min.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/brands.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/brands.min.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/fontawesome.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/fontawesome.min.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/regular.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/regular.min.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/solid.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/solid.min.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/svg-with-js.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/svg-with-js.min.css">
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/v4-shims.css">
 
 
 
