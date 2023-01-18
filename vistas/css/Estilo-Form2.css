@@ -1,38 +1,74 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* estilo pagina de inicio */
+/* .inicio{
+    background-image: url("../vistas/assets/img/Ganadores.jpg");
+} */
+
+.boton-inicio, .botones-abajo{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.form-register1{
-    width: 400px;
-    background: #ffac5c;
-    padding: 30px;
-    margin: auto;
-    margin-top: 50px;
-    border-radius: 4px;
-    font-size: 'calibri';
-    color: white;
-    box-shadow: 7px 13px 37px #000;
-}
-
-.form-register1 h4{
-
-    font-size: 22px;
-    margin-bottom: 20px;
-
-}
-
-.form-register1 .cajas{
-    margin: 7px;
-    margin-right: 50px;   
-    font-size: 15px;
-
+ 
+.boton-inicio, .botones-abajo:nth-child(1){
+    color: #fff;
 }
 
 
-.form-register1 h5{
+.boton-inicio, .botones-abajo:nth-child(2){
+    color: #1D212B;
+    background: #fff;
+}
 
-   margin: left;
+
+.botones-abajo .container{
+    margin: 100px;
+}
 
 
+.botones-abajo h2{
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+
+.botones-abajo .cards{
+    display: flex;
+}
+
+.botones-abajo .cards .text-card{
+    background: #2996E9;
+    margin: 20px;
+    padding: 20px;
+}
+
+.botones-abajo .cards .text-card .h3{
+   font-size: 30px;
+   text-align: center;
+   text-transform: uppercase;
+   margin-bottom: 10px;
+}
+
+@media (max-width:900px){
+    .botones-abajo h1{
+        font-size: 40px;
+    }
+
+    .botones-abajo .cards{
+        flex-direction: column;
+
+    }
+}
+
+
+.boton-inicio .button1{
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+    background-color: #2996E9;    
+    border: none;
+    padding: 50px;
+    font-size: 30px;
 }

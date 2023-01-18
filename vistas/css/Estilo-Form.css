@@ -5,6 +5,7 @@
      height: 55px;
      background: linear-gradient(45deg, #131516, #1c1f20);
 }
+
  .brand {
      position: absolute;
      padding-left: 20px;
@@ -13,26 +14,32 @@
      text-transform: uppercase;
      font-size: 1.4em;
 }
+
  .brand a, .brand a:visited {
      color: #ffffff;
      text-decoration: none;
 }
+
  .nav-container {
      max-width: 1000px;
      margin: 0 auto;
 }
+
  nav {
      float: right;
 }
+
  nav ul {
      list-style: none;
      margin: 0;
      padding: 0;
 }
+
  nav ul li {
      float: left;
      position: relative;
 }
+
  nav ul li a,nav ul li a:visited {
      display: block;
      padding: 0 20px;
@@ -41,28 +48,35 @@
      background: #3d3d3d ;
      text-decoration: none;
 }
+
  nav ul li a{
      background: transparent;
      color: #FFF;
 }
+
  nav ul li a:hover, nav ul li a:visited:hover {
      background: #2581DC;
      color: #ffffff;
 }
+
  .navbar-dropdown li a{
      background: #2581DC;
 }
+
  nav ul li a:not(:only-child):after, nav ul li a:visited:not(:only-child):after {
      padding-left: 4px;
      content: ' \025BE';
 }
+
  nav ul li ul li {
      min-width: 190px;
 }
+
  nav ul li ul li a {
      padding: 15px;
      line-height: 20px;
 }
+
  .navbar-dropdown {
      position: absolute;
      display: none;
@@ -70,6 +84,7 @@
      background: #fff;
      box-shadow: 0 0 35px 0 rgba(0,0,0,0.25);
 }
+
 /* Mobile navigation */
  .nav-mobile {
      display: none;
@@ -80,31 +95,40 @@
      height: 55px;
      width: 70px;
 }
+
  @media only screen and (max-width: 800px) {
      .nav-mobile {
          display: block;
     }
+
      nav {
          width: 100%;
          padding: 55px 0 15px;
     }
+
      nav ul {
          display: none;
     }
+
      nav ul li {
          float: none;
     }
+
      nav ul li a {
          padding: 15px;
          line-height: 20px;
          background: #262626;
     }
+
      nav ul li ul li a {
          padding-left: 30px;
     }
+
      .navbar-dropdown {
          position: static;
+    }
 }
+
  @media screen and (min-width:800px) {
      .nav-list {
          display: block !important;
@@ -145,4 +169,79 @@
 }
  #navbar-toggle.active span:after {
      transform: rotate(-45deg);
+}
+
+
+/* estilo pagina de inicio */
+/* .inicio{
+    background-image: url("../vistas/assets/img/Ganadores.jpg");
+} */
+
+.boton-inicio, .botones-abajo{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+.boton-inicio, .botones-abajo:nth-child(1){
+    color: #fff;
+}
+
+
+.boton-inicio, .botones-abajo:nth-child(2){
+    color: #1D212B;
+    background: #fff;
+}
+
+
+.botones-abajo .container{
+    margin: 100px;
+}
+
+
+.botones-abajo h2{
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+
+.botones-abajo .cards{
+    display: flex;
+}
+
+.botones-abajo .cards .text-card{
+    background: #2996E9;
+    margin: 20px;
+    padding: 20px;
+}
+
+.botones-abajo .cards .text-card .h3{
+   font-size: 30px;
+   text-align: center;
+   text-transform: uppercase;
+   margin-bottom: 10px;
+}
+
+@media (max-width:900px){
+    .botones-abajo h1{
+        font-size: 40px;
+    }
+
+    .botones-abajo .cards{
+        flex-direction: column;
+    }
+}
+
+
+.boton-inicio .button1{
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+    background-color: #2996E9;    
+    border: none;
+    padding: 50px;
+    font-size: 30px;
 }
