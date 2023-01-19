@@ -7,7 +7,7 @@
       <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
       <ul class="nav-list">
         <li>
-          <a href="#!">Home</a>
+          <a href="<?php echo SERVERURL?>home/"><i class="fas fa-home"></i>&nbsp;Home</a>
         </li>
         <li>
           <a href="#!">About</a>

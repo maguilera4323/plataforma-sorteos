@@ -1,7 +1,5 @@
-
-
 let options = {
-    numberPerPage:5,
+    numberPerPage:10,
     goBar:false, 
     pageCounter:false,
 };

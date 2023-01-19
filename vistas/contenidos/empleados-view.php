@@ -10,6 +10,7 @@ include("./modelos/obtenerDatos.php");
 <br>
 <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR EMPLEADO</div>
 <br>
+<br>
 <div class="table-responsive">
     <input type="text" id="searchBox" placeholder="Filtrar empleados">
     <br>
@@ -124,7 +125,7 @@ include("./modelos/obtenerDatos.php");
                                     <br>
                                     <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
                                     <input type="hidden" value="<?php echo $fila['id_empleado']; ?>" class="form-control" name="usuario_id">
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="submit" class="btn btn-danger">Guardar</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 </form>
                             </div>
@@ -252,7 +253,7 @@ include("./modelos/obtenerDatos.php");
 			</div>
             <br>
             <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-danger">Guardar</button>
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 			</form>
       </div>
