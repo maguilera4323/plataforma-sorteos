@@ -246,9 +246,17 @@
     font-size: 30px;
 }
 
+
+/* borde para las tablas */
 .table-responsive {
     border: 1px solid #000;
 }
+
+/* estilo para alinear los label en los formularios de actualizacion */
+div .label-actualizar{ 
+    float: left;
+    color:black;
+  }
 
 /* Libreria ligne.css 
 Por problemas de compatibilidad fue agregada a este archivo */
