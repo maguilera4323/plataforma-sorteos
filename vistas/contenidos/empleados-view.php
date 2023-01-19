@@ -131,8 +131,8 @@ include("./modelos/obtenerDatos.php");
                         </div>
 			    </td>
                 <td>
-					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
-					<input type="hidden" pattern="" class="form-control" name="id_usuario_del" value="<?php echo $fila['id_empleado'] ?>">	
+					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empleadosAjax.php" method="POST" data-form="delete" autocomplete="off">
+					<input type="hidden" pattern="" class="form-control" name="id_empleado_del" value="<?php echo $fila['id_empleado'] ?>">	
 					<button type="submit" class="btn btn-danger">
 						<i class="far fa-trash-alt"></i>
 					</button>

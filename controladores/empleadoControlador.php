@@ -186,17 +186,17 @@ class empleadoControlador extends empleadoModelo{
 
 
 
-	public function eliminarUsuario(){
-			$id=ConexionBD::limpiar_cadena(($_POST['id_usuario_del']));
+	public function eliminarEmpleado(){
+			$id=ConexionBD::limpiar_cadena(($_POST['id_empleado_del']));
 			$array=array();
 			$valor='';
 		
-		$eliminarUsuario=usuarioModelo::eliminar_usuario_modelo($id);
-			if($eliminarUsuario->rowCount()==1){
+		$eliminarEmpleado=empleadoModelo::eliminarEmpleadoModelo($id);
+			if($eliminarEmpleado->rowCount()==1){
 				$alerta=[
 					"Alerta"=>"recargar",
-					"Titulo"=>"Usuario Inactivado",
-					"Texto"=>"El usuario seleccionado fue inactivado",
+					"Titulo"=>"Empleado Eliminado",
+					"Texto"=>"El empleado seleccionado fue eliminado",
 					"Tipo"=>"success"
 				];
 
@@ -207,7 +207,7 @@ class empleadoControlador extends empleadoModelo{
 				$alerta=[
 					"Alerta"=>"simple",
 					"Titulo"=>"Ha ocurrido un error",
-					"Texto"=>"Ha ocurrido un error desconocido durante la operación",
+					"Texto"=>"Ha ocurrido un problema al momento de eliminar el empleado seleccionado",
 					"Tipo"=>"error"
 				];echo json_encode($alerta);
 			}

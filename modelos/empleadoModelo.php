@@ -41,8 +41,8 @@
 
 
 
-		protected function eliminar_usuario_modelo($id){
-			$sql=ConexionBD::getConexion()->prepare("UPDATE usuarios SET estado_usuario=2 where id_usuario=?");
+		protected function eliminarEmpleadoModelo($id){
+			$sql=ConexionBD::getConexion()->prepare("DELETE FROM empleados where id_empleado=?");
 				
 			$sql->bindParam(1,$id);
 			$sql->execute();
