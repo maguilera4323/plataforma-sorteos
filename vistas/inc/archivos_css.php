@@ -1,18 +1,7 @@
-
-
+<!-- archivos añadidos por los desarrolladores -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/Estilo-Form.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/EstiloLogin.css">
-<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/reset.min.css">
-<!-- 
-    
- ES ESTE EARHCIVO QUE GENER EL ERROR
- 
-< <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/Estilo-P.css">  -->
-
-
-
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/estilos-vistas.css"> 
-
 
 <!-- archivos de la libreria Bootstrap -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/bootstrap-grid.css">
