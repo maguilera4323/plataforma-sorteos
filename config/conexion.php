@@ -24,6 +24,13 @@ class ConexionBD{
 		return password_hash($string, PASSWORD_DEFAULT, ['cost' => 12]);
 	}
 
+	/*--------- Funcion ejecutar consultas simples ---------*/
+	protected function consultaComprobacion($consulta){
+		$sql=self::getConexion()->prepare($consulta);
+		$sql->execute();
+		return $sql;
+	}
+
     /*--------- Funcion limpiar cadena ---------*/
 
 		protected static function limpiar_cadena($cadena){

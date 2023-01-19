@@ -22,19 +22,18 @@
 		}
 
 
-		protected function actualizar_usuario_modelo($dato,$id){
-			$sql=ConexionBD::getConexion()->prepare("UPDATE usuarios SET usuario=?,nombre_usuario=?,estado_usuario=?,
-			id_rol=?, correo_electronico=?, foto_usuario=? ,modificado_por=? ,fecha_modificacion=? WHERE id_usuario=?");
+		protected function actualizarEmpleadoModelo($dato,$id){
+			$sql=ConexionBD::getConexion()->prepare("UPDATE empleados SET usuario=?,nombre_empleados=?,estado_empleado=?,
+			id_rol=?, correo_electronico=? ,modificado_por=? ,fecha_modificacion=? WHERE id_empleado=?");
 
 			$sql->bindParam(1,$dato['usuario']);
 			$sql->bindParam(2,$dato['nom']);	
 			$sql->bindParam(3,$dato['est']);			
 			$sql->bindParam(4,$dato['rol']);			
 			$sql->bindParam(5,$dato['correo']);
-			$sql->bindParam(6,$dato['imagen']);
-			$sql->bindParam(7,$dato['modif_por']);
-			$sql->bindParam(8,$dato['fecha_modif']);
-			$sql->bindParam(9,$id);
+			$sql->bindParam(6,$dato['modif_por']);
+			$sql->bindParam(7,$dato['fecha_modif']);
+			$sql->bindParam(8,$id);
 			$sql->execute();
 			return $sql;
 		}

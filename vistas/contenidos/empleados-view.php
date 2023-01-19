@@ -66,19 +66,19 @@ include("./modelos/obtenerDatos.php");
 
                             </div>
                             <div class="modal-body" id="modal-actualizar">
-                            <form action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
+                            <form action="<?php echo SERVERURL; ?>ajax/empleadosAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
                             <div class="row">
                                             <div class="col-10 col-md-6">
                                                 <div class="form-group">
                                                     <label class="label-actualizar">Usuario</label>
-                                                    <input type="text" class="form-control" name="usuario_act" id="nom_usuario" 
+                                                    <input type="text" class="form-control" name="empleado_act" id="nom_usuario" 
                                                     style="text-transform:uppercase;" value="<?php echo $fila['usuario']?>" required="" >
                                                 </div>
                                             </div>
                                             <div class="col-10 col-md-6">
                                                 <div class="form-group">
                                                     <label class="label-actualizar">Nombre</label>
-                                                    <input type="text" class="form-control" name="nombre_usuario_act" id="nombre_usuario" 
+                                                    <input type="text" class="form-control" name="nombre_empleado_act" id="nombre_usuario" 
                                                     style="text-transform:uppercase;" value="<?php echo $fila['nombre_empleados']?>" required="" >
                                                 </div>
                                             </div>
@@ -124,7 +124,7 @@ include("./modelos/obtenerDatos.php");
                                     <br>
                                     <br>
                                     <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
-                                    <input type="hidden" value="<?php echo $fila['id_empleado']; ?>" class="form-control" name="usuario_id">
+                                    <input type="hidden" value="<?php echo $fila['id_empleado']; ?>" class="form-control" name="empleado_id">
                                     <button type="submit" class="btn btn-danger">Guardar</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 </form>

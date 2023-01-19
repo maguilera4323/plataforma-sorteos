@@ -25,7 +25,6 @@ class empleadoControlador extends empleadoModelo{
 
 		
 		/* //validaciones de datos */
-
 		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
 			$alerta=[
 				"Alerta"=>"simple",
@@ -48,6 +47,31 @@ class empleadoControlador extends empleadoModelo{
 			echo json_encode($alerta);
 			exit();
 		}
+
+		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT usuario FROM empleados WHERE usuario='$usuario'");
+			if($revisarUsuario->rowCount()>0){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"El usuario ingresado ya se encuentra registrado en el sistema",
+					"Tipo"=>"error"
+					];
+					echo json_encode($alerta);
+					exit();
+			}
+		
+		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT correo_electronico FROM empleados WHERE 
+		correo_electronico='$correo'");
+		if($revisarUsuario->rowCount()>0){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"El correo electrónico ingresado ya se encuentra registrado en el sistema",
+					"Tipo"=>"error"
+					];
+					echo json_encode($alerta);
+					exit();
+			}
 
 		if(ConexionBD::verificar_datos("[a-zA-Z0-9$@.-]{5,10}",$contrasena) ){
 			$alerta=[
@@ -109,25 +133,17 @@ class empleadoControlador extends empleadoModelo{
 
 
 
-	public function actualizarUsuario(){	
-		$usuario=ConexionBD::limpiar_cadena(strtoupper($_POST['usuario_act']));
-		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_usuario_act']));
+	public function actualizarEmpleado(){	
+		$usuario=ConexionBD::limpiar_cadena(strtoupper($_POST['empleado_act']));
+		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_empleado_act']));
 		$estado=ConexionBD::limpiar_cadena($_POST['estado_act']);
 		$correo=ConexionBD::limpiar_cadena($_POST['correo_electronico_act']);
 		$rol=ConexionBD::limpiar_cadena($_POST['rol_act']);
 		$modif_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
 		$modificacion=date('y-m-d H:i:s');
-		$id_actualizacion=ConexionBD::limpiar_cadena($_POST['usuario_id']);
+		$id_actualizacion=ConexionBD::limpiar_cadena($_POST['empleado_id']);
 
-
-		$nombre_img=($_FILES['imagen_act']['name']);//ADQUIERE LA IMAGEN
-		$temporal=$_FILES['imagen_act']['tmp_name'];
-		$carpeta='../vistas/assets/usuarios';
-		$ruta=$carpeta.'/'.$nombre_img;
-		move_uploaded_file($temporal,$carpeta.'/'. $nombre_img);
-
-
-				//validaciones de datos
+		//validaciones de datos
 		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
 			$alerta=[
 				"Alerta"=>"simple",
@@ -151,24 +167,23 @@ class empleadoControlador extends empleadoModelo{
 		}	
 					
 			//arreglo enviado al modelo para ser usado en una sentencia INSERT
-			$datos_usuario_act=[
+			$datos_empleado_act=[
 				"usuario"=>$usuario,
 				"nom"=>$nombre,
 				"est"=>$estado,
 				"correo"=>$correo,
 				"rol"=>$rol,
-				"imagen"=>$ruta,
 				"fecha_modif"=>$modificacion,
 				"modif_por"=>$modif_por
 			];
 
-			$actualizar_usuario=usuarioModelo::actualizar_usuario_modelo($datos_usuario_act,$id_actualizacion);
+			$actualizar_empleado=empleadoModelo::actualizarEmpleadoModelo($datos_empleado_act,$id_actualizacion);
 
-			if($actualizar_usuario->rowCount()==1){
+			if($actualizar_empleado->rowCount()==1){
 				$alerta=[
 					"Alerta"=>"recargar",
-					"Titulo"=>"Usuario Actualizado",
-					"Texto"=>"Los datos del usuario han sido actualizados con exito",
+					"Titulo"=>"Empleado Actualizado",
+					"Texto"=>"Los datos del empleado han sido actualizados con exito",
 					"Tipo"=>"success"
 				];
 
@@ -177,7 +192,7 @@ class empleadoControlador extends empleadoModelo{
 				$alerta=[
 					"Alerta"=>"simple",
 					"Titulo"=>"Ocurrió un error inesperado",
-					"Texto"=>"No hemos podido actualizar el usuario",
+					"Texto"=>"Ha ocurrido un problema al momento de actualizar la información del empleado",
 					"Tipo"=>"error"
 				];
 			}
