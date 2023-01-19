@@ -1,0 +1,110 @@
+body{
+    background: #f8f9fa;
+}
+
+/* ----------------CONFIGURACION PRIMERA TARJETA ----------------------*/
+
+.Tarjeta1{
+    width: 400px;
+    height: 200px;
+    margin: 0px -25px 0px 80px;
+    margin-top: 50px;
+}
+
+.card-header1{
+    
+    height:50%;
+    width: 60%;
+    margin: auto;
+  }
+
+
+
+.card-body1{
+    border-top: 4px solid #017bab;
+}
+
+.card-title1{
+    text-align: center;
+}
+
+.card-text1{
+    text-align: center
+
+}
+
+
+
+
+/* ----------------CONFIGURACION SEGUNDA TARJETA ----------------------*/
+
+.Tarjeta2{
+    margin: -200px -25px 0px 450px;
+    width: 400px;
+    height: 200px;
+   
+
+}
+
+.card-header2{
+    
+    height:50%;
+    width: 60%;
+    margin: auto;
+  }
+
+  .card-body2{
+    border-top: 4px solid #017bab;
+}
+
+.card-title2{
+    text-align: center;
+}
+
+.card-text2{
+    text-align: center
+
+}
+
+/* ----------------CONFIGURACION TERCERA TARJETA ----------------------*/
+
+.Tarjeta3{
+    margin: -200px -25px 200px 850px;
+    width: 400px;
+    height: 200px;
+   
+
+}
+
+.card-header3{
+    
+    height:50%;
+    width: 60%;
+    margin: auto;
+  }
+
+  .card-body3{
+    border-top: 4px solid #017bab;
+}
+
+.card-title3{
+    text-align: center;
+}
+
+.card-text3{
+    text-align: center
+
+}
+
+
+
+/* ----------------CONFIGURACION DE LOS BOTONES ----------------------*/
+.btn-primary{
+    width: 100%;
+    height: 40%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1s;
+
+
+}
