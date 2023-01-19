@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/Estilo-Form.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/EstiloLogin.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/estilos-vistas.css"> 
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/tarjetas.css"> 
 
 <!-- archivos de la libreria Bootstrap -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/bootstrap-grid.css">
@@ -34,6 +35,10 @@
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/svg-with-js.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/svg-with-js.min.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/fontawesome-free-5.15.4-web/css/v4-shims.css">
+
+<!-- Datatables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css">
+
 
 
 

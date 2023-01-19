@@ -1,8 +1,8 @@
 <?php
 include_once '../config/conexion.php';
-    $conexion = new PDO("mysql:host=localhost;dbname=sistema_inventario", "root", "");
+    $conexion = new PDO("mysql:host=localhost;dbname=dbsorteo", "root", "");
 
-        $consulta = "SELECT * FROM proveedores";
+        $consulta = "SELECT * FROM empleados";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
