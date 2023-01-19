@@ -12,7 +12,7 @@
 				}else{
 					$contenido="404";
 				}
-			}elseif($vistas=="inicio" || $vistas=="index" || $vistas=="login"){
+			}elseif($vistas=="inicio" || $vistas=="index" || $vistas=="login" || $vistas=="recuperacion-clave"){
 				switch($vistas){
 					case 'inicio':
 						$contenido="inicio";
@@ -23,9 +23,12 @@
 					case 'login':
 						$contenido="login";
 					break;
+					case 'recuperacion-clave':
+						$contenido="recuperacion-clave";
+					break;
 				}
 
-			}elseif($vistas=="inicio" || $vistas=="index" || $vistas=="login"){
+			}elseif($vistas=="inicio" || $vistas=="index" || $vistas=="login" || $vistas=="recuperacion-clave"){
 				$contenido="inicio";
 
 			}else{

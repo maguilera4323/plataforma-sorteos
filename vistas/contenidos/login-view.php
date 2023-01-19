@@ -24,7 +24,7 @@
           <input class="controls" type="text" name="txtusuario" value="" placeholder="Usuario" required>
           <input class="controls" type="password" name="txtcontrasena" value="" placeholder="Contraseña" required>
 		  <div class="reset-password">
-                <p><a href="IndexReset.html">¿Olvidaste tu contraseña?</a></p>
+                <p><a href="<?php echo SERVERURL?>recuperacion-clave/">¿Olvidaste tu contraseña?</a></p>
             </div>
 			<br>
           <button class="buttons" type="submit" name="acceder">Iniciar Sesión</button>
