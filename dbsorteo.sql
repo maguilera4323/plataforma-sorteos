@@ -19,20 +19,6 @@
 CREATE DATABASE IF NOT EXISTS `dbsorteo` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `dbsorteo`;
 
--- Volcando estructura para tabla dbsorteo.boletos
-CREATE TABLE IF NOT EXISTS `boletos` (
-  `IdBoleto` int(11) NOT NULL AUTO_INCREMENT,
-  `IdUsuario` int(11) NOT NULL,
-  `IdSorteo` int(11) NOT NULL,
-  `NumeroBoleto` int(4) NOT NULL,
-  `FechaCompra` date NOT NULL,
-  PRIMARY KEY (`IdBoleto`) USING BTREE,
-  KEY `IdUsuario` (`IdUsuario`),
-  CONSTRAINT `boletos_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Volcando datos para la tabla dbsorteo.boletos: ~0 rows (aproximadamente)
-
 -- Volcando estructura para tabla dbsorteo.empleados
 CREATE TABLE IF NOT EXISTS `empleados` (
   `id_empleado` int(11) NOT NULL AUTO_INCREMENT,
@@ -50,129 +36,193 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   PRIMARY KEY (`id_empleado`) USING BTREE,
   KEY `FK_empleados_roles` (`id_rol`) USING BTREE,
   CONSTRAINT `FK_empleados_roles` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=214 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.empleados: ~29 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.empleados: ~193 rows (aproximadamente)
 INSERT INTO `empleados` (`id_empleado`, `usuario`, `nombre_empleados`, `estado_empleado`, `contrasena`, `id_rol`, `fecha_ultima_conexion`, `correo_electronico`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
-	(1, 'ADMIN', 'ADMINISTRADOR', 'Activo', '123456', 1, '2023-01-18 20:43:30', 'admin@admin.com', 'prueba', '2023-01-18 20:44:00', NULL, NULL),
-	(2, 'ADMIN2', 'LORD JOH', 'Activo', '123456', 2, '2023-01-18 20:44:48', 'joh@robo.hn', 'prueba', '2023-01-18 20:44:00', NULL, NULL),
-	(3, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:45:47', NULL, NULL),
-	(4, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:46:23', NULL, NULL),
-	(5, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:46:23', NULL, NULL),
-	(6, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:46:48', NULL, NULL),
-	(7, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:46:48', NULL, NULL),
 	(8, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:46:48', NULL, NULL),
-	(9, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:46:48', NULL, NULL),
-	(10, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:46:48', NULL, NULL),
-	(11, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:46:48', NULL, NULL),
-	(12, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:46:48', NULL, NULL),
-	(13, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:46:48', NULL, NULL),
-	(14, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
 	(15, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
 	(16, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
 	(17, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
-	(18, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
-	(19, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
 	(20, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
 	(21, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
-	(22, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
-	(23, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
-	(24, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
 	(25, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
-	(26, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
-	(27, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
-	(28, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
-	(29, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-19 06:47:09', NULL, NULL),
-	(30, 'MIA', 'KHALIFA', 'Activo', '$2y$12$amt.RLBCU7WZKiL2.KP77u8uiksl5NGCtanPoripdZARvPAlW9oZm', 2, NULL, 'mia@nopor.com', 'prueba', '2023-01-19 08:13:57', NULL, NULL),
-	(31, 'JESUS', 'CRISTO', 'Activo', '$2y$12$X7yQK0NZgQOhDoTACjJxYObS.q8.EwWUYgwe/Wcbgv3rmZcUWe74O', 1, NULL, 'jesus@administracion.cielo.org', 'prueba', '2023-01-19 08:14:52', NULL, NULL),
-	(32, 'SHOKO', 'MINAMI', 'Activo', '$2y$12$XNz70P/S/MhlH9YFxzORhuyLEuhATELGuu7ngFAE1N9f785Pf/2mO', 2, NULL, 'minamishoko@gmail.com', 'prueba', '2023-01-19 08:15:46', NULL, NULL);
-
--- Volcando estructura para tabla dbsorteo.empresas
-CREATE TABLE IF NOT EXISTS `empresas` (
-  `IdEmpresa` int(11) NOT NULL AUTO_INCREMENT,
-  `NombreEmpresa` varchar(50) NOT NULL,
-  `Direccion` varchar(100) NOT NULL,
-  `Telefono` varchar(9) NOT NULL,
-  `Correo` varchar(30) NOT NULL,
-  PRIMARY KEY (`IdEmpresa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Volcando datos para la tabla dbsorteo.empresas: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla dbsorteo.parametros
-CREATE TABLE IF NOT EXISTS `parametros` (
-  `id_parametro` int(11) NOT NULL AUTO_INCREMENT,
-  `parametro` varchar(60) NOT NULL,
-  `valor` varchar(100) NOT NULL,
-  `creado_por` varchar(50) NOT NULL,
-  `fecha_creacion` datetime NOT NULL,
-  `modificado_por` varchar(50) DEFAULT NULL,
-  `fecha_modificacion` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_parametro`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Volcando datos para la tabla dbsorteo.parametros: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla dbsorteo.premios
-CREATE TABLE IF NOT EXISTS `premios` (
-  `IdPremio` int(11) NOT NULL AUTO_INCREMENT,
-  `IdSorteo` int(11) NOT NULL,
-  `IdUsuario` int(11) NOT NULL,
-  `Estado` tinyint(1) NOT NULL,
-  PRIMARY KEY (`IdPremio`) USING BTREE,
-  KEY `IdUsuario` (`IdUsuario`),
-  KEY `IdSorteo` (`IdSorteo`),
-  CONSTRAINT `premios_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `premios_ibfk_2` FOREIGN KEY (`IdSorteo`) REFERENCES `sorteos` (`IdSorteo`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Volcando datos para la tabla dbsorteo.premios: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla dbsorteo.roles
-CREATE TABLE IF NOT EXISTS `roles` (
-  `id_rol` int(11) NOT NULL AUTO_INCREMENT,
-  `rol` varchar(50) NOT NULL,
-  `descripcion` varchar(100) NOT NULL,
-  `creado_por` varchar(50) NOT NULL,
-  `fecha_creacion` datetime NOT NULL,
-  `modificado_por` varchar(50) DEFAULT NULL,
-  `fecha_modificacion` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_rol`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-
--- Volcando datos para la tabla dbsorteo.roles: ~2 rows (aproximadamente)
-INSERT INTO `roles` (`id_rol`, `rol`, `descripcion`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
-	(1, 'ADMINISTRADOR', 'Administrador del sistema', 'prueba', '2023-01-18 20:42:58', NULL, NULL),
-	(2, 'EMPLEADO', 'Encargado de monitorear actividad de usuarios', 'prueba', '2023-01-19 07:42:09', NULL, NULL);
-
--- Volcando estructura para tabla dbsorteo.sorteos
-CREATE TABLE IF NOT EXISTS `sorteos` (
-  `IdSorteo` int(11) NOT NULL AUTO_INCREMENT,
-  `IdEmpresa` int(11) NOT NULL,
-  `NombreSorteo` varchar(50) NOT NULL,
-  `FechaRealizacion` date NOT NULL,
-  PRIMARY KEY (`IdSorteo`) USING BTREE,
-  KEY `IdEmpresa` (`IdEmpresa`),
-  CONSTRAINT `sorteos_ibfk_1` FOREIGN KEY (`IdEmpresa`) REFERENCES `empresas` (`IdEmpresa`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Volcando datos para la tabla dbsorteo.sorteos: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla dbsorteo.usuarios
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `usuario` varchar(20) NOT NULL,
-  `contrasena` varchar(100) NOT NULL,
-  `NombreUsuario` varchar(50) NOT NULL,
-  `NumeroIdentidad` varchar(13) NOT NULL,
-  `Telefono` varchar(9) NOT NULL,
-  `Correo` varchar(30) NOT NULL,
-  PRIMARY KEY (`IdUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-
--- Volcando datos para la tabla dbsorteo.usuarios: ~0 rows (aproximadamente)
-INSERT INTO `usuarios` (`IdUsuario`, `usuario`, `contrasena`, `NombreUsuario`, `NumeroIdentidad`, `Telefono`, `Correo`) VALUES
-	(1, 'prueba', '$2y$12$i836qbF5sxjT0I2VHP13XeLQ7ZdbVu28cmy1bKjsxQUM9mk6aBV/S', 'Prueba', '04829482984', '12345678', 'dfam,asm');
+	(30, 'MIA', 'KHALIFA', 'Activo', '$2y$12$amt.RLBCU7WZKiL2.KP77u8uiksl5NGCtanPoripdZARvPAlW9oZm', 2, NULL, 'mia@khalifa.com', 'prueba', '2023-01-19 08:13:57', 'prueba', '2023-01-19 22:35:28'),
+	(32, 'SHOKO', 'MINAMI', 'Activo', '$2y$12$XNz70P/S/MhlH9YFxzORhuyLEuhATELGuu7ngFAE1N9f785Pf/2mO', 2, NULL, 'minamishoko@gmail.com', 'prueba', '2023-01-19 08:15:46', NULL, NULL),
+	(37, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(38, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(39, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(40, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(41, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(42, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(43, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(44, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(45, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(46, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(47, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(48, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(49, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(50, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(51, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(52, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:25', NULL, NULL),
+	(53, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(54, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(55, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(56, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(57, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(58, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(59, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(60, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(62, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(64, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(65, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(66, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(67, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(68, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:31', NULL, NULL),
+	(69, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(70, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(71, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(72, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(73, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(74, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(75, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(76, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(77, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(78, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(79, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(80, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(81, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(82, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(83, 'JUAN', 'JUAN CORTES', 'Inactivo', 'AAAAAA', 2, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', 'SAOTOME', '2023-01-20 16:07:56'),
+	(84, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:39', NULL, NULL),
+	(85, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(86, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(87, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(88, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(89, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(90, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(91, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(92, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(93, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(94, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(95, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(96, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(97, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(98, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(99, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(100, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:04:49', NULL, NULL),
+	(101, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(102, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(103, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(104, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(105, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(106, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(107, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(108, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(109, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(110, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(111, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(112, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(113, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(114, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(115, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(116, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:49', NULL, NULL),
+	(117, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(118, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(119, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(120, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(121, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(122, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(123, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(124, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(125, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(126, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(127, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(128, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(129, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(130, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(131, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(132, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:51', NULL, NULL),
+	(133, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(134, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(135, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(136, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(137, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(138, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(139, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(140, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(141, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(142, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(143, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(144, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(145, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(146, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(147, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(148, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:53', NULL, NULL),
+	(149, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(150, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(151, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(152, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(153, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(154, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(155, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(156, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(157, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(158, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(159, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(160, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(161, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(162, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(163, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(164, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:54', NULL, NULL),
+	(165, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(167, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(168, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(169, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(170, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(171, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(172, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(173, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(174, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(175, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(176, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(177, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(178, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(179, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(180, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:56', NULL, NULL),
+	(181, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(182, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(183, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(184, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(185, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(186, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(187, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(188, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(189, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(190, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(191, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(192, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(193, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(194, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(195, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(196, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:57', NULL, NULL),
+	(197, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(198, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(199, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(200, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(201, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(202, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(203, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(204, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(205, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(206, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(207, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(208, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(209, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(210, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(211, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(212, 'MARIO', 'MARIO RIOS', 'Activo', 'AAAAAA', 1, NULL, 'marios@marios.com', 'prueba', '2023-01-20 12:05:59', NULL, NULL),
+	(213, 'JGJHG', 'GFGFHGFGH', 'Activo', '$2y$12$XF70ppCfZowKi.PEB9dkg.ZkpwELGIsIBJZ4qkAM92olE90o0Se4i', 2, NULL, 'fsdffsd@ff.co', 'SAOTOME', '2023-01-20 15:47:32', NULL, NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
