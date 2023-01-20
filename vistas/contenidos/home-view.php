@@ -12,7 +12,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
         <div class="card-body1">
           <h5 class="card-title1">AGREGAR EMPLEADOS</h5>
           <p class="card-text1">Agrega empleados de manera rapida y segura.</p>
-          <a href="<?php echo SERVERURL?>empleados/" class="btn btn-primary">AÑADIR</a>
+          <a href="<?php echo SERVERURL?>empleados" class="btn btn-primary">AÑADIR</a>
         </div>
     </div>
 </div>

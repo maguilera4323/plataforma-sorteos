@@ -8,11 +8,16 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 include("./modelos/obtenerDatos.php"); 
 ?>
 <br>
-<div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR EMPLEADO</div>
 <br>
-<br>
+<div class="container">
+<div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar</div>
 <div class="table-responsive">
-    <input type="text" id="searchBox" placeholder="Filtrar empleados">
+    <br>
+    <div class="row">
+        <div class="col-3">
+            <input type="text" class="form-control" id="searchBox" placeholder="Filtrar empleados">
+        </div>
+    </div>
     <br>
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
@@ -149,30 +154,43 @@ include("./modelos/obtenerDatos.php");
 
     </table>
 </div>
+<div id="paginador" class=""></div>	
+</div>
+<br>
+<br>
 
-<!-- <div class="container" onload="ejemplo()">
-       <div class="row">
-           <div class="col-lg-12">
-            <table id="tablaUsuarios" class="table-striped table-bordered text-center">
-                <thead>
-                 <tr>
-                    <th>ID</th>
-                    <th>Usuario</th>                               
-                    <th>Nombre</th>  
-                    <th>Estado</th>
-                    <th>Rol</th>
-                    <th>Correo</th>
-                    <th>Actualizar</th>
-                    <th>Eliminar</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-           </div>
-       </div> 
-    </div> -->
+<!-- <div class="container">
+    <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR EMPLEADO</div>
+    <div onload="editar()">
+        <div class="row">
+            <div class="col-lg-12">
+                <br>
+                <table id="tablaEmpleados" class="table-striped table-bordered text-center">
+                    <thead>
+                    <tr>
+                        <th>ID</th>                         
+                        <th>Usuario</th>
+                        <th>Nombre</th>  
+                        <th>Estado</th>
+                        <th>Rol</th>
+                        <th>Correo</th>
+                        <th>Actualizar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div> 
+        </div>
+</div>
+<br> -->
 
+
+
+   
 <!-- Modal Crear -->
 <div class="modal fade" id="ModalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -260,3 +278,5 @@ include("./modelos/obtenerDatos.php");
     </div>
   </div>
 </div>
+
+
