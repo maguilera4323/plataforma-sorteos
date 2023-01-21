@@ -9,16 +9,22 @@ include("./modelos/obtenerDatos.php");
 ?>
 <br>
 <br>
-<div class="container">
-<div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar</div>
+<div class="container contenedor-tabla">
+    <div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar</div>
+            <div class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-pdf"></i> &nbsp; Exportar a PDF</div>
+            <div class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel</div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    </div>
+
 <div class="table-responsive">
     <br>
-    <div class="row">
-        <div class="col-3">
-            <input type="text" class="form-control" id="searchBox" placeholder="Filtrar empleados">
-        </div>
-    </div>
-    <br>
+        <input type="text" id="searchBox" placeholder="Filtrar empleados">
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>

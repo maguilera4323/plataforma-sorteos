@@ -5,7 +5,7 @@
 		/*--------- Modelo obtener vistas ---------*/
 		protected static function obtener_vistas_modelo($vistas){
 
-			$listaBlanca=["home","empleados","salir"];
+			$listaBlanca=["home","empleados","empresas","salir"];
 			if(in_array($vistas, $listaBlanca)){
 				if(is_file("./vistas/contenidos/".$vistas."-view.php")){
 					$contenido="./vistas/contenidos/".$vistas."-view.php";

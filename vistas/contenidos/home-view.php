@@ -25,7 +25,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
         <div class="card-body2">
           <h5 class="card-title2">AGREGAR EMPRESAS</h5>
           <p class="card-text2">Agrega empresas de manera rapida y segura.</p>
-          <a href="#" class="btn btn-primary">AÑADIR</a>
+          <a href="<?php echo SERVERURL?>empresas" class="btn btn-primary">AÑADIR</a>
         </div>
     </div>
 </div>

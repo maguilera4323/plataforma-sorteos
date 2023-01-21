@@ -253,8 +253,8 @@
 
 
 /* borde para las tablas */
-.container{
-    border: 2px solid #555555;
+.contenedor-tabla{
+    border: 1px solid #dddcdc;
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     padding: 10px;
@@ -264,6 +264,10 @@
 div .label-actualizar{ 
     float: left;
     color:black;
+  }
+
+  .searchBox{
+    width:15rem;
   }
 
 
