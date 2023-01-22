@@ -10,6 +10,7 @@ class loginUsuarios extends Usuario{
         $usuario=$datos['usuario'];
         $contrasena=$datos['password'];
         $array=array();
+        $hash='';
 
         //se obtiene el hash de la contraseña para validar el inicio de sesion
 		$recuperarHash=new Usuario();
@@ -25,21 +26,38 @@ class loginUsuarios extends Usuario{
 				$array['id'] = $fila['IdUsuario'];
 				$array['nombre'] = $fila['NombreUsuario'];
 				$array['usuario'] = $fila['usuario'];
+            $array['estado'] = $fila['estado'];
          }
 
             if(isset($array['nombre'])){
-                  // session_start();
-                  //datos que se envian para uso del sistema
-                        $_SESSION['id_login']=$array['id'];
-                        $_SESSION['usuario_login']=$array['usuario'];
-                        $_SESSION['nombre_usuario']=($array['nombre']);
-                        $_SESSION['token_login']=md5(uniqid(mt_rand(),true));
-                        return header("Location:".SERVERURL."home/");
-                     die();
-                  }
-                
+               switch ($array['estado']){
+						case 'Activo':
+							//datos que se envian para uso del sistema
+							$_SESSION['id_login']=$array['id'];
+							$_SESSION['usuario_login']=$array['usuario'];
+							$_SESSION['nombre_usuario']=$array['nombre'];
+							$_SESSION['estado']=$array['estado'];
+                     $_SESSION['token_login']=md5(uniqid(mt_rand(),true));
+							return header("Location:".SERVERURL."home/");
+							break;
+							case 'Inactivo':
+								$_SESSION['respuesta'] = 'Usuario inactivo';
+								return header("Location:".SERVERURL."login/");
+							break;
+							case 'Bloqueado':
+								$_SESSION['respuesta'] = 'Usuario bloqueado';
+								return header("Location:".SERVERURL."login/");
+							break; 
+						die();
+					   }  
+               }
+            }else{
+               //si no existe el usuario y la contraseña en la base de datos
+               $_SESSION['respuesta'] = 'Datos incorrectos';
+               return header("Location:".SERVERURL."login/");
+               die();
+               }
    }
-}
 
     //funcion encargada de redirigir al login siempre que se detecte que no hay una sesion activa 
     public function forzarCierreSesionControlador(){
@@ -50,5 +68,6 @@ class loginUsuarios extends Usuario{
          }else{
             return header("Location:".SERVERURL."inicio/");
          }
-   }
+    }
+
 }

@@ -178,9 +178,9 @@
 
 
 /* estilo pagina de inicio */
-/* .inicio{
-    background-image: url("../vistas/assets/img/Ganadores.jpg");
-} */
+#inicio{
+    background-color:#2581DC;
+}
 
 .boton-inicio, .botones-abajo{
     min-height: 100vh;
@@ -291,5 +291,10 @@ div .label-actualizar{
 #datos-usuario tr:hover{
     background-color: #9ed2fd;
 }
+
+h2{
+    margin-left: 9rem;
+}
+
 
 

@@ -5,7 +5,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./modelos/obtenerDatos.php"); 
+include("./DatosTablas/obtenerDatos.php"); 
 ?>
 <br>
 <br>

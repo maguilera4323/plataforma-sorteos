@@ -10,41 +10,33 @@
           <a href="<?php echo SERVERURL?>home/"><i class="fas fa-home"></i>&nbsp;Home</a>
         </li>
         <li>
-          <a href="#!">About</a>
+          <a href="#!"><i class="fas fa-industry"></i>&nbsp; Empresas</a>
         </li>
         <li>
-          <a href="#!">Services</a>
+          <a href="#!"><i class="fas fa-medal"></i>&nbsp; Sorteos</a>
+        </li>
+        <li>
+          <a href="#!"><i class="fas fa-trophy"></i>&nbsp; Premios</a>
+        </li>
+        <li>
+          <a href="#!"><i class="fas fa-tools"></i>&nbsp; Configuración</a>
           <ul class="navbar-dropdown">
             <li>
-              <a href="#!">Sass</a>
+              <a href="#!"><i class="fas fa-users"></i></i>&nbsp; Usuarios</a>
             </li>
             <li>
-              <a href="#!">Less</a>
+              <a href="#!"><i class="fas fa-users-cog"></i>&nbsp; Roles</a>
             </li>
             <li>
-              <a href="#!">Stylus</a>
+              <a href="#!"><i class="fas fa-tasks"></i>&nbsp; Permisos</a>
+            </li>
+            <li>
+              <a href="#!"><i class="fas fa-table"></i>&nbsp; Módulos</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#!">Portfolio</a>
-        </li>
-        <li>
-          <a href="#!">Category</a>
-          <ul class="navbar-dropdown">
-            <li>
-              <a href="#!">Sass</a>
-            </li>
-            <li>
-              <a href="#!">Less</a>
-            </li>
-            <li>
-              <a href="#!">Stylus</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#!">Contact</a>
+          <a href="#!">Contacto</a>
         </li>
         <li>
         <a href="#!"><i class="fas fa-user-circle"></i> &nbsp;<?php echo $_SESSION['usuario_login']?></a>

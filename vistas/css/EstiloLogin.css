@@ -1,5 +1,4 @@
 body{
-    
     font-family: arial;
 }
 
@@ -16,7 +15,6 @@ body{
 }
 
 .form-login h5{
-
   margin: 0;
   text-align: center;
   height: 40px;
@@ -26,14 +24,14 @@ body{
 }
 
 .controls{
-  width: 100%;
-  border: 1px solid #017bab;
-  margin-bottom: 15px;
+    width: 100%;
+    border: 1px solid #017bab;
+    margin-bottom: 15px;
     padding: 11px 10px;
     background: #252323;
     font-size: 14px;
     font-weight: bold;
-  
+    color: white;
   }
   
   .buttons{

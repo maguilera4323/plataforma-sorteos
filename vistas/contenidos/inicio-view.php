@@ -1,4 +1,4 @@
-<div class="inicio" style='background-image: url("../vistas/assets/img/pollo.png");'>
+<div id="inicio">
     <section class="boton-inicio">
             <a href="<?php echo SERVERURL?>login/"><button class= "button1" type="submit" >PARTICIPAR</button></a>
     </section>
