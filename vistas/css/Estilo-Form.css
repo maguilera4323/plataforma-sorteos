@@ -266,8 +266,30 @@ div .label-actualizar{
     color:black;
   }
 
-  .searchBox{
-    width:15rem;
+/* tamaño de filtro para la tabla */
+  #searchBox{
+    width:12rem;
   }
+
+ /*  estilo de tabla */
+  #datos-usuario {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#datos-usuario th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+/* Agrega un estilo de cebra a las filas de la tabla */
+#datos-usuario tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+#datos-usuario tr:hover{
+    background-color: #9ed2fd;
+}
 
 

@@ -24,7 +24,8 @@ include("./modelos/obtenerDatos.php");
 
 <div class="table-responsive">
     <br>
-        <input type="text" id="searchBox" placeholder="Filtrar empleados">
+        <input type="text" id="searchBox" class="form-control" onkeyup="filterTable()" placeholder="Filtrar empleados">
+        <p id="message"></p>
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>
@@ -38,7 +39,7 @@ include("./modelos/obtenerDatos.php");
                 <th>Eliminar</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="body">
         <?php
             //se hace una instancia a la clase
                 $datos=new obtenerDatosTablas();

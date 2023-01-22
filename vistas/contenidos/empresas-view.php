@@ -24,7 +24,8 @@ include("./modelos/obtenerDatos.php");
 
 <div class="table-responsive">
     <br>
-        <input type="text" id="searchBox" placeholder="Filtrar empresas">
+        <input type="text" id="searchBox" class="form-control" placeholder="Filtrar empresas" onkeyup="filterTable()">
+        <p id="message"></p>
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>

@@ -19,11 +19,12 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.all.min.js" ></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.min.js" ></script>
 
-<!-- Otras funciones añadidas por el programador -->
+<!-- Otras funciones añadidas por los desarrolladores -->
 <script src="<?php echo SERVERURL; ?>vistas/js/funciones-navbar.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/alertas.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/camposContrasena.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/cargarDatatable.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/paginador.js"></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/buscador-registros.js"></script>
 
 
