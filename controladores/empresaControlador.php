@@ -12,8 +12,8 @@ class empresaControlador extends empresaModelo{
 	
 	public function agregarEmpresa(){
 		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_nuevo']));
-		$direccion=ConexionBD::limpiar_cadena(strtoupper($_POST['direccion_nuevo']));
-		$telefono=ConexionBD::limpiar_cadena(strtoupper($_POST['telefono_nuevo']));
+		$direccion=ConexionBD::limpiar_cadena($_POST['direccion_nuevo']);
+		$telefono=ConexionBD::limpiar_cadena($_POST['telefono_nuevo']);
 		$correo=ConexionBD::limpiar_cadena($_POST['correo_electronico_nuevo']);
 
 		
@@ -52,7 +52,7 @@ class empresaControlador extends empresaModelo{
 			exit();
 		}
 
-		$revisarNombre=ConexionBD::consultaComprobacion("SELECT NombreEmpresa FROM empresas WHERE NombreEmpresa='$nombre'");
+		$revisarNombre=ConexionBD::consultaComprobacion("SELECT nombre_empresa FROM empresas WHERE nombre_empresa='$nombre'");
 			if($revisarNombre->rowCount()>0){
 				$alerta=[
 					"Alerta"=>"simple",
@@ -64,7 +64,8 @@ class empresaControlador extends empresaModelo{
 					exit();
 			}
 		
-		$revisarCorreo=ConexionBD::consultaComprobacion("SELECT Correo FROM empresas WHERE Correo='$correo'");
+		$revisarCorreo=ConexionBD::consultaComprobacion("SELECT correo_electronico FROM empresas WHERE 
+		correo_electronico='$correo'");
 		if($revisarCorreo->rowCount()>0){
 				$alerta=[
 					"Alerta"=>"simple",
@@ -112,8 +113,8 @@ class empresaControlador extends empresaModelo{
 
 	public function actualizarEmpresa(){	
 		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_act']));
-		$direccion=ConexionBD::limpiar_cadena(strtoupper($_POST['direccion_act']));
-		$telefono=ConexionBD::limpiar_cadena(strtoupper($_POST['telefono_act']));
+		$direccion=ConexionBD::limpiar_cadena($_POST['direccion_act']);
+		$telefono=ConexionBD::limpiar_cadena($_POST['telefono_act']);
 		$correo=ConexionBD::limpiar_cadena($_POST['correo_electronico_act']);
 		$id_actualizar=ConexionBD::limpiar_cadena($_POST['empresa_id']);
 

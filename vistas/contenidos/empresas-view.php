@@ -47,17 +47,17 @@ include("./DatosTablas/obtenerDatos.php");
                 foreach ($resultado as $fila){
             ?>
             <tr>
-                <td><?php echo $fila['IdEmpresa']; ?></td>
-                <td><?php echo $fila['NombreEmpresa']; ?></td>
-                <td><?php echo $fila['Direccion']; ?></td>
-                <td><?php echo $fila['Telefono']; ?></td>
-                <td><?php echo $fila['Correo']; ?></td>
+                <td><?php echo $fila['id_empresa']; ?></td>
+                <td><?php echo $fila['nombre_empresa']; ?></td>
+                <td><?php echo $fila['direccion']; ?></td>
+                <td><?php echo $fila['telefono']; ?></td>
+                <td><?php echo $fila['correo_electronico']; ?></td>
                 <td>
-				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['IdEmpresa'];?>">
+				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_empresa'];?>">
 					<i class="fas fa-sync-alt"></i>
                 </button>
 						<!-- Modal actualizar-->
-                    <div class="modal fade" id="ModalAct<?php echo $fila['IdEmpresa'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="ModalAct<?php echo $fila['id_empresa'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -71,30 +71,30 @@ include("./DatosTablas/obtenerDatos.php");
                             <form action="<?php echo SERVERURL; ?>ajax/empresasAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
                                 <div class="form-group">
                                     <label class="label-actualizar">Nombre</label>
-                                    <input type="text" class="form-control" name="nombre_act" id="correo_electronico" 
-                                    style="text-transform:uppercase;" value="<?php echo $fila['NombreEmpresa']; ?>" required="">
+                                    <input type="text" class="form-control" name="nombre_act" 
+                                    style="text-transform:uppercase;" value="<?php echo $fila['nombre_empresa']; ?>" required="">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="label-actualizar">Direccion</label>
-                                    <input type="text" class="form-control" name="direccion_act" id="correo_electronico" 
-                                    value="<?php echo $fila['Direccion']; ?>" required="">
+                                    <input type="text" class="form-control" name="direccion_act"
+                                    value="<?php echo $fila['direccion']; ?>" required="">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="label-actualizar">Teléfono</label>
-                                    <input type="number" class="form-control" name="telefono_act" id="correo_electronico" 
-                                     value="<?php echo $fila['Telefono']; ?>" required="">
+                                    <input type="number" class="form-control" name="telefono_act" 
+                                     value="<?php echo $fila['telefono']; ?>" required="">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="label-actualizar">Correo electrónico</label>
-                                    <input type="email" class="form-control" name="correo_electronico_act" id="correo_electronico" 
-                                    value="<?php echo $fila['Correo']; ?>" required="">
+                                    <input type="email" class="form-control" name="correo_electronico_act" 
+                                    value="<?php echo $fila['correo_electronico']; ?>" required="">
                                 </div>
                                     <br>
                                     <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
-                                    <input type="hidden" value="<?php echo $fila['IdEmpresa']; ?>" class="form-control" name="empresa_id">
+                                    <input type="hidden" value="<?php echo $fila['id_empresa']; ?>" class="form-control" name="empresa_id">
                                     <button type="submit" class="btn btn-danger">Guardar</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 </form>
@@ -103,7 +103,7 @@ include("./DatosTablas/obtenerDatos.php");
 			    </td>
                 <td>
 					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresasAjax.php" method="POST" data-form="delete" autocomplete="off">
-					<input type="hidden" pattern="" class="form-control" name="id_empresa_del" value="<?php echo $fila['IdEmpresa'] ?>">	
+					<input type="hidden" pattern="" class="form-control" name="id_empresa_del" value="<?php echo $fila['id_empresa'] ?>">	
 					<button type="submit" class="btn btn-danger">
 						<i class="far fa-trash-alt"></i>
 					</button>
@@ -171,23 +171,23 @@ include("./DatosTablas/obtenerDatos.php");
 		<form action="<?php echo SERVERURL; ?>ajax/empresasAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
             <div class="form-group">
 				<label class="color-label">Nombre</label>
-				<input type="text" class="form-control" name="nombre_nuevo" id="correo_electronico" 
+				<input type="text" class="form-control" name="nombre_nuevo" 
                 style="text-transform:uppercase;" required="">
 			</div>
             <br>
             <div class="form-group">
 				<label class="color-label">Dirección</label>
-				<input type="text" class="form-control" name="direccion_nuevo" id="correo_electronico" required="">
+				<input type="text" class="form-control" name="direccion_nuevo" required="">
 			</div>
             <br>
             <div class="form-group">
 				<label class="color-label">Teléfono</label>
-				<input type="number" class="form-control" name="telefono_nuevo" id="correo_electronico" required="">
+				<input type="number" class="form-control" name="telefono_nuevo" required="">
 			</div>
             <br>
             <div class="form-group">
 				<label class="color-label">Correo electrónico</label>
-				<input type="email" class="form-control" name="correo_electronico_nuevo" id="correo_electronico" required="">
+				<input type="email" class="form-control" name="correo_electronico_nuevo" required="">
 			</div>
             <br>
             <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">

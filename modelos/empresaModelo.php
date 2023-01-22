@@ -5,7 +5,8 @@
 	class empresaModelo extends ConexionBD{
 
 		protected function agregarEmpresaModelo($datos){
-			$sql=ConexionBD::getConexion()->prepare("INSERT INTO empresas(NombreEmpresa,Direccion,Telefono,Correo)
+			$sql=ConexionBD::getConexion()->prepare("INSERT INTO empresas(nombre_empresa,direccion,telefono,
+			correo_electronico)
 			VALUES(?,?,?,?)");
 
 			$sql->bindParam(1,$datos['nom']);
@@ -18,8 +19,8 @@
 
 
 		protected function actualizarEmpresaModelo($dato,$id){
-			$sql=ConexionBD::getConexion()->prepare("UPDATE empresas SET NombreEmpresa=?,Direccion=?,Telefono=?,
-			Correo=? where IdEmpresa=?");
+			$sql=ConexionBD::getConexion()->prepare("UPDATE empresas SET nombre_empresa=?,direccion=?,telefono=?,
+			correo_electronico=? where id_empresa=?");
 
 			$sql->bindParam(1,$dato['nom']);
 			$sql->bindParam(2,$dato['dir']);	
@@ -33,7 +34,7 @@
 
 
 		protected function eliminarEmpresaModelo($id){
-			$sql=ConexionBD::getConexion()->prepare("DELETE FROM empresas where IdEmpresa=?");
+			$sql=ConexionBD::getConexion()->prepare("DELETE FROM empresas where id_empresa=?");
 				
 			$sql->bindParam(1,$id);
 			$sql->execute();

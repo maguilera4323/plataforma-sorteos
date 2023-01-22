@@ -23,8 +23,8 @@ class loginUsuarios extends Usuario{
 			$verificarDatos = new Usuario(); //se crea una instancia en el archivo modelo de Login
 			$respuesta = $verificarDatos->accesoUsuario($usuario, $hash); //datos recibidos del archivo modelo de Login
 			foreach ($respuesta as $fila) {
-				$array['id'] = $fila['IdUsuario'];
-				$array['nombre'] = $fila['NombreUsuario'];
+				$array['id'] = $fila['id_usuario'];
+				$array['nombre'] = $fila['nombre_usuario'];
 				$array['usuario'] = $fila['usuario'];
             $array['estado'] = $fila['estado'];
          }

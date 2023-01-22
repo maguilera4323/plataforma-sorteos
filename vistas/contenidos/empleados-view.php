@@ -43,25 +43,25 @@ include("./DatosTablas/obtenerDatos.php");
         <?php
             //se hace una instancia a la clase
                 $datos=new obtenerDatosTablas();
-                $resultado=$datos->datosTablas('empleados');
+                $resultado=$datos->datosTablas('usuarios');
                 foreach ($resultado as $fila){
             ?>
             <tr>
-                <td><?php echo $fila['id_empleado']; ?></td>
+                <td><?php echo $fila['id_usuario']; ?></td>
                 <td><?php echo $fila['usuario']; ?></td>
-                <td><?php echo $fila['nombre_empleados']; ?></td>
-                <td><?php echo $fila['estado_empleado']; ?></td>
+                <td><?php echo $fila['nombre_usuario']; ?></td>
+                <td><?php echo $fila['estado']; ?></td>
                 <td><?php echo $fila['id_rol']; ?></td>
                 <td><?php echo $fila['correo_electronico']; ?></td>
                 <td>
-				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_empleado'];?>">
+				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_usuario'];?>">
 					<i class="fas fa-sync-alt"></i>
                 </button>
 						<!-- Modal actualizar-->
-                    <div class="modal fade" id="ModalAct<?php echo $fila['id_empleado'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="ModalAct<?php echo $fila['id_usuario'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <?php
                             //validación para impedir la modificación del usuario que está conectado en el sistema
-							if(($fila['id_empleado']==$_SESSION['id_login']) || ($fila['id_usuario']==$_SESSION['id_login'])){
+							if(($fila['id_usuario']==$_SESSION['id_login'])){
 								echo '<div class="alert alert-warning text-center" style="font-size: 28px;">No se puede actualizar el usuario conectado actualmente
 								<button type="button" class="close" data-dismiss="alert" onclick="window.location.reload()">X</button>
 								</div>
@@ -91,16 +91,16 @@ include("./DatosTablas/obtenerDatos.php");
                                                 <div class="form-group">
                                                     <label class="label-actualizar">Nombre</label>
                                                     <input type="text" class="form-control" name="nombre_empleado_act" id="nombre_usuario" 
-                                                    style="text-transform:uppercase;" value="<?php echo $fila['nombre_empleados']?>" required="" >
+                                                    style="text-transform:uppercase;" value="<?php echo $fila['nombre_usuario']?>" required="" >
                                                 </div>
                                             </div>
                                             <div class="col-10 col-md-6">
                                                 <br>
                                                 <label class="label-actualizar">Estado</label>
                                                 <select class="form-control" name="estado_act">
-                                                    <option value="1" <?php if ($fila['estado_empleado'] == 'Activo'): ?> selected<?php endif; ?>>Activo</option>
-                                                    <option value="2" <?php if ($fila['estado_empleado'] == 'Inactivo'): ?> selected<?php endif; ?>>Inactivo</option>
-                                                    <option value="3" <?php if ($fila['estado_empleado'] == 'Bloqueado'): ?> selected<?php endif; ?>>Bloqueado</option>
+                                                    <option value="1" <?php if ($fila['estado'] == 'Activo'): ?> selected<?php endif; ?>>Activo</option>
+                                                    <option value="2" <?php if ($fila['estado'] == 'Inactivo'): ?> selected<?php endif; ?>>Inactivo</option>
+                                                    <option value="3" <?php if ($fila['estado'] == 'Bloqueado'): ?> selected<?php endif; ?>>Bloqueado</option>
                                                 </select>
                                             </div>
                                             
@@ -136,7 +136,7 @@ include("./DatosTablas/obtenerDatos.php");
                                     <br>
                                     <br>
                                     <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
-                                    <input type="hidden" value="<?php echo $fila['id_empleado']; ?>" class="form-control" name="empleado_id">
+                                    <input type="hidden" value="<?php echo $fila['id_usuario']; ?>" class="form-control" name="empleado_id">
                                     <button type="submit" class="btn btn-danger">Guardar</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 </form>
@@ -145,7 +145,7 @@ include("./DatosTablas/obtenerDatos.php");
 			    </td>
                 <td>
 					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empleadosAjax.php" method="POST" data-form="delete" autocomplete="off">
-					<input type="hidden" pattern="" class="form-control" name="id_empleado_del" value="<?php echo $fila['id_empleado'] ?>">	
+					<input type="hidden" pattern="" class="form-control" name="id_empleado_del" value="<?php echo $fila['id_usuario'] ?>">	
 					<button type="submit" class="btn btn-danger">
 						<i class="far fa-trash-alt"></i>
 					</button>
