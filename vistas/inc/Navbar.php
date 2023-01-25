@@ -25,13 +25,13 @@
               <a href="#!"><i class="fas fa-users"></i></i>&nbsp; Usuarios</a>
             </li>
             <li>
-              <a href="#!"><i class="fas fa-users-cog"></i>&nbsp; Roles</a>
+              <a href="<?php echo SERVERURL?>roles/"><i class="fas fa-users-cog"></i>&nbsp; Roles</a>
             </li>
             <li>
-              <a href="#!"><i class="fas fa-tasks"></i>&nbsp; Permisos</a>
+              <a href="<?php echo SERVERURL?>permisos/"><i class="fas fa-tasks"></i>&nbsp; Permisos</a>
             </li>
             <li>
-              <a href="#!"><i class="fas fa-table"></i>&nbsp; Módulos</a>
+              <a href="<?php echo SERVERURL?>modulos/"><i class="fas fa-table"></i>&nbsp; Módulos</a>
             </li>
           </ul>
         </li>
