@@ -5,7 +5,35 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./DatosTablas/obtenerDatos.php"); 
+    include("./DatosTablas/obtenerDatos.php"); 
+//archivo para obtener los permisos del rol conectado al sistema en la vista a la que ha accedido
+    include("./DatosTablas/obtenerDatosPermisosID.php"); 
+
+//verificación de permisos
+//se revisa si el usuario tiene acceso a una vista específica por medio del rol que tiene y el objeto al que quiere acceder
+	$id_rol=$_SESSION['rol'];
+	$datos=new obtenerDatosPermisosID();
+    $resultado=$datos->datosPermisosID($id_rol,3);
+
+    foreach ($resultado as $fila){
+		$permiso_in=$fila['permiso_insercion'];
+		$permiso_act=$fila['permiso_actualizacion'];
+		$permiso_eli=$fila['permiso_eliminacion'];
+		$permiso_con=$fila['permiso_consulta'];
+	}
+
+//valida si el query anterior no retornó ningún valor
+//en este caso no había un permiso registrado del objeto para el rol del usuario conectado
+	if(!isset($permiso_con)){
+		echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene acceso autorizado a esta vista</div>
+        <div class="modal-body" id="modal-actualizar" style="display:none">;';
+		echo "<script> setTimeout(function(){window.location.href='".SERVERURL."home/'} , 1500); </script>";
+//valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
+	}else if($permiso_con==0){
+		echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene acceso autorizado a esta vista</div>
+        <div class="modal-body" id="modal-actualizar" style="display:none">;';
+		echo "<script> setTimeout(function(){window.location.href='".SERVERURL."home/'} , 1500); </script>";
+	}
 ?>
 <br>
 <h2><i class="fas fa-industry"></i>&nbsp; Empresas</h2>
@@ -58,7 +86,19 @@ include("./DatosTablas/obtenerDatos.php");
                 </button>
 						<!-- Modal actualizar-->
                     <div class="modal fade" id="ModalAct<?php echo $fila['id_empresa'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                    <?php
+                        if(!isset($permiso_act)){
+                            echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para editar la información de la empresa</div>';
+                            echo "<script> window.location.href='".SERVERURL."home/'; </script>";	
+                        //valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
+                        }else if($permiso_act==0){
+                            echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para editar la información de la empresa
+                            <button type="button" class="close" data-bs-dismiss="alert" onclick="window.location.reload()">X</button>
+                            </div>
+                            <div class="modal-dialog" style="display:none">;';
+                        }else{
+                    ?>    
+                    <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Actualizar Empresa</h5>
@@ -99,9 +139,13 @@ include("./DatosTablas/obtenerDatos.php");
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 </form>
                             </div>
+                            <?php
+								}
+							?>
                         </div>
 			    </td>
                 <td>
+                    
 					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresasAjax.php" method="POST" data-form="delete" autocomplete="off">
 					<input type="hidden" pattern="" class="form-control" name="id_empresa_del" value="<?php echo $fila['id_empresa'] ?>">	
 					<button type="submit" class="btn btn-danger">
@@ -124,40 +168,22 @@ include("./DatosTablas/obtenerDatos.php");
 <br>
 <br>
 
-<!-- <div class="container">
-    <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR EMPLEADO</div>
-    <div onload="editar()">
-        <div class="row">
-            <div class="col-lg-12">
-                <br>
-                <table id="tablaEmpleados" class="table-striped table-bordered text-center">
-                    <thead>
-                    <tr>
-                        <th>ID</th>                         
-                        <th>Usuario</th>
-                        <th>Nombre</th>  
-                        <th>Estado</th>
-                        <th>Rol</th>
-                        <th>Correo</th>
-                        <th>Actualizar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-                
-            </div>
-        </div> 
-        </div>
-</div>
-<br> -->
-
-
 
    
 <!-- Modal Crear -->
 <div class="modal fade" id="ModalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php
+	if(!isset($permiso_in)){
+		echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para añadir una empresa</div>';
+		echo "<script> window.location.href='".SERVERURL."home/'; </script>";	
+	//valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
+	}else if($permiso_in==0){
+		echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para añadir una empresa
+		<button type="button" class="close" data-bs-dismiss="alert" onclick="window.location.reload()">X</button>
+		</div>
+        <div class="modal-dialog" style="display:none">;';
+	}else{
+?>
 <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -197,6 +223,9 @@ include("./DatosTablas/obtenerDatos.php");
       </div>
     </div>
   </div>
+  <?php
+		}
+	?>
 </div>
 
 

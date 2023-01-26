@@ -19,7 +19,7 @@ class loginUsuarios extends Usuario{
 				$hash=$fila['contrasena'];
 			}
 
-      if (password_verify($contrasena, $hash)){
+      if(password_verify($contrasena, $hash)){
 			$verificarDatos = new Usuario(); //se crea una instancia en el archivo modelo de Login
 			$respuesta = $verificarDatos->accesoUsuario($usuario, $hash); //datos recibidos del archivo modelo de Login
 			foreach ($respuesta as $fila) {
@@ -27,6 +27,7 @@ class loginUsuarios extends Usuario{
 				$array['nombre'] = $fila['nombre_usuario'];
 				$array['usuario'] = $fila['usuario'];
             $array['estado'] = $fila['estado'];
+            $array['rol'] = $fila['id_rol'];
          }
 
             if(isset($array['nombre'])){
@@ -37,6 +38,7 @@ class loginUsuarios extends Usuario{
 							$_SESSION['usuario_login']=$array['usuario'];
 							$_SESSION['nombre_usuario']=$array['nombre'];
 							$_SESSION['estado']=$array['estado'];
+                     $_SESSION['rol'] = $array['rol'];
                      $_SESSION['token_login']=md5(uniqid(mt_rand(),true));
 							return header("Location:".SERVERURL."home/");
 							break;
