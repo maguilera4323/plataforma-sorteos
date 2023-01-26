@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `modulos` (
   PRIMARY KEY (`id_modulo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.modulos: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.modulos: ~2 rows (aproximadamente)
 INSERT INTO `modulos` (`id_modulo`, `modulo`, `descripcion`, `tipo_modulo`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
 	(1, 'HOME', 'Pagina principal de sistema', 'Home', 'prueba', '2023-01-24 23:26:45', 'prueba', '2023-01-24 23:34:08'),
 	(3, 'EMPRESAS', 'Contiene las empresas que trabajan con la plataforma', 'Empresas', 'prueba', '2023-01-25 11:23:21', NULL, NULL);
@@ -101,8 +101,8 @@ CREATE TABLE IF NOT EXISTS `permisos` (
 
 -- Volcando datos para la tabla dbsorteo.permisos: ~2 rows (aproximadamente)
 INSERT INTO `permisos` (`id_rol`, `id_modulo`, `tipo_modulo`, `permiso_insercion`, `permiso_actualizacion`, `permiso_eliminacion`, `permiso_consulta`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
-	(1, 1, 'Home', '', '', '', '', 'prueba', '2023-01-25 10:04:42', 'prueba', '2023-01-25 11:20:22'),
-	(1, 3, 'Empresas', '1', '1', '1', '1', 'prueba', '2023-01-25 11:23:40', NULL, NULL);
+	(1, 1, 'Home', '1', '1', '1', '1', 'prueba', '2023-01-25 10:04:42', 'prueba', '2023-01-25 11:20:22'),
+	(1, 3, 'Empresas', '0', '0', '1', '1', 'prueba', '2023-01-25 11:23:40', NULL, NULL);
 
 -- Volcando estructura para tabla dbsorteo.premios_sorteo
 CREATE TABLE IF NOT EXISTS `premios_sorteo` (
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`id_rol`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.roles: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.roles: ~4 rows (aproximadamente)
 INSERT INTO `roles` (`id_rol`, `rol`, `descripcion`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
 	(1, 'ADMINISTRADOR', 'Administrador del sistema', 'prueba', '2023-01-18 20:42:58', NULL, NULL),
 	(2, 'EMPLEADO', 'Encargado de monitorear actividad de usuarios', 'prueba', '2023-01-19 07:42:09', NULL, NULL),
