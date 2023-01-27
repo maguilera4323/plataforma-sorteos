@@ -128,7 +128,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
                                 <div class="form-group">
                                     <div class="form-check form-check-inline">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="insertar_permiso-act"
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="insertar_permiso_act"
                                             <?php if ($fila['permiso_insercion'] == 1): ?>checked<?php endif; ?>>
                                             <label class="form-check-label" for="flexSwitchCheckDefault">Insertar</label>
                                     </div>
@@ -150,7 +150,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
                                 </div>
                                 <br>
                                 <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
-                                <input type="hidden" value="<?php echo $fila['id_modulo']; ?>" class="form-control" name="modulo_id">
+                                <input type="hidden" value="<?php echo $fila['id_modulo']; ?>" name="modulo_id">
                                 <input type="hidden" value="<?php echo $fila['id_rol']?>" name="rol_id">
                                 <button type="submit" class="btn btn-danger">Guardar</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

@@ -26,10 +26,10 @@
 			$sql=ConexionBD::getConexion()->prepare("UPDATE permisos SET permiso_insercion=?,permiso_actualizacion=?,
 			permiso_eliminacion=?, permiso_consulta=?, modificado_por=?, fecha_modificacion=? WHERE id_rol=? and id_modulo=?");
 
-			$sql->bindParam(1,$datos['ins']);
-			$sql->bindParam(2,$datos['act']);
-			$sql->bindParam(3,$datos['eli']);
-			$sql->bindParam(4,$datos['cons']);
+			$sql->bindParam(1,$dato['ins']);
+			$sql->bindParam(2,$dato['act']);
+			$sql->bindParam(3,$dato['eli']);
+			$sql->bindParam(4,$dato['cons']);
 			$sql->bindParam(5,$dato['modif_por']);
 			$sql->bindParam(6,$dato['fecha_modif']);
 			$sql->bindParam(7,$id_rol);

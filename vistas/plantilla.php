@@ -30,13 +30,10 @@
 	?>
 	<!-- Main container -->
 	<main class="full-box main-container">
-		<!-- Nav lateral -->
-		<!-- <?php include "./vistas/inc/NavLateral.php"; ?> -->
-
 		<!-- Page content -->
 		<section class="full-box page-content">
-			<?php 
-				include "./vistas/inc/Navbar.php"; 
+			<?php
+					include "./vistas/inc/Navbar.php"; 
 				include  $vistas;
 			?>
 		</section>
