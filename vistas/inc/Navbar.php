@@ -22,7 +22,7 @@
           <a href="#!"><i class="fas fa-tools"></i>&nbsp; Configuración</a>
           <ul class="navbar-dropdown">
             <li>
-              <a href="#!"><i class="fas fa-users"></i></i>&nbsp; Usuarios</a>
+              <a href="<?php echo SERVERURL?>usuarios/"><i class="fas fa-users"></i></i>&nbsp; Usuarios</a>
             </li>
             <li>
               <a href="<?php echo SERVERURL?>roles/"><i class="fas fa-users-cog"></i>&nbsp; Roles</a>

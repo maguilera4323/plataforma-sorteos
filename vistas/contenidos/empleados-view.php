@@ -5,7 +5,19 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 //llamado al archivo de funciones para obtener los datos de la tabla
-include("./DatosTablas/obtenerDatos.php"); 
+include ("./DatosTablas/obtenerDatos.php");
+include("./DatosTablas/obtenerDatosEmpleados.php"); 
+
+    $contar=new obtenerDatosEmpleados();
+    $resultadoContar=$contar->contarUsuarios();
+        foreach ($resultadoContar as $fila){
+            $idPersonaActual=$fila['id_usuario']+1;
+        }
+    
+    if (!isset($idPersonaActual)){
+        $idPersonaActual=1;
+    }
+
 ?>
 <br>
 <br>
@@ -42,16 +54,16 @@ include("./DatosTablas/obtenerDatos.php");
         <tbody class="body">
         <?php
             //se hace una instancia a la clase
-                $datos=new obtenerDatosTablas();
-                $resultado=$datos->datosTablas('usuarios');
+                $datos=new obtenerDatosEmpleados();
+                $resultado=$datos->datosEmpleados();
                 foreach ($resultado as $fila){
             ?>
             <tr>
                 <td><?php echo $fila['id_usuario']; ?></td>
                 <td><?php echo $fila['usuario']; ?></td>
-                <td><?php echo $fila['nombre_usuario']; ?></td>
+                <td><?php echo $fila['nombres']; ?></td>
                 <td><?php echo $fila['estado']; ?></td>
-                <td><?php echo $fila['id_rol']; ?></td>
+                <td><?php echo $fila['rol']; ?></td>
                 <td><?php echo $fila['correo_electronico']; ?></td>
                 <td>
 				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_usuario'];?>">
@@ -80,61 +92,97 @@ include("./DatosTablas/obtenerDatos.php");
                             <div class="modal-body" id="modal-actualizar">
                             <form action="<?php echo SERVERURL; ?>ajax/empleadosAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
                             <div class="row">
-                                            <div class="col-10 col-md-6">
-                                                <div class="form-group">
-                                                    <label class="label-actualizar">Usuario</label>
-                                                    <input type="text" class="form-control" name="empleado_act" id="nom_usuario" 
-                                                    style="text-transform:uppercase;" value="<?php echo $fila['usuario']?>" required="" >
-                                                </div>
-                                            </div>
-                                            <div class="col-10 col-md-6">
-                                                <div class="form-group">
-                                                    <label class="label-actualizar">Nombre</label>
-                                                    <input type="text" class="form-control" name="nombre_empleado_act" id="nombre_usuario" 
-                                                    style="text-transform:uppercase;" value="<?php echo $fila['nombre_usuario']?>" required="" >
-                                                </div>
-                                            </div>
-                                            <div class="col-10 col-md-6">
-                                                <br>
-                                                <label class="label-actualizar">Estado</label>
-                                                <select class="form-control" name="estado_act">
-                                                    <option value="1" <?php if ($fila['estado'] == 'Activo'): ?> selected<?php endif; ?>>Activo</option>
-                                                    <option value="2" <?php if ($fila['estado'] == 'Inactivo'): ?> selected<?php endif; ?>>Inactivo</option>
-                                                    <option value="3" <?php if ($fila['estado'] == 'Bloqueado'): ?> selected<?php endif; ?>>Bloqueado</option>
-                                                </select>
-                                            </div>
-                                            
-                                            <div class="col-10 col-md-6">
-                                                <br>
-                                                <div class="form-group">
-                                                    <label class="label-actualizar">Roles</label>
-                                                        <select class="form-control" name="rol_act" required>
-                                                                <?php
-                                                                    $datos=new obtenerDatosTablas();
-                                                                    $resultado=$datos->datosTablas('roles');
-                                                                    foreach ($resultado as $valores){
-                                                                        //validación para obtener el valor guardado en la base de datos
-															            //y que este se muestre seleccionado en la base de datos
-                                                                        if($fila['id_rol']==$valores['id_rol']){
-                                                                            echo '<option value="'.$valores['id_rol'].'" selected>'.$valores['rol'].'</option>';
-                                                                        //validación para obtener los demás valores de la base de datos para el select
-                                                                        }elseif($fila['id_rol']!=$valores['id_rol']){
-                                                                            echo '<option value="'.$valores['id_rol'].'">'.$valores['rol'].'</option>';
-                                                                        }
-                                                                    }
-                                                                ?>
-                                                        </select>
-                                                </div>
-                                            </div>
+                                <div class="col-10 col-md-6">
+                                    <div class="form-group">
+                                        <label class="color-label">Nombres</label>
+                                        <input type="text" class="form-control" name="nombre_nuevo" id="nom_usuario" 
+                                        style="text-transform:uppercase;" required="" >
                                     </div>
-                                    
+                                </div>
+                                <div class="col-10 col-md-6">
+                                    <div class="form-group">
+                                        <label class="color-label">Apellidos</label>
+                                        <input type="text" class="form-control" name="apellido_nuevo" id="nombre_usuario" 
+                                        style="text-transform:uppercase;" required="" >
+                                    </div>
+                                </div>
+                                <div class="col-10 col-md-6">
+                                <br>
+                                    <div class="form-group">
+                                        <label class="color-label">Usuario</label>
+                                        <input type="text" class="form-control" name="user_empleado_nuevo" id="nom_usuario" 
+                                        style="text-transform:uppercase;" required="" >
+                                    </div>
+                                </div>
+                                <div class="col-10 col-md-6">
+                                <br>
+                                    <div class="form-group">
+                                        <label class="color-label">DNI</label>
+                                        <input type="number" class="form-control" name="dni_nuevo" id="nombre_usuario" required="" >
+                                    </div>
+                                </div>
+                                <div class="col-10 col-md-6">
+                                    <br>
+                                    <label class="color-label">Estado</label>
+                                    <select class="form-control" name="estado_nuevo" disabled>
+                                        <option value="1" <?php if ($fila['estado'] == 'Activo'): ?> selected<?php endif; ?>>Activo</option>
+                                        <option value="2" <?php if ($fila['estado'] == 'Inactivo'): ?> selected<?php endif; ?>>Inactivo</option>
+                                        <option value="3" <?php if ($fila['estado'] == 'Bloqueado'): ?> selected<?php endif; ?>>Bloqueado</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-10 col-md-6">
                                     <br>
                                     <div class="form-group">
-                                        <label class="label-actualizar">Correo</label>
-                                        <input type="email" class="form-control" name="correo_electronico_act" id="correo_electronico" value="<?php echo $fila['correo_electronico']?>"required="">
+                                        <label class="color-label">Roles</label>
+                                            <select class="form-control" name="rol_act" required>
+                                                <?php
+                                                    $datos=new obtenerDatosTablas();
+                                                    $resultado=$datos->datosTablas('roles');
+                                                    foreach ($resultado as $valores){
+                                                    //validación para obtener el valor guardado en la base de datos
+													//y que este se muestre seleccionado en la base de datos
+                                                        if($fila['id_rol']==$valores['id_rol']){
+                                                            echo '<option value="'.$valores['id_rol'].'" selected>'.$valores['rol'].'</option>';
+                                                        //validación para obtener los demás valores de la base de datos para el select
+                                                        }elseif($fila['id_rol']!=$valores['id_rol']){
+                                                            echo '<option value="'.$valores['id_rol'].'">'.$valores['rol'].'</option>';
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
                                     </div>
+                                </div>
+                                <div class="col-10 col-md-6">
                                     <br>
+                                    <div class="form-group">
+                                        <label class="color-label">Sexo</label>
+                                        <select class="form-control" name="sexo_nuevo">
+                                            <option value="" selected>Seleccione una opción</option>
+                                            <option value="1">Masculino</option>
+                                            <option value="2">Femenino</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-10 col-md-6">
                                     <br>
+                                    <div class="form-group">
+                                        <label class="color-label">Teléfono</label>
+                                        <input type="number" class="form-control" name="telefono_nuevo" id="nombre_usuario" required="" >
+                                    </div>
+                                </div>
+                            </div>
+                    
+                                <div class="form-group">
+                                    <label class="color-label">Correo</label>
+                                    <input type="email" class="form-control" name="correo_electronico_nuevo" id="correo_electronico" required="">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label class="color-label">Dirección</label>
+                                    <textarea class="form-control" name="direccion_nuevo" rows="3"></textarea>
+                                </div>
+                                <br>
                                     <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
                                     <input type="hidden" value="<?php echo $fila['id_usuario']; ?>" class="form-control" name="empleado_id">
                                     <button type="submit" class="btn btn-danger">Guardar</button>
@@ -166,36 +214,6 @@ include("./DatosTablas/obtenerDatos.php");
 <br>
 <br>
 
-<!-- <div class="container">
-    <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR EMPLEADO</div>
-    <div onload="editar()">
-        <div class="row">
-            <div class="col-lg-12">
-                <br>
-                <table id="tablaEmpleados" class="table-striped table-bordered text-center">
-                    <thead>
-                    <tr>
-                        <th>ID</th>                         
-                        <th>Usuario</th>
-                        <th>Nombre</th>  
-                        <th>Estado</th>
-                        <th>Rol</th>
-                        <th>Correo</th>
-                        <th>Actualizar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-                
-            </div>
-        </div> 
-        </div>
-</div>
-<br> -->
-
-
 
    
 <!-- Modal Crear -->
@@ -214,16 +232,31 @@ include("./DatosTablas/obtenerDatos.php");
 			<div class="row">
 					<div class="col-10 col-md-6">
 						<div class="form-group">
-                            <label class="color-label">Usuario</label>
-				            <input type="text" class="form-control" name="empleado_nuevo" id="nom_usuario" 
+                            <label class="color-label">Nombres</label>
+				            <input type="text" class="form-control" name="nombre_nuevo" id="nom_usuario" 
 				            style="text-transform:uppercase;" required="" >
 						</div>
 					</div>
 					<div class="col-10 col-md-6">
 						<div class="form-group">
-                            <label class="color-label">Nombre</label>
-					        <input type="text" class="form-control" name="nom_empleado_nuevo" id="nombre_usuario" 
+                            <label class="color-label">Apellidos</label>
+					        <input type="text" class="form-control" name="apellido_nuevo" id="nombre_usuario" 
 					        style="text-transform:uppercase;" required="" >
+						</div>
+					</div>
+                    <div class="col-10 col-md-6">
+                    <br>
+						<div class="form-group">
+                            <label class="color-label">Usuario</label>
+				            <input type="text" class="form-control" name="user_empleado_nuevo" id="nom_usuario" 
+				            style="text-transform:uppercase;" required="" >
+						</div>
+					</div>
+					<div class="col-10 col-md-6">
+                    <br>
+						<div class="form-group">
+                            <label class="color-label">DNI</label>
+					        <input type="number" class="form-control" name="dni_nuevo" id="nombre_usuario" required="" >
 						</div>
 					</div>
                     <div class="col-10 col-md-6">
@@ -252,7 +285,24 @@ include("./DatosTablas/obtenerDatos.php");
                                 </select>
 						</div>
 					</div>
-
+                    <div class="col-10 col-md-6">
+                        <br>
+						<div class="form-group">
+                            <label class="color-label">Sexo</label>
+                            <select class="form-control" name="sexo_nuevo">
+                                <option value="" selected>Seleccione una opción</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Femenino</option>
+                            </select>
+						</div>
+					</div>
+					<div class="col-10 col-md-6">
+                        <br>
+						<div class="form-group">
+                            <label class="color-label">Teléfono</label>
+					        <input type="number" class="form-control" name="telefono_nuevo" id="nombre_usuario" required="" >
+						</div>
+					</div>
                     <div class="col-10 col-md-6 contrasena">
                         <br>
                         <label class="color-label">Contraseña</label>
@@ -277,6 +327,12 @@ include("./DatosTablas/obtenerDatos.php");
 				<input type="email" class="form-control" name="correo_electronico_nuevo" id="correo_electronico" required="">
 			</div>
             <br>
+            <div class="form-group">
+                <label class="color-label">Dirección</label>
+                <textarea class="form-control" name="direccion_nuevo" rows="3"></textarea>
+			</div>
+            <br>
+            <input type="hidden" name="idPersona" class="form-control" value="<?php echo $idPersonaActual; ?>">
             <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
             <button type="submit" class="btn btn-danger">Guardar</button>
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

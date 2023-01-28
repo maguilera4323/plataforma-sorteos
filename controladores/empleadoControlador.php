@@ -10,9 +10,10 @@ if($peticionAjax){
 class empleadoControlador extends empleadoModelo{
 
 	
-	public function agregarEmpleado(){
-		$usuario=ConexionBD::limpiar_cadena(strtoupper($_POST['empleado_nuevo']));
-		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nom_empleado_nuevo']));
+	public function agregarUsuario(){
+		//datos para la tabla de Usuarios
+		$usuario=ConexionBD::limpiar_cadena(strtoupper($_POST['user_empleado_nuevo']));
+		$persona=ConexionBD::limpiar_cadena($_POST['idPersona']);
 		$estado=1;
 		$contrasena=ConexionBD::limpiar_cadena($_POST['contrasena_nuevo']);
 		$conf_contrasena=ConexionBD::limpiar_cadena($_POST['conf_contrasena_nuevo']);
@@ -20,16 +21,36 @@ class empleadoControlador extends empleadoModelo{
 		$rol=ConexionBD::limpiar_cadena($_POST['rol_nuevo']);
 		$creado_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
 		$creacion=date('y-m-d H:i:s');
-
+		
 		$clave=ConexionBD::EncriptaClave($contrasena);
+
+		//datos para la tabla de Personas
+		$nombres=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_nuevo']));
+		$apellidos=ConexionBD::limpiar_cadena(strtoupper($_POST['apellido_nuevo']));
+		$dni=ConexionBD::limpiar_cadena($_POST['dni_nuevo']);
+		$telefono=ConexionBD::limpiar_cadena($_POST['telefono_nuevo']);
+		$sexo=ConexionBD::limpiar_cadena($_POST['sexo_nuevo']);
+		$contrasena=ConexionBD::limpiar_cadena($_POST['contrasena_nuevo']);
+		$direccion=ConexionBD::limpiar_cadena($_POST['direccion_nuevo']);
 
 		
 		/* //validaciones de datos */
-		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,50}",$nombres)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Nombre solo acepta letras y espacios",
+				"Texto"=>"El campo Nombres solo acepta letras y espacios",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,50}",$apellidos)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Apellidos solo acepta letras y espacios",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
@@ -48,7 +69,40 @@ class empleadoControlador extends empleadoModelo{
 			exit();
 		}
 
-		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT usuario FROM empleados WHERE usuario='$usuario'");
+		if(ConexionBD::verificar_datos("[0-9]{1,20}",$dni)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo DNI solo acepta números",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		if(ConexionBD::verificar_datos("[0-9]{1,15}",$telefono)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Teléfono solo acepta números",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚa-záéíóúÑñ0-9 .,]{1,300}",$direccion)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Dirección no coincide con el formato solicitado",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT usuario FROM usuarios WHERE usuario='$usuario'");
 			if($revisarUsuario->rowCount()>0){
 				$alerta=[
 					"Alerta"=>"simple",
@@ -60,7 +114,7 @@ class empleadoControlador extends empleadoModelo{
 					exit();
 			}
 		
-		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT correo_electronico FROM empleados WHERE 
+		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT correo_electronico FROM usuarios WHERE 
 		correo_electronico='$correo'");
 		if($revisarUsuario->rowCount()>0){
 				$alerta=[
@@ -100,7 +154,7 @@ class empleadoControlador extends empleadoModelo{
 			//arreglo enviado al modelo para ser usado en una sentencia INSERT
 			$datos_empleado_reg=[
 				"usuario"=>$usuario,
-				"nom"=>$nombre,
+				"persona"=>$persona,
 				"est"=>$estado,
 				"cont"=>$clave,
 				"correo"=>$correo,
@@ -109,9 +163,21 @@ class empleadoControlador extends empleadoModelo{
 				"creado_por"=>$creado_por
 			];
 
-			$agregar_empleado=empleadoModelo::agregarEmpleadoModelo($datos_empleado_reg);
+			$datos_persona_reg=[
+				"nombres"=>$nombres,
+				"apellidos"=>$apellidos,
+				"dni"=>$dni,
+				"telefono"=>$telefono,
+				"sexo"=>$sexo,
+				"direccion"=>$direccion,
+				"fecha_creacion"=>$creacion,
+				"creado_por"=>$creado_por
+			];
 
-			if($agregar_empleado->rowCount()==1){
+			$agregar_persona=empleadoModelo::agregarPersonaModelo($datos_persona_reg);
+			$agregar_usuario=empleadoModelo::agregarUsuarioModelo($datos_empleado_reg);
+
+			if(($agregar_usuario->rowCount()==1) && ($agregar_persona->rowCount()==1) ){
 				$alerta=[
 					"Alerta"=>"recargar",
 					"Titulo"=>"Empleado Registrado",
@@ -129,6 +195,111 @@ class empleadoControlador extends empleadoModelo{
 				];
 			}
 			echo json_encode($alerta);
+	} 
+
+	public function agregarPersona(){
+		$nombres=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_nuevo']));
+		$apellidos=ConexionBD::limpiar_cadena(strtoupper($_POST['apellido_nuevo']));
+		$dni=ConexionBD::limpiar_cadena($_POST['idPersona']);
+		$telefono=ConexionBD::limpiar_cadena($_POST['telefono_nuevo']);
+		$sexo=ConexionBD::limpiar_cadena($_POST['sexo_nuevo']);
+		$contrasena=ConexionBD::limpiar_cadena($_POST['contrasena_nuevo']);
+		$direccion=ConexionBD::limpiar_cadena($_POST['direccion_nuevo']);
+		$correo=ConexionBD::limpiar_cadena($_POST['correo_electronico_nuevo']);
+		$rol=ConexionBD::limpiar_cadena($_POST['rol_nuevo']);
+		$creado_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
+		$creacion=date('y-m-d H:i:s');
+
+		$clave=ConexionBD::EncriptaClave($contrasena);
+
+		
+		/* //validaciones de datos */
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Nombre solo acepta letras y espacios",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+
+		if(ConexionBD::verificar_datos("[A-Z]{1,30}",$usuario)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Usuario solo acepta letras, sin espacios ni carácteres especiales",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT usuario FROM usuarios WHERE usuario='$usuario'");
+			if($revisarUsuario->rowCount()>0){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"El usuario ingresado ya se encuentra registrado en el sistema",
+					"Tipo"=>"error"
+					];
+					echo json_encode($alerta);
+					exit();
+			}
+		
+		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT correo_electronico FROM usuarios WHERE 
+		correo_electronico='$correo'");
+		if($revisarUsuario->rowCount()>0){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"El correo electrónico ingresado ya se encuentra registrado en el sistema",
+					"Tipo"=>"error"
+					];
+					echo json_encode($alerta);
+					exit();
+			}
+
+		if(ConexionBD::verificar_datos("[a-zA-Z0-9$@.-]{5,10}",$contrasena) ){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"La contraseña no coincide con el formato solicitado",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		} 
+
+		if($contrasena!=$conf_contrasena){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"Las contraseñas no coinciden. Ingreselas nuevamente.",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		} 
+		
+	
+					
+			//arreglo enviado al modelo para ser usado en una sentencia INSERT
+			$datos_empleado_reg=[
+				"usuario"=>$usuario,
+				"persona"=>$persona,
+				"nom"=>$nombre,
+				"est"=>$estado,
+				"cont"=>$clave,
+				"correo"=>$correo,
+				"rol"=>$rol,
+				"fecha_creacion"=>$creacion,
+				"creado_por"=>$creado_por
+			];
+
+			$agregar_empleado=empleadoModelo::agregarEmpleadoModelo($datos_empleado_reg);
 	} 
 
 
@@ -204,14 +375,15 @@ class empleadoControlador extends empleadoModelo{
 	public function eliminarEmpleado(){
 			$id=ConexionBD::limpiar_cadena(($_POST['id_empleado_del']));
 			$array=array();
-			$valor='';
+			$valor=4;
 		
-		$eliminarEmpleado=empleadoModelo::eliminarEmpleadoModelo($id);
+		$eliminarEmpleado=empleadoModelo::eliminarEmpleadoModelo($valor,$id);
 			if($eliminarEmpleado->rowCount()==1){
 				$alerta=[
 					"Alerta"=>"recargar",
 					"Titulo"=>"Empleado Eliminado",
-					"Texto"=>"El empleado seleccionado fue eliminado",
+					"Texto"=>"El empleado seleccionado fue inactivado permanentemente
+					y ya no cuenta con acceso al sistema",
 					"Tipo"=>"success"
 				];
 

@@ -4,13 +4,30 @@
 
 	class empleadoModelo extends ConexionBD{
 
-		protected function agregarEmpleadoModelo($datos){
-			$sql=ConexionBD::getConexion()->prepare("INSERT INTO empleados(usuario,nombre_empleados,estado_empleado,
-			contrasena,id_rol,correo_electronico,creado_por,fecha_creacion)
+		protected function agregarPersonaModelo($datos){
+			$sql=ConexionBD::getConexion()->prepare("INSERT INTO personas(nombres,apellidos,dni,telefono,sexo,
+			direccion,creado_por,fecha_creacion)
 			VALUES(?,?,?,?,?,?,?,?)");
 
-			$sql->bindParam(1,$datos['usuario']);
-			$sql->bindParam(2,$datos['nom']);
+			$sql->bindParam(1,$datos['nombres']);
+			$sql->bindParam(2,$datos['apellidos']);
+			$sql->bindParam(3,$datos['dni']);
+			$sql->bindParam(4,$datos['telefono']);
+			$sql->bindParam(5,$datos['sexo']);
+			$sql->bindParam(6,$datos['direccion']);
+			$sql->bindParam(7,$datos['creado_por']);
+			$sql->bindParam(8,$datos['fecha_creacion']);
+			$sql->execute();
+			return $sql;								
+		}
+
+		protected function agregarUsuarioModelo($datos){
+			$sql=ConexionBD::getConexion()->prepare("INSERT INTO usuarios(id_persona,usuario,estado,contrasena,
+			id_rol,correo_electronico,creado_por,fecha_creacion)
+			VALUES(?,?,?,?,?,?,?,?)");
+
+			$sql->bindParam(1,$datos['persona']);
+			$sql->bindParam(2,$datos['usuario']);
 			$sql->bindParam(3,$datos['est']);
 			$sql->bindParam(4,$datos['cont']);
 			$sql->bindParam(5,$datos['rol']);
@@ -40,10 +57,11 @@
 
 
 
-		protected function eliminarEmpleadoModelo($id){
-			$sql=ConexionBD::getConexion()->prepare("DELETE FROM empleados where id_empleado=?");
+		protected function eliminarEmpleadoModelo($accion,$id){
+			$sql=ConexionBD::getConexion()->prepare("UPDATE usuarios SET estado=? WHERE id_usuario=?");
 				
-			$sql->bindParam(1,$id);
+			$sql->bindParam(1,$accion);
+			$sql->bindParam(2,$id);
 			$sql->execute();
 			return $sql;
 		}
