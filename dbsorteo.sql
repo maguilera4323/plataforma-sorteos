@@ -94,15 +94,28 @@ CREATE TABLE IF NOT EXISTS `permisos` (
   `modificado_por` varchar(50) DEFAULT NULL,
   `fecha_modificacion` datetime DEFAULT NULL,
   KEY `Índice 1` (`id_rol`),
-  KEY `Índice 2` (`id_modulo`),
-  CONSTRAINT `FK_permisos_modulos` FOREIGN KEY (`id_modulo`) REFERENCES `modulos` (`id_modulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_permisos_roles` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `Índice 2` (`id_modulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.permisos: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.permisos: ~5 rows (aproximadamente)
 INSERT INTO `permisos` (`id_rol`, `id_modulo`, `tipo_modulo`, `permiso_insercion`, `permiso_actualizacion`, `permiso_eliminacion`, `permiso_consulta`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
-	(1, 1, 'Home', '1', '1', '1', '1', 'prueba', '2023-01-25 10:04:42', 'prueba', '2023-01-25 11:20:22'),
-	(1, 3, 'Empresas', '0', '0', '1', '1', 'prueba', '2023-01-25 11:23:40', NULL, NULL);
+	(1, 1, 'Home', '1', '1', '1', '1', 'prueba', '2023-01-27 10:19:47', 'prueba', '2023-01-27 10:38:19'),
+	(1, 3, 'Empresas', '1', '1', '1', '1', 'prueba', '2023-01-27 10:19:59', NULL, NULL),
+	(3, 1, 'Home', '1', '0', '0', '1', 'prueba', '2023-01-27 10:20:13', NULL, NULL),
+	(2, 1, 'Home', '1', '1', '1', '0', 'prueba', '2023-01-27 10:21:02', NULL, NULL),
+	(3, 3, 'Empresas', '0', '1', '0', '1', 'prueba', '2023-01-27 10:36:04', 'prueba', '2023-01-27 10:38:26');
+
+-- Volcando estructura para tabla dbsorteo.premios
+CREATE TABLE IF NOT EXISTS `premios` (
+  `id_premio` int(11) NOT NULL AUTO_INCREMENT,
+  `id_empresa` int(11) NOT NULL,
+  `nombre_premio` varchar(300) NOT NULL,
+  `foto_premio` varchar(300) NOT NULL,
+  PRIMARY KEY (`id_premio`) USING BTREE,
+  KEY `Índice 2` (`id_empresa`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Volcando datos para la tabla dbsorteo.premios: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla dbsorteo.premios_sorteo
 CREATE TABLE IF NOT EXISTS `premios_sorteo` (
