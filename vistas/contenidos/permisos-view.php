@@ -124,8 +124,8 @@ include("./DatosTablas/obtenerDatosPermisos.php");
                                 </div>
                                 <br>
                                 <br>
-                                <label>Permisos</label>
-                                <div class="form-group">
+                                <label class="label-actualizar">Permisos</label>
+                                <div class="form-group label-actualizar">
                                     <div class="form-check form-check-inline">
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="insertar_permiso_act"

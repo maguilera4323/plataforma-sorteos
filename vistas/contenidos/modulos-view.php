@@ -77,7 +77,7 @@ include("./DatosTablas/obtenerDatos.php");
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="color-label">Tipo de Módulo</label>
+                                    <label class="label-actualizar">Tipo de Módulo</label>
                                         <select class="form-control" name="tipo_modulo_act">
                                             <option value="" selected>Seleccione una opción</option>
                                             <option value="1" <?php if ($fila['tipo_modulo'] == 'Home'): ?>selected<?php endif; ?>>Home</option>

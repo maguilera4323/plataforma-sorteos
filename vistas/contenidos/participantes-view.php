@@ -36,16 +36,19 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
 
 <div class="table-responsive">
     <br>
-        <input type="text" id="searchBox" class="form-control" onkeyup="filterTable()" placeholder="Filtrar empleados">
+        <input type="text" id="searchBox" class="form-control" onkeyup="filterTable()" placeholder="Filtrar participantes">
         <p id="message"></p>
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Usuario</th>                               
-                <th>Nombre</th>  
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Teléfono</th>
+                <th>Sexo</th>
+                <th>Dirección</th>
                 <th>Estado</th>
-                <th>Rol</th>
                 <th>Correo</th>
                 <th>Actualizar</th>
                 <th>Eliminar</th>
@@ -55,15 +58,18 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
         <?php
             //se hace una instancia a la clase
                 $datos=new obtenerDatosUsuarios();
-                $resultado=$datos->datosEmpleados();
+                $resultado=$datos->datosParticipantes();
                 foreach ($resultado as $fila){
             ?>
             <tr>
                 <td><?php echo $fila['id_usuario']; ?></td>
                 <td><?php echo $fila['usuario']; ?></td>
                 <td><?php echo $fila['nombres'] . " " . $fila['apellidos']; ?></td>
+                <td><?php echo $fila['dni']; ?></td>
+                <td><?php echo $fila['telefono']; ?></td>
+                <td><?php echo $fila['sexo']; ?></td>
+                <td><?php echo $fila['direccion']; ?></td>
                 <td><?php echo $fila['estado']; ?></td>
-                <td><?php echo $fila['rol']; ?></td>
                 <td><?php echo $fila['correo_electronico']; ?></td>
                 <td>
 				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_usuario'];?>">
@@ -94,14 +100,14 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                             <div class="row">
                                 <div class="col-10 col-md-6">
                                     <div class="form-group">
-                                        <label class="label-actualizar">Nombres</label>
+                                        <label class="color-label">Nombres</label>
                                         <input type="text" class="form-control" name="nombre_act" 
                                         style="text-transform:uppercase;" value="<?php echo $fila['nombres']; ?>" required="" >
                                     </div>
                                 </div>
                                 <div class="col-10 col-md-6">
                                     <div class="form-group">
-                                        <label class="label-actualizar">Apellidos</label>
+                                        <label class="color-label">Apellidos</label>
                                         <input type="text" class="form-control" name="apellido_act" 
                                         style="text-transform:uppercase;" value="<?php echo $fila['apellidos']; ?>" required="" >
                                     </div>
@@ -109,7 +115,7 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                                 <div class="col-10 col-md-6">
                                 <br>
                                     <div class="form-group">
-                                        <label class="label-actualizar">Usuario</label>
+                                        <label class="color-label">Usuario</label>
                                         <input type="text" class="form-control" name="user_empleado_act" 
                                         style="text-transform:uppercase;" value="<?php echo $fila['usuario']; ?>" required="" >
                                     </div>
@@ -117,14 +123,14 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                                 <div class="col-10 col-md-6">
                                 <br>
                                     <div class="form-group">
-                                        <label class="label-actualizar">DNI</label>
+                                        <label class="color-label">DNI</label>
                                         <input type="number" class="form-control" name="dni_act" 
                                         value="<?php echo $fila['dni']; ?>" required="" >
                                     </div>
                                 </div>
                                 <div class="col-10 col-md-6">
                                     <br>
-                                    <label class="label-actualizar">Estado</label>
+                                    <label class="color-label">Estado</label>
                                     <select class="form-control" name="estado_act">
                                         <option value="1" <?php if ($fila['estado'] == 'Activo'): ?> selected<?php endif; ?>>Activo</option>
                                         <option value="2" <?php if ($fila['estado'] == 'Inactivo'): ?> selected<?php endif; ?>>Inactivo</option>
@@ -135,7 +141,7 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                                 <div class="col-10 col-md-6">
                                     <br>
                                     <div class="form-group">
-                                        <label class="label-actualizar">Roles</label>
+                                        <label class="color-label">Roles</label>
                                             <select class="form-control" name="rol_act" required>
                                                 <?php
                                                     $datos=new obtenerDatosTablas();
@@ -157,7 +163,7 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                                 <div class="col-10 col-md-6">
                                     <br>
                                     <div class="form-group">
-                                        <label class="label-actualizar">Sexo</label>
+                                        <label class="color-label">Sexo</label>
                                         <select class="form-control" name="sexo_act" required>
                                             <option value="" selected>Seleccione una opción</option>
                                             <option value="1" <?php if ($fila['sexo'] == 'Masculino'): ?> selected<?php endif; ?>>Masculino</option>
@@ -168,7 +174,7 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                                 <div class="col-10 col-md-6">
                                     <br>
                                     <div class="form-group">
-                                        <label class="label-actualizar">Teléfono</label>
+                                        <label class="color-label">Teléfono</label>
                                         <input type="number" class="form-control" name="telefono_act" id="nombre_usuario" 
                                         value="<?php echo $fila['telefono']; ?>" required="" >
                                     </div>
@@ -176,13 +182,13 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                             </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="label-actualizar">Correo</label>
+                                    <label class="color-label">Correo</label>
                                     <input type="email" class="form-control" name="correo_electronico_act" id="correo_electronico" 
                                     value="<?php echo $fila['correo_electronico']; ?>" required="">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="label-actualizar">Dirección</label>
+                                    <label class="color-label">Dirección</label>
                                     <input type="text" class="form-control" name="direccion_act" id="correo_electronico" 
                                     value="<?php echo $fila['direccion']; ?>" required="">
                                 </div>

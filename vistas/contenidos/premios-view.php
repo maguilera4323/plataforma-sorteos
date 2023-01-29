@@ -88,7 +88,7 @@ include("./DatosTablas/obtenerDatosPremios.php");
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="color-label">Nombre</label>
+                                    <label class="label-actualizar">Nombre</label>
                                     <input type="text" class="form-control" name="nombre_act" style="text-transform:uppercase;" 
                                     value="<?php echo $fila['nombre_premio']?>" required="" >
                                 </div>

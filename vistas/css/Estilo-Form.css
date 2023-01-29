@@ -279,7 +279,7 @@ div .label-actualizar{
 
 #datos-usuario th, td {
     padding: 8px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid rgb(226, 226, 226);
 }
 
@@ -292,6 +292,25 @@ div .label-actualizar{
     background-color: #9ed2fd;
 }
 
+
+/* estilos cards de vista Usuarios */
+.tarjeta-contenedor{
+    margin-top: 5rem;
+    justify-content: center;
+}
+
+.row .container .col .card.row .container .col .card .card-body{
+    border-top: 4px solid #017bab;
+}
+
+.row .container .col .card .card-title{
+    text-align: center;
+}
+
+.row .container .col .card .card-text{
+    text-align: center
+
+}
 h2{
     margin-left: 9rem;
 }

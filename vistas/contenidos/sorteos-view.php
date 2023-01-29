@@ -92,23 +92,23 @@ include("./DatosTablas/obtenerDatosSorteos.php");
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="color-label">Nombre</label>
+                                    <label class="label-actualizar">Nombre</label>
                                     <input type="text" class="form-control" name="nombre_act" style="text-transform:uppercase;" 
                                     value="<?php echo $fila['nombre_sorteo']?>" required="" >
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="color-label">Fecha de sorteo</label>
+                                    <label class="label-actualizar">Fecha de sorteo</label>
                                     <input type="date" class="form-control" name="fecha_act" value="<?php echo $fila['fecha_realizacion']?>" required="" >
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="color-label">Cantidad de boletos</label>
+                                    <label class="label-actualizar">Cantidad de boletos</label>
                                     <input type="number" class="form-control" value="<?php echo $fila['cantidad_boletos']?>" name="cant_act" required="" >
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="color-label">Estado</label>
+                                    <label class="label-actualizar">Estado</label>
                                         <select class="form-control" name="estado_act">
                                             <option value="1" <?php if ($fila['estado_sorteo'] == 'Pendiente'): ?>selected<?php endif; ?>>Pendiente</option>
                                             <option value="2" <?php if ($fila['estado_sorteo'] == 'Realizado'): ?>selected<?php endif; ?>>Realizado</option>
