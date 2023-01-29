@@ -12,7 +12,7 @@ class Usuario extends ConexionBD{
 
     public function accesoUsuario($user,$password){
         $this->getConexion();
-        $sql="SELECT * FROM usuarios WHERE usuario='$user' AND contrasena='$password'";
+        $sql="SELECT * FROM usuarios WHERE usuario='$user' AND contrasena='$password' AND estado!=4";
         $resultado=$this->conexion->query($sql) or die ($sql);
         return $resultado;
     }

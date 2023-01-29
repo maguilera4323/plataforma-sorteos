@@ -22,26 +22,11 @@ class permisoControlador extends permisoModelo{
 		//condicionales para agregar los valores de los permisos
 		//si no recibieron ningún valor se dejan en cero, lo que indica que no fueron seleccionados
 		//y por lo tanto el permiso no fue otorgado
-		if(!isset($_POST['insertar_permiso'])){
-			$insertar_permiso=0;
-		}else{
-			$insertar_permiso=1;
-		}
-		if(!isset($_POST['actualizar_permiso'])){
-			$actualizar_permiso=0;
-		}else{
-			$actualizar_permiso=1;
-		}
-		if(!isset($_POST['eliminar_permiso'])){
-			$eliminar_permiso=0;
-		}else{
-			$eliminar_permiso=1;
-		}
-		if(!isset($_POST['consultar_permiso'])){
-			$consultar_permiso=0;
-		}else{
-			$consultar_permiso=1;
-		}
+		$insertar_permiso=(!isset($_POST['insertar_permiso'])) ? 0 : 1;
+		$actualizar_permiso=(!isset($_POST['actualizar_permiso'])) ? 0 : 1;
+		$eliminar_permiso=(!isset($_POST['eliminar_permiso'])) ? 0 : 1;
+		$consultar_permiso=(!isset($_POST['consultar_permiso'])) ? 0 : 1;
+
 		$creado_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
 		$creacion=date('y-m-d H:i:s');
 	
@@ -87,26 +72,10 @@ class permisoControlador extends permisoModelo{
 		//condicionales para actualizar los valores de los permisos
 		//si no recibieron ningún valor se dejan en cero, lo que indica que no fueron seleccionados
 		//y por lo tanto el permiso no fue otorgado
-		if(!isset($_POST['insertar_permiso_act'])){
-			$insertar_permiso=0;
-		}else{
-			$insertar_permiso=1;
-		}
-		if(!isset($_POST['actualizar_permiso_act'])){
-			$actualizar_permiso=0;
-		}else{
-			$actualizar_permiso=1;
-		}
-		if(!isset($_POST['eliminar_permiso_act'])){
-			$eliminar_permiso=0;
-		}else{
-			$eliminar_permiso=1;
-		}
-		if(!isset($_POST['consultar_permiso_act'])){
-			$consultar_permiso=0;
-		}else{
-			$consultar_permiso=1;
-		}
+		$insertar_permiso=(!isset($_POST['insertar_permiso_act'])) ? 0 : 1;
+		$actualizar_permiso=(!isset($_POST['actualizar_permiso_act'])) ? 0 : 1;
+		$eliminar_permiso=(!isset($_POST['eliminar_permiso_act'])) ? 0 : 1;
+		$consultar_permiso=(!isset($_POST['consultar_permiso_act'])) ? 0 : 1;
 
 		$modif_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
 		$modificacion=date('y-m-d H:i:s');
