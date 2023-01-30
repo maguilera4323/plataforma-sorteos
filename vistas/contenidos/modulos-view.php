@@ -8,12 +8,13 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 include("./DatosTablas/obtenerDatos.php"); 
 ?>
 <br>
+<h2 class="nombre-vista"><i class="fas fa-table"></i>&nbsp; Módulos</h2>
 <br>
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-3"></div>
+        <div class="col-7">
             <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar</div>
             <div class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-pdf"></i> &nbsp; Exportar a PDF</div>
             <div class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel</div>

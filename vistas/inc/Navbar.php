@@ -10,13 +10,13 @@
           <a href="<?php echo SERVERURL?>home/"><i class="fas fa-home"></i>&nbsp;Home</a>
         </li>
         <li>
-          <a href="#!"><i class="fas fa-industry"></i>&nbsp; Empresas</a>
+          <a href="<?php echo SERVERURL?>empresas/"><i class="fas fa-industry"></i>&nbsp; Empresas</a>
         </li>
         <li>
-          <a href="#!"><i class="fas fa-medal"></i>&nbsp; Sorteos</a>
+          <a href="<?php echo SERVERURL?>sorteos/"><i class="fas fa-medal"></i>&nbsp; Sorteos</a>
         </li>
         <li>
-          <a href="#!"><i class="fas fa-trophy"></i>&nbsp; Premios</a>
+          <a href="<?php echo SERVERURL?>premios/"><i class="fas fa-trophy"></i>&nbsp; Premios</a>
         </li>
         <li>
           <a href="#!"><i class="fas fa-tools"></i>&nbsp; Configuración</a>

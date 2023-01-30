@@ -9,12 +9,13 @@ include("./DatosTablas/obtenerDatos.php");
 include("./DatosTablas/obtenerDatosSorteos.php"); 
 ?>
 <br>
+<h2 class="nombre-vista"><i class="fas fa-medal"></i>&nbsp; Sorteos</h2>
 <br>
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-3"></div>
+        <div class="col-7">
             <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar</div>
             <div class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-pdf"></i> &nbsp; Exportar a PDF</div>
             <div class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel</div>
@@ -34,7 +35,8 @@ include("./DatosTablas/obtenerDatosSorteos.php");
                 <th>Empresa</th>                               
                 <th>Nombre de sorteo</th>  
                 <th>Fecha</th>
-                <th>Cantidad de boletos</th> 
+                <th>Cantidad de boletos</th>
+                <th>Ver Boletos Vendidos</th>
                 <th>Estado</th> 
                 <th>Actualizar</th>
                 <th>Eliminar</th>
@@ -53,6 +55,8 @@ include("./DatosTablas/obtenerDatosSorteos.php");
                 <td><?php echo $fila['nombre_sorteo']; ?></td>
                 <td><?php echo $fila['fecha_realizacion']; ?></td>
                 <td><?php echo $fila['cantidad_boletos']; ?></td>
+                <td><a href="<?php echo SERVERURL?>boletos?id=<?php echo $fila['id_sorteo']; ?>">
+                <i class="fas fa-info-circle"></i></a></td>
                 <td><?php echo $fila['estado_sorteo']; ?></td>
                 <td>
 				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_sorteo'];?>">
@@ -99,7 +103,7 @@ include("./DatosTablas/obtenerDatosSorteos.php");
                                 <br>
                                 <div class="form-group">
                                     <label class="label-actualizar">Fecha de sorteo</label>
-                                    <input type="date" class="form-control" name="fecha_act" value="<?php echo $fila['fecha_realizacion']?>" required="" >
+                                    <input type="datetime-local" class="form-control" name="fecha_act" value="<?php echo $fila['fecha_realizacion']?>" required="" >
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -181,7 +185,7 @@ include("./DatosTablas/obtenerDatosSorteos.php");
                 <br>
 				<div class="form-group">
                     <label class="color-label">Fecha de sorteo</label>
-					<input type="date" class="form-control" name="fecha_nuevo" required="" >
+					<input type="datetime-local" class="form-control" name="fecha_nuevo" required="" >
 				</div>
                 <br>
 				<div class="form-group">

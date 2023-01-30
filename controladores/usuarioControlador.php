@@ -1,13 +1,13 @@
 <?php
 
 if($peticionAjax){
-	require_once "../modelos/empleadoModelo.php";
+	require_once "../modelos/usuarioModelo.php";
 }else{
-	require_once "./modelos/empleadoModelo.php";
+	require_once "./modelos/usuarioModelo.php";
 }
 
 
-class empleadoControlador extends empleadoModelo{
+class usuarioControlador extends usuarioModelo{
 
 	
 	public function agregarEmpleado(){
@@ -174,8 +174,8 @@ class empleadoControlador extends empleadoModelo{
 				"creado_por"=>$creado_por
 			];
 
-			$agregar_persona=empleadoModelo::agregarPersonaModelo($datos_persona_reg);
-			$agregar_usuario=empleadoModelo::agregarUsuarioModelo($datos_empleado_reg);
+			$agregar_persona=usuarioModelo::agregarPersonaModelo($datos_persona_reg);
+			$agregar_usuario=usuarioModelo::agregarUsuarioModelo($datos_empleado_reg);
 
 			if(($agregar_usuario->rowCount()==1) && ($agregar_persona->rowCount()==1) ){
 				$alerta=[
@@ -307,8 +307,8 @@ class empleadoControlador extends empleadoModelo{
 				"modif_por"=>$modif_por
 			];
 
-			$actualizar_persona=empleadoModelo::actualizarPersonaModelo($datos_persona_act,$id_actualizacion);
-			$actualizar_usuario=empleadoModelo::actualizarUsuarioModelo($datos_empleado_act,$id_actualizacion);
+			$actualizar_persona=usuarioModelo::actualizarPersonaModelo($datos_persona_act,$id_actualizacion);
+			$actualizar_usuario=usuarioModelo::actualizarUsuarioModelo($datos_empleado_act,$id_actualizacion);
 
 			if(($actualizar_persona->rowCount()==1) && ($actualizar_usuario->rowCount()==1)){
 				$alerta=[
@@ -337,7 +337,7 @@ class empleadoControlador extends empleadoModelo{
 			$array=array();
 			$valor=4;
 		
-		$eliminarEmpleado=empleadoModelo::eliminarEmpleadoModelo($valor,$id);
+		$eliminarEmpleado=usuarioModelo::eliminarEmpleadoModelo($valor,$id);
 			if($eliminarEmpleado->rowCount()==1){
 				$alerta=[
 					"Alerta"=>"recargar",

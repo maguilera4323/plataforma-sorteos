@@ -2,7 +2,7 @@
 	
 	require_once "../config/conexion.php";
 
-	class empleadoModelo extends ConexionBD{
+	class usuarioModelo extends ConexionBD{
 
 		protected function agregarPersonaModelo($datos){
 			$sql=ConexionBD::getConexion()->prepare("INSERT INTO personas(nombres,apellidos,dni,telefono,sexo,
