@@ -1,4 +1,5 @@
 <!-- archivos añadidos por los desarrolladores -->
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/a.scss">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/Estilo-Form.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/EstiloLogin.css">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/estilos-vistas.css"> 

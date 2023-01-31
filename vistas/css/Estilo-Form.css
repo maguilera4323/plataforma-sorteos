@@ -30,22 +30,22 @@
      margin: 0 auto;
 }
 
- nav {
+ .navigation nav {
      float: right;
 }
 
- nav ul {
+ .navigation nav ul {
      list-style: none;
      margin: 0;
      padding: 0;
 }
 
- nav ul li {
+.navigation nav ul li {
      float: left;
      position: relative;
 }
 
- nav ul li a,nav ul li a:visited {
+ .navigation nav ul li a,.navigation nav ul li a:visited {
      display: block;
      padding: 0 20px;
      line-height: 55px;
@@ -54,12 +54,12 @@
      text-decoration: none;
 }
 
- nav ul li a{
+ .navigation nav ul li a{
      background: transparent;
      color: #FFF;
 }
 
- nav ul li a:hover, nav ul li a:visited:hover {
+ .navigation nav ul li a:hover, .navigation nav ul li a:visited:hover {
      background: #2581DC;
      color: #ffffff;
 }
@@ -68,30 +68,30 @@
      background: #2581DC;
 }
 
- nav ul li a:not(:only-child):after, nav ul li a:visited:not(:only-child):after {
+ .navigation nav ul li a:not(:only-child):after, .navigation nav ul li a:visited:not(:only-child):after {
      padding-left: 4px;
      content: ' \025BE';
 }
 
- nav ul li ul li {
+ .navigation nav ul li ul li {
      min-width: 190px;
 }
 
- nav ul li ul li a {
+ .navigation nav ul li ul li a {
      padding: 15px;
      line-height: 20px;
 }
 
- .navbar-dropdown {
+ .navigation .navbar-dropdown {
      position: absolute;
      display: none;
      z-index: 1;
-     background: #fff;
+     background: linear-gradient(45deg, #131516, #1c1f20);
      box-shadow: 0 0 35px 0 rgba(0,0,0,0.25);
 }
 
 /* Mobile navigation */
- .nav-mobile {
+.navigation .nav-mobile {
      display: none;
      position: absolute;
      top: 0;
@@ -106,36 +106,36 @@
          display: block;
     }
 
-     nav {
+    .navigation nav {
          width: 100%;
          padding: 55px 0 15px;
     }
 
-     nav ul {
+    .navigation nav ul {
          display: none;
     }
 
-     nav ul li {
+    .navigation nav ul li {
          float: none;
     }
 
-     nav ul li a {
+    .navigation nav ul li a {
          padding: 15px;
          line-height: 20px;
          background: #262626;
     }
 
-     nav ul li ul li a {
+    .navigation nav ul li ul li a {
          padding-left: 30px;
     }
 
-     .navbar-dropdown {
+    .navigation .navbar-dropdown {
          position: static;
     }
 }
 
  @media screen and (min-width:800px) {
-     .nav-list {
+    .navigation .nav-list {
          display: block !important;
     }
 }
