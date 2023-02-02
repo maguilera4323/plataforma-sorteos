@@ -9,12 +9,13 @@ include("./DatosTablas/obtenerDatos.php");
 include("./DatosTablas/obtenerDatosPremios.php"); 
 ?>
 <br>
+<h2 class="nombre-vista"><i class="fas fa-trophy"></i>&nbsp; Premios</h2>
 <br>
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-3"></div>
+        <div class="col-7">
             <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar</div>
             <div class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-pdf"></i> &nbsp; Exportar a PDF</div>
             <div class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel</div>
@@ -33,6 +34,7 @@ include("./DatosTablas/obtenerDatosPremios.php");
                 <th>ID</th>
                 <th>Sorteo</th>                               
                 <th>Nombre de Premio</th>  
+                <th>Cantidad</th> 
                 <th>Fotografía</th>
                 <th>Actualizar</th>
                 <th>Eliminar</th>
@@ -49,6 +51,7 @@ include("./DatosTablas/obtenerDatosPremios.php");
                 <td><?php echo $fila['id_premio']; ?></td>
                 <td><?php echo $fila['nombre_sorteo']; ?></td>
                 <td><?php echo $fila['nombre_premio']; ?></td>
+                <td><?php echo $fila['cantidad_disponible']; ?></td>
                 <td><img src="<?php echo $fila['foto_premio']; ?>" width="150" height="150" alt="" alt=""></td>
                 <td>
 				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_premio'];?>">
@@ -88,7 +91,7 @@ include("./DatosTablas/obtenerDatosPremios.php");
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="color-label">Nombre</label>
+                                    <label class="label-actualizar">Nombre</label>
                                     <input type="text" class="form-control" name="nombre_act" style="text-transform:uppercase;" 
                                     value="<?php echo $fila['nombre_premio']?>" required="" >
                                 </div>

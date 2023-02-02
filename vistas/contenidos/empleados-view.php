@@ -6,9 +6,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 //llamado al archivo de funciones para obtener los datos de la tabla
 include ("./DatosTablas/obtenerDatos.php");
-include("./DatosTablas/obtenerDatosEmpleados.php"); 
+include("./DatosTablas/obtenerDatosUsuarios.php"); 
 
-    $contar=new obtenerDatosEmpleados();
+    $contar=new obtenerDatosUsuarios();
     $resultadoContar=$contar->contarUsuarios();
         foreach ($resultadoContar as $fila){
             $idPersonaActual=$fila['id_usuario']+1;
@@ -20,12 +20,13 @@ include("./DatosTablas/obtenerDatosEmpleados.php");
 
 ?>
 <br>
+<h2 class="nombre-vista"><i class="fas fa-industry"></i>&nbsp; Empleados</h2>
 <br>
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-3"></div>
+        <div class="col-7">
             <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar</div>
             <div class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-pdf"></i> &nbsp; Exportar a PDF</div>
             <div class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel</div>
@@ -54,14 +55,14 @@ include("./DatosTablas/obtenerDatosEmpleados.php");
         <tbody class="body">
         <?php
             //se hace una instancia a la clase
-                $datos=new obtenerDatosEmpleados();
+                $datos=new obtenerDatosUsuarios();
                 $resultado=$datos->datosEmpleados();
                 foreach ($resultado as $fila){
             ?>
             <tr>
                 <td><?php echo $fila['id_usuario']; ?></td>
                 <td><?php echo $fila['usuario']; ?></td>
-                <td><?php echo $fila['nombres']; ?></td>
+                <td><?php echo $fila['nombres'] . " " . $fila['apellidos']; ?></td>
                 <td><?php echo $fila['estado']; ?></td>
                 <td><?php echo $fila['rol']; ?></td>
                 <td><?php echo $fila['correo_electronico']; ?></td>
@@ -90,41 +91,42 @@ include("./DatosTablas/obtenerDatosEmpleados.php");
 
                             </div>
                             <div class="modal-body" id="modal-actualizar">
-                            <form action="<?php echo SERVERURL; ?>ajax/empleadosAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
+                            <form action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
                             <div class="row">
                                 <div class="col-10 col-md-6">
                                     <div class="form-group">
-                                        <label class="color-label">Nombres</label>
-                                        <input type="text" class="form-control" name="nombre_nuevo" id="nom_usuario" 
-                                        style="text-transform:uppercase;" required="" >
+                                        <label class="label-actualizar">Nombres</label>
+                                        <input type="text" class="form-control" name="nombre_act" 
+                                        style="text-transform:uppercase;" value="<?php echo $fila['nombres']; ?>" required="" >
                                     </div>
                                 </div>
                                 <div class="col-10 col-md-6">
                                     <div class="form-group">
-                                        <label class="color-label">Apellidos</label>
-                                        <input type="text" class="form-control" name="apellido_nuevo" id="nombre_usuario" 
-                                        style="text-transform:uppercase;" required="" >
-                                    </div>
-                                </div>
-                                <div class="col-10 col-md-6">
-                                <br>
-                                    <div class="form-group">
-                                        <label class="color-label">Usuario</label>
-                                        <input type="text" class="form-control" name="user_empleado_nuevo" id="nom_usuario" 
-                                        style="text-transform:uppercase;" required="" >
+                                        <label class="label-actualizar">Apellidos</label>
+                                        <input type="text" class="form-control" name="apellido_act" 
+                                        style="text-transform:uppercase;" value="<?php echo $fila['apellidos']; ?>" required="" >
                                     </div>
                                 </div>
                                 <div class="col-10 col-md-6">
                                 <br>
                                     <div class="form-group">
-                                        <label class="color-label">DNI</label>
-                                        <input type="number" class="form-control" name="dni_nuevo" id="nombre_usuario" required="" >
+                                        <label class="label-actualizar">Usuario</label>
+                                        <input type="text" class="form-control" name="user_empleado_act" 
+                                        style="text-transform:uppercase;" value="<?php echo $fila['usuario']; ?>" required="" >
+                                    </div>
+                                </div>
+                                <div class="col-10 col-md-6">
+                                <br>
+                                    <div class="form-group">
+                                        <label class="label-actualizar">DNI</label>
+                                        <input type="number" class="form-control" name="dni_act" 
+                                        value="<?php echo $fila['dni']; ?>" required="" >
                                     </div>
                                 </div>
                                 <div class="col-10 col-md-6">
                                     <br>
-                                    <label class="color-label">Estado</label>
-                                    <select class="form-control" name="estado_nuevo" disabled>
+                                    <label class="label-actualizar">Estado</label>
+                                    <select class="form-control" name="estado_act">
                                         <option value="1" <?php if ($fila['estado'] == 'Activo'): ?> selected<?php endif; ?>>Activo</option>
                                         <option value="2" <?php if ($fila['estado'] == 'Inactivo'): ?> selected<?php endif; ?>>Inactivo</option>
                                         <option value="3" <?php if ($fila['estado'] == 'Bloqueado'): ?> selected<?php endif; ?>>Bloqueado</option>
@@ -134,7 +136,7 @@ include("./DatosTablas/obtenerDatosEmpleados.php");
                                 <div class="col-10 col-md-6">
                                     <br>
                                     <div class="form-group">
-                                        <label class="color-label">Roles</label>
+                                        <label class="label-actualizar">Roles</label>
                                             <select class="form-control" name="rol_act" required>
                                                 <?php
                                                     $datos=new obtenerDatosTablas();
@@ -156,31 +158,34 @@ include("./DatosTablas/obtenerDatosEmpleados.php");
                                 <div class="col-10 col-md-6">
                                     <br>
                                     <div class="form-group">
-                                        <label class="color-label">Sexo</label>
-                                        <select class="form-control" name="sexo_nuevo">
+                                        <label class="label-actualizar">Sexo</label>
+                                        <select class="form-control" name="sexo_act" required>
                                             <option value="" selected>Seleccione una opción</option>
-                                            <option value="1">Masculino</option>
-                                            <option value="2">Femenino</option>
+                                            <option value="1" <?php if ($fila['sexo'] == 'Masculino'): ?> selected<?php endif; ?>>Masculino</option>
+                                            <option value="2" <?php if ($fila['sexo'] == 'Femenino'): ?> selected<?php endif; ?>>Femenino</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-10 col-md-6">
                                     <br>
                                     <div class="form-group">
-                                        <label class="color-label">Teléfono</label>
-                                        <input type="number" class="form-control" name="telefono_nuevo" id="nombre_usuario" required="" >
+                                        <label class="label-actualizar">Teléfono</label>
+                                        <input type="number" class="form-control" name="telefono_act" id="nombre_usuario" 
+                                        value="<?php echo $fila['telefono']; ?>" required="" >
                                     </div>
                                 </div>
                             </div>
-                    
+                                <br>
                                 <div class="form-group">
-                                    <label class="color-label">Correo</label>
-                                    <input type="email" class="form-control" name="correo_electronico_nuevo" id="correo_electronico" required="">
+                                    <label class="label-actualizar">Correo</label>
+                                    <input type="email" class="form-control" name="correo_electronico_act" id="correo_electronico" 
+                                    value="<?php echo $fila['correo_electronico']; ?>" required="">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="color-label">Dirección</label>
-                                    <textarea class="form-control" name="direccion_nuevo" rows="3"></textarea>
+                                    <label class="label-actualizar">Dirección</label>
+                                    <input type="text" class="form-control" name="direccion_act" id="correo_electronico" 
+                                    value="<?php echo $fila['direccion']; ?>" required="">
                                 </div>
                                 <br>
                                     <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
@@ -192,7 +197,7 @@ include("./DatosTablas/obtenerDatosEmpleados.php");
                         </div>
 			    </td>
                 <td>
-					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empleadosAjax.php" method="POST" data-form="delete" autocomplete="off">
+					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
 					<input type="hidden" pattern="" class="form-control" name="id_empleado_del" value="<?php echo $fila['id_usuario'] ?>">	
 					<button type="submit" class="btn btn-danger">
 						<i class="far fa-trash-alt"></i>
@@ -228,7 +233,7 @@ include("./DatosTablas/obtenerDatosEmpleados.php");
 
       </div>
       <div class="modal-body" id="modal-actualizar">
-			<form action="<?php echo SERVERURL; ?>ajax/empleadosAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
+			<form action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
 			<div class="row">
 					<div class="col-10 col-md-6">
 						<div class="form-group">

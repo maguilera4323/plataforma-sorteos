@@ -30,11 +30,24 @@
 	?>
 	<!-- Main container -->
 	<main class="full-box main-container">
+		<!-- Nav lateral -->
+		<?php 
+		if($_SESSION['rol']!=3){
+			include "./vistas/inc/NavLateral.php";
+		}
+		 ?>
+		
 		<!-- Page content -->
 		<section class="full-box page-content">
 			<?php
-					include "./vistas/inc/Navbar.php"; 
+			if($_SESSION['rol']!=3){
+				include "./vistas/inc/NavbarAdm.php"; 
 				include  $vistas;
+			}else{
+				include "./vistas/inc/Navbar.php"; 
+				include  $vistas;
+			}
+				
 			?>
 		</section>
 	</main>

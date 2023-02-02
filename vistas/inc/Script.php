@@ -26,5 +26,6 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/cargarDatatable.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/paginador.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/buscador-registros.js"></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/navlateral.js"></script>
 
 

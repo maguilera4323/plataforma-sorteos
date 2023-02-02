@@ -9,12 +9,13 @@ include("./DatosTablas/obtenerDatos.php");
 include("./DatosTablas/obtenerDatosPermisos.php"); 
 ?>
 <br>
+<h2 class="nombre-vista"><i class="fas fa-tasks"></i>&nbsp; Permisos</h2>
 <br>
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-3"></div>
+        <div class="col-7">
             <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar</div>
             <div class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-pdf"></i> &nbsp; Exportar a PDF</div>
             <div class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel</div>
@@ -32,7 +33,6 @@ include("./DatosTablas/obtenerDatosPermisos.php");
             <tr>
                 <th>Rol</th>
                 <th>Modulo</th>                               
-                <th>Tipo</th>  
                 <th>Inserción</th>
                 <th>Actualización</th>
                 <th>Eliminación</th> 
@@ -51,7 +51,6 @@ include("./DatosTablas/obtenerDatosPermisos.php");
             <tr>
                 <td><?php echo $fila['rol']; ?></td>
                 <td><?php echo $fila['modulo']; ?></td>
-                <td><?php echo $fila['tipo_modulo']; ?></td>
                 <?php
 				if($fila['permiso_insercion']==1){
                 ?>
@@ -124,8 +123,8 @@ include("./DatosTablas/obtenerDatosPermisos.php");
                                 </div>
                                 <br>
                                 <br>
-                                <label>Permisos</label>
-                                <div class="form-group">
+                                <label class="label-actualizar">Permisos</label>
+                                <div class="form-group label-actualizar">
                                     <div class="form-check form-check-inline">
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="insertar_permiso_act"
