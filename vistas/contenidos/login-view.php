@@ -23,35 +23,7 @@
 }
 ?>
 
-<?php
-				 if(isset($_SESSION['respuesta'])){
-					switch($_SESSION['respuesta']){
-						case 'Contraseña incorrecta':
-							echo '<div div class="alert alert-danger text-center" role="alert">Usuario y/o contraseña inválidos</div>';
-							$_SESSION['contador_intentos']+=0.5;
-						break;
-						case 'Usuario inactivo':
-							echo '<div class="alert alert-warning text-center" style="font-size: 22px;">El usuario está inactivo. Comuniquese con el 
-							administrador del sistema</div>';
-						break;
-						case 'Usuario bloqueado':
-							echo '<div class="alert alert-dark text-center" style="font-size: 22px;">El usuario está bloqueado. Comuniquese con el 
-							administrador del sistema</div>';
-							$_SESSION['contador_intentos']=0;
-						break;
-						case 'Datos incorrectos':
-							echo '<div class="alert alert-danger text-center" style="font-size: 22px;">Usuario y/o contraseña inválidos</div>';
-							$_SESSION['contador_intentos']=0;
-						break;
-						case 'Usuario sin permisos':
-							echo '<div class="alert alert-dark text-center" style="font-size: 22px;">El usuario no tiene los permisos para iniciar 
-							sesión. Comuniquese con el administrador del sistema</div>';
-							$_SESSION['contador_intentos']=0;
-						break;
-					 }
-				 }
-			 ?>
-
+		
 <style>
 body{
 	background: yellow;
@@ -61,7 +33,7 @@ body{
 
 .bg{
    
-	background-image: url(/Pagos/Fondo.png);
+	background-image: url(../vistas/assets/img/Fondo.png);
 	background-position: center center;
 }
 
@@ -81,6 +53,15 @@ body{
   .btn-primary:hover{
     background-color:  #ffa751;
   }
+
+  .my-3 a{
+	text-decoration:none;
+	color:rgba(11, 21, 24, 0.8);
+  }
+
+  .my-3 a:hover{
+	color:rgba(45, 79, 235, 0.8);
+  }
 </style>
 
 
@@ -98,9 +79,36 @@ body{
 				<img src="/Pagos/descarga.png" width="48" alt="">
 			</div>
 
+
 			<h2 class="fw-bold text-center pt-5 mb-5">Bienvenido</h2>
-
-
+			<?php
+				 if(isset($_SESSION['respuesta'])){
+					switch($_SESSION['respuesta']){
+						case 'Contraseña incorrecta':
+							echo '<div div class="alert alert-danger text-center" role="alert">Usuario y/o contraseña inválidos</div>';
+							$_SESSION['contador_intentos']+=0.5;
+						break;
+						case 'Usuario inactivo':
+							echo '<div class="alert alert-warning text-center" style="font-size: 20px;">El usuario está inactivo. Comuniquese con el 
+							administrador del sistema</div>';
+						break;
+						case 'Usuario bloqueado':
+							echo '<div class="alert alert-dark text-center" style="font-size: 20px;">El usuario está bloqueado. Comuniquese con el 
+							administrador del sistema</div>';
+							$_SESSION['contador_intentos']=0;
+						break;
+						case 'Datos incorrectos':
+							echo '<div class="alert alert-danger text-center" style="font-size: 20px;">Usuario y/o contraseña inválidos</div>';
+							$_SESSION['contador_intentos']=0;
+						break;
+						case 'Usuario sin permisos':
+							echo '<div class="alert alert-dark text-center" style="font-size: 20px;">El usuario no tiene los permisos para iniciar 
+							sesión. Comuniquese con el administrador del sistema</div>';
+							$_SESSION['contador_intentos']=0;
+						break;
+					 }
+				 }
+			 ?>
 
 			<Form  method="POST">
 
@@ -124,13 +132,13 @@ body{
 				<!-- BOTON DE INICIAR SESION -->
 
 				<div class="d-grid">
-					<button type="submit" class="btn btn-primary">Iniciar sesion</button>
+					<button type="submit" name="acceder" class="btn btn-primary">Iniciar sesion</button>
 				</div>
 
 				<!--RECUPERAR CONTRASEÑA / CREAR CUENTA -->
 				<div class="my-3">
-					<span>No tienes cuenta? <a href="#">Registrate</a></span> <br>
-					<span><a href=".../recuperacion-clave-view.php">Recuperar password</a></span>
+					<span>No tienes cuenta? <a href="<?php echo SERVERURL?>registro/">Registrate</a></span> <br>
+					<span><a href="<?php echo SERVERURL?>recuperacion-clave/">Recuperar contraseña</a></span>
 
 				</div>
 

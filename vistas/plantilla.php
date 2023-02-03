@@ -14,7 +14,7 @@
 
 		$vistas=$IV->obtener_vistas_controlador();
 
-		if($vistas=="inicio" || $vistas=="login" || $vistas=="404" || $vistas=="recuperacion-clave"){
+		if($vistas=="inicio" || $vistas=="login" || $vistas=="404" || $vistas=="recuperacion-clave" || $vistas=="registro"){
 			require_once "./vistas/contenidos/".$vistas."-view.php";
 
 		}else{

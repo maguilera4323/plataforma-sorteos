@@ -1,3 +1,12 @@
+<style>
+    body{
+  background: yellow;
+  background: linear-gradient(to right, #ffa751,#ffe259 );
+
+  }
+
+</style>
+  
   <div class="recuperacion-form">
     <form method="POST" action="LoginReset.php">
         <section class="form-login">
