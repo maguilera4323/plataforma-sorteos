@@ -1,9 +1,11 @@
 <!-- archivos añadidos por los desarrolladores -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/a.scss">
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/Estilo-Form.css">
-<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/EstiloLogin.css">
+<!-- <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/EstiloLogin.css"> -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/estilos-vistas.css"> 
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/tarjetas.css"> 
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/EstiloRecu.css"> 
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/EstiloR.css"> 
 
 <!-- archivos de la libreria Bootstrap -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>vistas/css/bootstrap-grid.css">

@@ -52,17 +52,92 @@
 				 }
 			 ?>
 
-    <form method="POST" >
-        <section class="form-login">
-          <h5>FORMULARIO DE LOGIN</h5>
-          <input class="controls" type="text" name="txtusuario" value="" placeholder="Usuario" required>
-          <input class="controls" type="password" name="txtcontrasena" value="" placeholder="Contraseña" required>
-		  <div class="reset-password">
-                <p><a href="<?php echo SERVERURL?>recuperacion-clave/">¿Olvidaste tu contraseña?</a></p>
-            </div>
-			<br>
-          <button class="buttons" type="submit" name="acceder">Iniciar Sesión</button>
-        </section>
-    </form>
+<style>
+body{
+	background: yellow;
+	background: linear-gradient(to right, #ffa751,#ffe259 );
+}
 
 
+.bg{
+   
+	background-image: url(/Pagos/Fondo.png);
+	background-position: center center;
+}
+
+.btn-primary{
+    width: 100%;
+    height: 40px;
+    background-color: #017bab;
+    border: none;
+    color: white;
+    margin-bottom: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 1s;
+  
+  }
+
+  .btn-primary:hover{
+    background-color:  #ffa751;
+  }
+</style>
+
+
+
+<div class="container w-75 bg-primary mt-5 rounder">
+	<div class="row aling-items-stretch">
+
+		<div class="col bg dn-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounder">
+			
+
+		</div>
+
+		<div class="col bg-white p-5 rounder-end">
+			<div class="text-end">
+				<img src="/Pagos/descarga.png" width="48" alt="">
+			</div>
+
+			<h2 class="fw-bold text-center pt-5 mb-5">Bienvenido</h2>
+
+
+
+			<Form  method="POST">
+
+
+			<!-- CUADRO DE USUARIO  -->
+
+				<div class="mb-4">
+					<label for="text" class="form-label">Usuario</label>
+					<input type="text" class="form-control" name="txtusuario" placeholder="Ingrese su usuario" required>                 
+
+				</div>
+
+				<!-- CUADRO DE CONTRASEÑA  -->
+
+				<div class="mb-4">
+
+					<label for="password" class="form-label">Contraseña</label>
+					<input type="password" class="form-control" name="txtcontrasena" placeholder="Ingrese su contraseña" required>
+				</div>
+
+				<!-- BOTON DE INICIAR SESION -->
+
+				<div class="d-grid">
+					<button type="submit" class="btn btn-primary">Iniciar sesion</button>
+				</div>
+
+				<!--RECUPERAR CONTRASEÑA / CREAR CUENTA -->
+				<div class="my-3">
+					<span>No tienes cuenta? <a href="#">Registrate</a></span> <br>
+					<span><a href=".../recuperacion-clave-view.php">Recuperar password</a></span>
+
+				</div>
+
+			</Form>
+
+
+		</div>
+
+	</div>
+</div>
