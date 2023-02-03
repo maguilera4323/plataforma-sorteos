@@ -55,12 +55,13 @@ CREATE TABLE IF NOT EXISTS `empresas` (
   `telefono` varchar(15) DEFAULT NULL,
   `correo_electronico` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.empresas: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.empresas: ~2 rows (aproximadamente)
 INSERT INTO `empresas` (`id_empresa`, `nombre_empresa`, `direccion`, `telefono`, `correo_electronico`) VALUES
 	(1, 'SULA', 'Col. Victor F. Ardon, Tegucigalpa M.D.C', '22021294', 'contacto@sula.hn'),
-	(2, 'CINEMARK', 'Res. Las Uvas', '22091298', 'soporte@cinemark.hn');
+	(2, 'CINEMARK', 'Res. Las Uvas', '22091298', 'soporte@cinemark.hn'),
+	(3, 'MENDELS', 'kklkkfKKL', '89789789', 'a@gm.es');
 
 -- Volcando estructura para tabla dbsorteo.modulos
 CREATE TABLE IF NOT EXISTS `modulos` (
@@ -135,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   PRIMARY KEY (`id_persona`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.personas: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.personas: ~4 rows (aproximadamente)
 INSERT INTO `personas` (`id_persona`, `nombres`, `apellidos`, `dni`, `telefono`, `sexo`, `direccion`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
 	(1, 'PRUEBA', 'USUARIOS', '80819991034', '98762301', 'Masculino', 'Col. San Angel, Tegucigalpa M.D.C', 'prueba', '2023-01-29 16:02:09', NULL, NULL),
 	(2, 'TAYLOR', 'SWIFT', '0701238712845', '97652301', 'Femenino', 'USA', 'prueba', '2023-01-29 16:04:59', NULL, NULL),
@@ -204,9 +205,9 @@ CREATE TABLE IF NOT EXISTS `sorteos` (
   KEY `IdEmpresa` (`id_empresa`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.sorteos: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.sorteos: ~2 rows (aproximadamente)
 INSERT INTO `sorteos` (`id_sorteo`, `id_empresa`, `nombre_sorteo`, `fecha_realizacion`, `cantidad_boletos`, `estado_sorteo`) VALUES
-	(1, 1, '1ER MARATON DE VERANO SULA', '2023-02-02 21:30:00', 120, 'Pendiente'),
+	(1, 1, '1ER MARATON DE VERANO SULA', '2023-02-02 21:30:00', 60, 'Pendiente'),
 	(2, 2, 'PREMIERE UNA LOCA NAVIDAD CATRACHA 2', '2023-02-08 21:00:00', 50, 'Pendiente');
 
 -- Volcando estructura para tabla dbsorteo.usuarios
