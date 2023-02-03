@@ -27,12 +27,12 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 	if(!isset($permiso_con)){
 		echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene acceso autorizado a esta vista</div>
         <div class="modal-body" id="modal-actualizar" style="display:none">;';
-		echo "<script> setTimeout(function(){window.location.href='".SERVERURL."home/'} , 1500); </script>";
+		echo "<script> setTimeout(function(){window.location.href='".SERVERURL."404/'} , 3000); </script>";
 //valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
 	}else if($permiso_con==0){
 		echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene acceso autorizado a esta vista</div>
         <div class="modal-body" id="modal-actualizar" style="display:none">;';
-		echo "<script> setTimeout(function(){window.location.href='".SERVERURL."home/'} , 1500); </script>";
+		echo "<script> setTimeout(function(){window.location.href='".SERVERURL."404/'} , 3000); </script>";
 	}
 ?>
 <br>
