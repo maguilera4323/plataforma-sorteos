@@ -1,3 +1,11 @@
+<?php
+//verifica si hay sesiones iniciadas
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+?>
+
 <div class="full-box container-404">
 	<div class="error-404">
 		<br>
@@ -7,7 +15,20 @@
 		<br>
 		<h3 class="text-center">"Komi-san se pregunta por qué la página que seleccionó no existe..."</h3>
 		<br>
+		
+		<?php
+		if($_SESSION['rol']=='PARTICIPANTE'){
+		?>
 		<a href="<?php echo SERVERURL?>home/">
 		<button class="btn btn-light">Regresar a la página principal</button></a>
+
+		<?php
+		}else{
+		?>
+		<a href="<?php echo SERVERURL?>dashboard/">
+		<button class="btn btn-light">Regresar a la página principal</button></a>
+		<?php
+		}
+		?>
 	</div>
 </div>

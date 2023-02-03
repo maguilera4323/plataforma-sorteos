@@ -9,7 +9,10 @@ include("./DatosTablas/obtenerDatos.php");
 include("./DatosTablas/obtenerDatosSorteos.php"); 
 ?>
 <br>
-<h2 class="nombre-vista"><i class="fas fa-vote-yea"></i>&nbsp; Boletos Vendidos</h2>
+<div class="container">
+    <h2><i class="fas fa-vote-yea"></i>&nbsp; Boletos Vendidos</h2>
+</div>
+
 <br>
 <div class="container contenedor-tabla">
     <div class="container">
@@ -43,8 +46,8 @@ include("./DatosTablas/obtenerDatosSorteos.php");
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Usuario</th>                               
-                <th>Sorteo</th>  
+                <th>Nombre</th>
+                <th>DNI</th>                                 
                 <th># Boleto</th>
                 <th>Fecha de Compra</th>
             </tr>
@@ -58,8 +61,8 @@ include("./DatosTablas/obtenerDatosSorteos.php");
             ?>
             <tr>
                 <td><?php echo $fila['id_boleto']; ?></td>
-                <td><?php echo $fila['usuario']; ?></td>
-                <td><?php echo $fila['nombre_sorteo']; ?></td>
+                <td><?php echo $fila['nombres'] . ' ' . $fila['apellidos']; ?></td>
+                <td><?php echo $fila['dni']; ?></td>
                 <td><?php echo $fila['numero_boleto']; ?></td>
                 <td><?php echo $fila['fecha_compra']; ?></td>
             </tr>

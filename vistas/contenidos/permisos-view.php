@@ -9,7 +9,9 @@ include("./DatosTablas/obtenerDatos.php");
 include("./DatosTablas/obtenerDatosPermisos.php"); 
 ?>
 <br>
-<h2 class="nombre-vista"><i class="fas fa-tasks"></i>&nbsp; Permisos</h2>
+<div class="container">
+    <h2><i class="fas fa-tasks"></i>&nbsp; Permisos</h2>
+</div>
 <br>
 <div class="container contenedor-tabla">
     <div class="container">

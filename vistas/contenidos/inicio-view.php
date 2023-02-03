@@ -1,5 +1,5 @@
 <div id="inicio">
-    <section class="boton-inicio">
+    <section class="boton-inicio" style="background-image: url('../vistas/assets/img/Ganadores.jpg')">
             <a href="<?php echo SERVERURL?>login/"><button class= "button1" type="submit" >PARTICIPAR</button></a>
     </section>
 

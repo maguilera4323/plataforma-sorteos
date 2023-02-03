@@ -1,10 +1,7 @@
-/* estilos de barra de navegacion */
+/* estilos de barra de navegacion de los particpantes*/
 
  @import url('https://fonts.googleapis.com/css?family=Roboto');
 
- body{
-    background-color: #3d3d3d;
-}
 
  .navigation {
      height: 55px;
@@ -252,6 +249,7 @@
 }
 
 
+
 /* borde para las tablas */
 .contenedor-tabla{
     border: 1px solid #dddcdc;
@@ -275,6 +273,11 @@ div .label-actualizar{
   #datos-usuario {
     width: 100%;
     border-collapse: collapse;
+    background-color:white;
+}
+
+.contenedor-tabla{
+    background-color:white;
 }
 
 #datos-usuario th, td {
@@ -291,6 +294,7 @@ div .label-actualizar{
 #datos-usuario tr:hover{
     background-color: #9ed2fd;
 }
+
 
 
 /* estilos cards de vista Usuarios */
@@ -313,9 +317,40 @@ div .label-actualizar{
 }
 
 
+/* estilo para el encabezado de los formularios en la parte administrativa */
 .nombre-vista{
     margin-left: 9rem;
 }
 
+/* Estilo de color de fondo para la parte administrativa */
+.main-contenedor{
+    background-color: #e7e5e5;
+}
+/* 
+estilos para contenedor de vista Configuracion */
+.config-contenedor .col a{
+    text-decoration: none;
+    color:rgb(26, 26, 26);
+    box-shadow: 6px 5px 7px rgba(68, 67, 67, 0.411);
+}
+
+.config-contenedor .col a:hover{
+    background-color: #4bafd6;
+ 
+}
+
+.config-contenedor .card i{
+    font-size:6rem;
+    margin:0;
+}
+
+.graph{
+    width: 1200px;
+    padding-left: 4rem;
+}
+
+.ache1{
+    padding-left: 4rem;
+}
 
 

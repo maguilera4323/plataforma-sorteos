@@ -8,8 +8,12 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 include("./DatosTablas/obtenerDatos.php"); 
 include("./DatosTablas/obtenerDatosPremios.php"); 
 ?>
+
+<div class="main-contenedor">
 <br>
-<h2 class="nombre-vista"><i class="fas fa-trophy"></i>&nbsp; Premios</h2>
+<div class="container">
+    <h2><i class="fas fa-trophy"></i>&nbsp; Premios</h2>
+</div>
 <br>
 <div class="container contenedor-tabla">
     <div class="container">
@@ -32,7 +36,8 @@ include("./DatosTablas/obtenerDatosPremios.php");
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Sorteo</th>                               
+                <th>Sorteo</th> 
+                <th>Patrocinador</th>                              
                 <th>Nombre de Premio</th>  
                 <th>Cantidad</th> 
                 <th>Fotografía</th>
@@ -50,6 +55,7 @@ include("./DatosTablas/obtenerDatosPremios.php");
             <tr>
                 <td><?php echo $fila['id_premio']; ?></td>
                 <td><?php echo $fila['nombre_sorteo']; ?></td>
+                <td><?php echo $fila['nombre_empresa']; ?></td>
                 <td><?php echo $fila['nombre_premio']; ?></td>
                 <td><?php echo $fila['cantidad_disponible']; ?></td>
                 <td><img src="<?php echo $fila['foto_premio']; ?>" width="150" height="150" alt="" alt=""></td>
@@ -91,9 +97,35 @@ include("./DatosTablas/obtenerDatosPremios.php");
                                 </div>
                                 <br>
                                 <div class="form-group">
+                                    <label class="label-actualizar">Patrocinador</label>
+                                        <select class="form-control" name="patrocinador_act" required>
+                                            <?php
+                                                $datos=new obtenerDatosTablas();
+                                                $resultado=$datos->datosTablas('empresas');
+                                                foreach ($resultado as $valores){
+                                                //validación para obtener el valor guardado en la base de datos
+                                                //y que este se muestre seleccionado en la base de datos
+                                                    if($fila['id_empresa']==$valores['id_empresa']){
+                                                        echo '<option value="'.$valores['id_empresa'].'" selected>'.$valores['nombre_empresa'].'</option>';
+                                                //validación para obtener los demás valores de la base de datos para el select
+                                                    }elseif($fila['id_empresa']!=$valores['id_empresa']){
+                                                        echo '<option value="'.$valores['id_empresa'].'">'.$valores['nombre_empresa'].'</option>';
+                                                        }
+                                                }
+                                            ?>
+                                        </select>
+                                </div>
+                                <br>
+                                <div class="form-group">
                                     <label class="label-actualizar">Nombre</label>
                                     <input type="text" class="form-control" name="nombre_act" style="text-transform:uppercase;" 
                                     value="<?php echo $fila['nombre_premio']?>" required="" >
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label class="label-actualizar">Cantidad Disponible</label>
+                                    <input type="number" class="form-control" name="cantidad_act" 
+                                    value="<?php echo $fila['cantidad_disponible']?>" required="" >
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -132,6 +164,7 @@ include("./DatosTablas/obtenerDatosPremios.php");
 </div>
 <br>
 <br>
+</div>
 
    
 <!-- Modal Crear -->
@@ -162,8 +195,27 @@ include("./DatosTablas/obtenerDatosPremios.php");
 				</div>	
                 <br>
                 <div class="form-group">
+                    <label class="color-label">Patrocinador</label>
+                        <select class="form-control" name="patrocinador_nuevo" required>
+                            <option value="" selected="" disabled="">Seleccione una opción</option>
+                                <?php
+                                    $datos=new obtenerDatosTablas();
+                                    $resultado=$datos->datosTablas('empresas');
+                                    foreach ($resultado as $fila){
+                                         echo '<option value="'.$fila['id_empresa'].'">'.$fila['nombre_empresa'].'</option>';
+                                    }
+                                ?>
+                        </select>
+				</div>	
+                <br>
+                <div class="form-group">
                     <label class="color-label">Nombre de Premio</label>
 				    <input type="text" class="form-control" name="nombre_nuevo" style="text-transform:uppercase;" required="" >
+				</div>
+                <br>
+                <div class="form-group">
+                    <label class="color-label">Cantidad Disponible</label>
+				    <input type="number" class="form-control" name="cantidad_nuevo" required="" >
 				</div>
                 <br>
 				<div class="form-group">

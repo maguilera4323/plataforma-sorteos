@@ -26,7 +26,8 @@ class loginUsuarios extends Usuario{
 				$array['id'] = $fila['id_usuario'];
 				$array['usuario'] = $fila['usuario'];
             $array['estado'] = $fila['estado'];
-            $array['rol'] = $fila['id_rol'];
+            $array['id_rol'] = $fila['id_rol'];
+            $array['rol'] = $fila['rol'];
          }
             //validacion en caso de encontrar un usuario en la base de datos
             if(isset($array['usuario'])){
@@ -36,12 +37,13 @@ class loginUsuarios extends Usuario{
 						case 'Activo':
                      /* validacion para revisar si el usuario que busca ingresar al sistema
                      es un encargado del sistema o participante de los sorteos */
-                        if($array['rol']==3){
+                        if($array['rol']=='PARTICIPANTE'){
                         //datos que se envian para uso del sistema
                         $_SESSION['id_login']=$array['id'];
                         $_SESSION['usuario_login']=$array['usuario'];
                         $_SESSION['estado']=$array['estado'];
                         $_SESSION['rol'] = $array['rol'];
+                        $_SESSION['id_rol'] = $array['id_rol'];
                         $_SESSION['token_login']=md5(uniqid(mt_rand(),true));
                         return header("Location:".SERVERURL."home/");
                      }else{
@@ -50,6 +52,7 @@ class loginUsuarios extends Usuario{
                         $_SESSION['usuario_login']=$array['usuario'];
                         $_SESSION['estado']=$array['estado'];
                         $_SESSION['rol'] = $array['rol'];
+                        $_SESSION['id_rol'] = $array['id_rol'];
                         $_SESSION['token_login']=md5(uniqid(mt_rand(),true));
                         return header("Location:".SERVERURL."dashboard/");
                      }

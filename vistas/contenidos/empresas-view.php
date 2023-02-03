@@ -7,12 +7,12 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 //llamado al archivo de funciones para obtener los datos de la tabla
     include("./DatosTablas/obtenerDatos.php"); 
 //archivo para obtener los permisos del rol conectado al sistema en la vista a la que ha accedido
-    include("./DatosTablas/obtenerDatosPermisosID.php"); 
+    include("./DatosTablas/obtenerDatosPermisos.php"); 
 
 //verificación de permisos
 //se revisa si el usuario tiene acceso a una vista específica por medio del rol que tiene y el objeto al que quiere acceder
-	$id_rol=$_SESSION['rol'];
-	$datos=new obtenerDatosPermisosID();
+	$id_rol=$_SESSION['id_rol'];
+	$datos=new obtenerDatosPermisos();
     $resultado=$datos->datosPermisosID($id_rol,3);
 
     foreach ($resultado as $fila){
@@ -36,7 +36,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 	}
 ?>
 <br>
-<h2 class="nombre-vista"><i class="fas fa-industry"></i>&nbsp; Empresas</h2>
+<div class="container">
+    <h2><i class="fas fa-industry"></i>&nbsp; Empresas</h2>
+</div>
 <br>
 <div class="container contenedor-tabla">
     <div class="container">

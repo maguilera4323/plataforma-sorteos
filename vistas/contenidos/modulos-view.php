@@ -8,7 +8,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 include("./DatosTablas/obtenerDatos.php"); 
 ?>
 <br>
-<h2 class="nombre-vista"><i class="fas fa-table"></i>&nbsp; Módulos</h2>
+<div class="container">
+    <h2><i class="fas fa-table"></i>&nbsp; Módulos</h2>
+</div>
 <br>
 <div class="container contenedor-tabla">
     <div class="container">

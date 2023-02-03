@@ -19,6 +19,9 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.all.min.js" ></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.min.js" ></script>
 
+<!-- ChartJS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js" ></script>
+
 <!-- Otras funciones añadidas por los desarrolladores -->
 <script src="<?php echo SERVERURL; ?>vistas/js/funciones-navbar.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/alertas.js"></script>
@@ -27,5 +30,6 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/paginador.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/buscador-registros.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/navlateral.js"></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/graficos.js"></script>
 
 
