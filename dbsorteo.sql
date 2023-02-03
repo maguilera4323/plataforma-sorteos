@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `empresas` (
   PRIMARY KEY (`id_empresa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.empresas: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.empresas: ~3 rows (aproximadamente)
 INSERT INTO `empresas` (`id_empresa`, `nombre_empresa`, `direccion`, `telefono`, `correo_electronico`) VALUES
 	(1, 'SULA', 'Col. Victor F. Ardon, Tegucigalpa M.D.C', '22021294', 'contacto@sula.hn'),
 	(2, 'CINEMARK', 'Res. Las Uvas', '22091298', 'soporte@cinemark.hn'),
@@ -112,13 +112,12 @@ CREATE TABLE IF NOT EXISTS `permisos` (
   KEY `Índice 2` (`id_modulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.permisos: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.permisos: ~4 rows (aproximadamente)
 INSERT INTO `permisos` (`id_rol`, `id_modulo`, `tipo_modulo`, `permiso_insercion`, `permiso_actualizacion`, `permiso_eliminacion`, `permiso_consulta`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
 	(1, 1, 'Home', '1', '1', '1', '1', 'prueba', '2023-01-27 10:19:47', 'prueba', '2023-01-27 10:38:19'),
-	(1, 3, 'Empresas', '1', '1', '1', '1', 'prueba', '2023-01-27 10:19:59', NULL, NULL),
 	(3, 1, 'Home', '1', '0', '0', '1', 'prueba', '2023-01-27 10:20:13', NULL, NULL),
 	(2, 1, 'Home', '1', '1', '1', '0', 'prueba', '2023-01-27 10:21:02', NULL, NULL),
-	(3, 3, 'Empresas', '0', '1', '0', '1', 'prueba', '2023-01-27 10:36:04', 'prueba', '2023-01-27 10:38:26');
+	(1, 3, 'Empresas', '0', '0', '1', '1', 'prueba', '2023-02-02 18:23:25', NULL, NULL);
 
 -- Volcando estructura para tabla dbsorteo.personas
 CREATE TABLE IF NOT EXISTS `personas` (
@@ -136,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   PRIMARY KEY (`id_persona`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.personas: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.personas: ~5 rows (aproximadamente)
 INSERT INTO `personas` (`id_persona`, `nombres`, `apellidos`, `dni`, `telefono`, `sexo`, `direccion`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
 	(1, 'PRUEBA', 'USUARIOS', '80819991034', '98762301', 'Masculino', 'Col. San Angel, Tegucigalpa M.D.C', 'prueba', '2023-01-29 16:02:09', NULL, NULL),
 	(2, 'TAYLOR', 'SWIFT', '0701238712845', '97652301', 'Femenino', 'USA', 'prueba', '2023-01-29 16:04:59', NULL, NULL),
@@ -148,17 +147,20 @@ INSERT INTO `personas` (`id_persona`, `nombres`, `apellidos`, `dni`, `telefono`,
 CREATE TABLE IF NOT EXISTS `premios` (
   `id_premio` int(11) NOT NULL AUTO_INCREMENT,
   `id_sorteo` int(11) NOT NULL,
+  `id_empresa` int(11) NOT NULL,
   `nombre_premio` varchar(300) NOT NULL,
   `cantidad_disponible` int(11) DEFAULT NULL,
   `foto_premio` varchar(300) NOT NULL,
   PRIMARY KEY (`id_premio`) USING BTREE,
-  KEY `Índice 2` (`id_sorteo`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  KEY `Índice 2` (`id_sorteo`) USING BTREE,
+  KEY `Índice 3` (`id_empresa`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.premios: ~2 rows (aproximadamente)
-INSERT INTO `premios` (`id_premio`, `id_sorteo`, `nombre_premio`, `cantidad_disponible`, `foto_premio`) VALUES
-	(1, 1, 'CAMISA HOMBRE', 2, '../vistas/assets/premios/camisa.jpg'),
-	(2, 1, 'JUGOS', 80, '../vistas/assets/premios/jugo-naranja.jpg');
+-- Volcando datos para la tabla dbsorteo.premios: ~3 rows (aproximadamente)
+INSERT INTO `premios` (`id_premio`, `id_sorteo`, `id_empresa`, `nombre_premio`, `cantidad_disponible`, `foto_premio`) VALUES
+	(1, 1, 1, 'CAMISA HOMBRE', 2, '../vistas/assets/premios/camisa.jpg'),
+	(2, 1, 1, 'JUGOS', 80, '../vistas/assets/premios/jugo-naranja.jpg'),
+	(3, 1, 3, 'A', 24, '../vistas/assets/premios/Iconos-2-envio-08.jpg');
 
 -- Volcando estructura para tabla dbsorteo.premios_sorteo
 CREATE TABLE IF NOT EXISTS `premios_sorteo` (
@@ -187,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`id_rol`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.roles: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.roles: ~3 rows (aproximadamente)
 INSERT INTO `roles` (`id_rol`, `rol`, `descripcion`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
 	(1, 'ADMINISTRADOR', 'Administrador del sistema', 'prueba', '2023-01-18 20:42:58', NULL, NULL),
 	(2, 'EMPLEADO', 'Encargado de monitorear actividad de usuarios', 'prueba', '2023-01-19 07:42:09', NULL, NULL),
@@ -196,19 +198,18 @@ INSERT INTO `roles` (`id_rol`, `rol`, `descripcion`, `creado_por`, `fecha_creaci
 -- Volcando estructura para tabla dbsorteo.sorteos
 CREATE TABLE IF NOT EXISTS `sorteos` (
   `id_sorteo` int(11) NOT NULL AUTO_INCREMENT,
-  `id_empresa` int(11) NOT NULL,
   `nombre_sorteo` varchar(100) NOT NULL,
-  `fecha_realizacion` datetime NOT NULL,
-  `cantidad_boletos` int(10) DEFAULT NULL,
-  `estado_sorteo` enum('Pendiente','Realizado') DEFAULT NULL,
-  PRIMARY KEY (`id_sorteo`) USING BTREE,
-  KEY `IdEmpresa` (`id_empresa`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `rango_inicial` int(11) NOT NULL,
+  `rango_final` int(10) DEFAULT NULL,
+  `estado_sorteo` enum('Activo','Inactivo') DEFAULT NULL,
+  PRIMARY KEY (`id_sorteo`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.sorteos: ~2 rows (aproximadamente)
-INSERT INTO `sorteos` (`id_sorteo`, `id_empresa`, `nombre_sorteo`, `fecha_realizacion`, `cantidad_boletos`, `estado_sorteo`) VALUES
-	(1, 1, '1ER MARATON DE VERANO SULA', '2023-02-02 21:30:00', 60, 'Pendiente'),
-	(2, 2, 'PREMIERE UNA LOCA NAVIDAD CATRACHA 2', '2023-02-08 21:00:00', 50, 'Pendiente');
+-- Volcando datos para la tabla dbsorteo.sorteos: ~3 rows (aproximadamente)
+INSERT INTO `sorteos` (`id_sorteo`, `nombre_sorteo`, `rango_inicial`, `rango_final`, `estado_sorteo`) VALUES
+	(1, '1ER MARATON DE VERANO SULA', 1, 1200, 'Activo'),
+	(2, 'PREMIERE UNA LOCA NAVIDAD CATRACHA 2', 1201, 1850, 'Inactivo'),
+	(3, 'HILA', 1851, 2000, 'Inactivo');
 
 -- Volcando estructura para tabla dbsorteo.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (

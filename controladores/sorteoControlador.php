@@ -11,11 +11,10 @@ class sorteoControlador extends sorteoModelo{
 
 	
 	public function agregarSorteo(){
-		$empresa=ConexionBD::limpiar_cadena($_POST['empresa_nuevo']);
 		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_nuevo']));
-		$fecha=ConexionBD::limpiar_cadena($_POST['fecha_nuevo']);
-		$cant_boletos=ConexionBD::limpiar_cadena($_POST['cant_nuevo']);
-		$estado=1;
+		$rango_inicial=ConexionBD::limpiar_cadena($_POST['rango_inicial_nuevo']);
+		$rango_final=ConexionBD::limpiar_cadena($_POST['rango_final_nuevo']);
+		$estado=2;
 
 		
 		/* //validaciones de datos */
@@ -31,11 +30,22 @@ class sorteoControlador extends sorteoModelo{
 		}
 
 
-		if(ConexionBD::verificar_datos("[0-9]{1,10}",$cant_boletos)){
+		if(ConexionBD::verificar_datos("[0-9]{1,10}",$rango_inicial)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Cantidad de boletos solo acepta números",
+				"Texto"=>"El campo Rango Inicial solo acepta números",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		if(ConexionBD::verificar_datos("[0-9]{1,10}",$rango_final)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Rango Final solo acepta números",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
@@ -57,10 +67,9 @@ class sorteoControlador extends sorteoModelo{
 					
 			//arreglo enviado al modelo para ser usado en una sentencia INSERT
 			$datos_sorteo_reg=[
-				"empresa"=>$empresa,
 				"nombre"=>$nombre,
-				"fecha"=>$fecha,
-				"cant_boletos"=>$cant_boletos,
+				"rango_i"=>$rango_inicial,
+				"rango_f"=>$rango_final,
 				"estado"=>$estado
 			];
 
@@ -89,10 +98,9 @@ class sorteoControlador extends sorteoModelo{
 
 
 	public function actualizarSorteo(){	
-		$empresa=ConexionBD::limpiar_cadena($_POST['empresa_act']);
 		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_act']));
-		$fecha=ConexionBD::limpiar_cadena($_POST['fecha_act']);
-		$cant_boletos=ConexionBD::limpiar_cadena($_POST['cant_act']);
+		$rango_inicial=ConexionBD::limpiar_cadena($_POST['rango_inicial_act']);
+		$rango_final=ConexionBD::limpiar_cadena($_POST['rango_final_act']);
 		$estado=ConexionBD::limpiar_cadena($_POST['estado_act']);
 		$id_actualizacion=ConexionBD::limpiar_cadena($_POST['sorteo_id']);
 
@@ -110,11 +118,22 @@ class sorteoControlador extends sorteoModelo{
 		}
 
 
-		if(ConexionBD::verificar_datos("[0-9]{1,10}",$cant_boletos)){
+		if(ConexionBD::verificar_datos("[0-9]{1,10}",$rango_inicial)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Cantidad de boletos solo acepta números",
+				"Texto"=>"El campo Rango Inicial solo acepta números",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		if(ConexionBD::verificar_datos("[0-9]{1,10}",$rango_final)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Rango Final solo acepta números",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
@@ -123,10 +142,9 @@ class sorteoControlador extends sorteoModelo{
 					
 			//arreglo enviado al modelo para ser usado en una sentencia INSERT
 			$datos_sorteo_act=[
-				"empresa"=>$empresa,
 				"nombre"=>$nombre,
-				"fecha"=>$fecha,
-				"cant_boletos"=>$cant_boletos,
+				"rango_i"=>$rango_inicial,
+				"rango_f"=>$rango_final,
 				"estado"=>$estado
 			];
 

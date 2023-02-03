@@ -13,6 +13,8 @@ class premioControlador extends premioModelo{
 	public function agregarPremio(){
 		$sorteo=ConexionBD::limpiar_cadena($_POST['sorteo_nuevo']);
 		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_nuevo']));
+		$patrocinador=ConexionBD::limpiar_cadena($_POST['patrocinador_nuevo']);
+		$cantidad=ConexionBD::limpiar_cadena($_POST['cantidad_nuevo']);
 
 		$nombre_img=($_FILES['imagen_nuevo']['name']);
 		$file_type = strtolower(pathinfo($nombre_img,PATHINFO_EXTENSION));
@@ -27,6 +29,17 @@ class premioControlador extends premioModelo{
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
 				"Texto"=>"El campo Nombre solo acepta letras y espacios",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		if(ConexionBD::verificar_datos("[0-9]{1,10}",$cantidad)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Cantidad Disponible solo acepta números",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
@@ -61,6 +74,8 @@ class premioControlador extends premioModelo{
 			$datos_premio_reg=[
 				"sorteo"=>$sorteo,
 				"nombre"=>$nombre,
+				"patr"=>$patrocinador,
+				"cant"=>$cantidad,
 				"imagen"=>$ruta,
 			];
 
@@ -91,6 +106,8 @@ class premioControlador extends premioModelo{
 	public function actualizarPremio(){	
 		$sorteo=ConexionBD::limpiar_cadena($_POST['sorteo_act']);
 		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_act']));
+		$patrocinador=ConexionBD::limpiar_cadena($_POST['patrocinador_act']);
+		$cantidad=ConexionBD::limpiar_cadena($_POST['cantidad_act']);
 		$id_actualizacion=ConexionBD::limpiar_cadena($_POST['premio_id']);
 
 		$nombre_img=($_FILES['imagen_act']['name']);
@@ -112,6 +129,17 @@ class premioControlador extends premioModelo{
 			exit();
 		}
 
+		if(ConexionBD::verificar_datos("[0-9]{1,300}",$cantidad)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Cantidad Disponible solo acepta números",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
 		if($file_type != "jpg" && $file_type != "jpeg" && $file_type != "png" && $file_type != "gif" ){
 			$alerta=[
 				"Alerta"=>"simple",
@@ -126,6 +154,8 @@ class premioControlador extends premioModelo{
 			//arreglo enviado al modelo para ser usado en una sentencia INSERT
 			$datos_premio_act=[
 				"sorteo"=>$sorteo,
+				"patr"=>$patrocinador,
+				"cant"=>$cantidad,
 				"nombre"=>$nombre,
 				"imagen"=>$ruta,
 			];

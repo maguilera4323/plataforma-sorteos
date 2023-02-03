@@ -23,7 +23,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <div id="menu-items">
       <div class="item">
-        <a href="<?php echo SERVERURL?>home/">
+        <a href="<?php echo SERVERURL?>dashboard/">
           <div class="icon"><i class="fas fa-home"></i></div>
           <div class="title">Inicio</div>
         </a>
@@ -43,12 +43,12 @@ if (session_status() == PHP_SESSION_NONE) {
           <div class="title">Premios</div>
         </a>
 
-        <a href="<?php echo SERVERURL?>inventario/">
-          <div class="icon"><i class="fas fa-warehouse"></i></div>
+        <a href="<?php echo SERVERURL?>configuracion/">
+          <div class="icon"><i class="fas fa-wrench"></i></div>
           <div class="title">Configuración</div>
         </a>
 
-        <a href="<?php echo SERVERURL?>usuarios/">
+        <a href="<?php echo SERVERURL?>administracion/">
           <div class="icon"><i class="fas fa-wrench"></i></div>
           <div class="title">Administracion</div>
         </a>

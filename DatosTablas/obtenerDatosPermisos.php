@@ -12,5 +12,14 @@ class obtenerDatosPermisos extends ConexionBD{
         $resultado=$this->conexion->query($sql) or die ($sql);
         return $resultado;
     }
+
+    //funcion para obtener los permisos que tiene el rol del usuario conectado al sistema
+    //para acceder a partes del sistema, crear, modificar o eliminar informacion
+    public function datosPermisosID($id_rol,$id_mod){
+        $this->getConexion();
+        $sql="SELECT * FROM permisos where id_rol='$id_rol' and id_modulo='$id_mod'";
+        $resultado=$this->conexion->query($sql) or die ($sql);
+        return $resultado;
+    }
     
 }

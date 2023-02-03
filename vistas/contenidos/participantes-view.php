@@ -20,6 +20,9 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
 
 ?>
 <br>
+<div class="container">
+    <h2><i class="fas fa-industry"></i>&nbsp; Empleados</h2>
+</div>
 <br>
 <div class="container contenedor-tabla">
     <div class="container">

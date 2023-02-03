@@ -32,7 +32,7 @@
 	<main class="full-box main-container">
 		<!-- Nav lateral -->
 		<?php 
-		if($_SESSION['rol']!=3){
+		if($_SESSION['rol']!='PARTICIPANTE'){
 			include "./vistas/inc/NavLateral.php";
 		}
 		 ?>
@@ -40,7 +40,7 @@
 		<!-- Page content -->
 		<section class="full-box page-content">
 			<?php
-			if($_SESSION['rol']!=3){
+			if($_SESSION['rol']!='PARTICIPANTE'){
 				include "./vistas/inc/NavbarAdm.php"; 
 				include  $vistas;
 			}else{
