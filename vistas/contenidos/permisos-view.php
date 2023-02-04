@@ -13,6 +13,16 @@ include("./DatosTablas/obtenerDatosPermisos.php");
     <h2><i class="fas fa-tasks"></i>&nbsp; Permisos</h2>
 </div>
 <br>
+
+<!-- Menu de desplazamiento de vistas - forma descendente -->
+<div class="container">
+    <h5><i class="fas fa-home"></i>&nbsp; 
+    <a href="<?php echo SERVERURL?>dashboard/"> Home </a>
+    / 
+    <a href="<?php echo SERVERURL?>configuracion/"> Configuración </a>
+    / 
+    <a href="<?php echo SERVERURL?>permisos/"> Permisos </a></h5>
+</div>
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">

@@ -12,6 +12,17 @@ include("./DatosTablas/obtenerDatos.php");
     <h2><i class="fas fa-table"></i>&nbsp; Módulos</h2>
 </div>
 <br>
+
+<!-- Menu de desplazamiento de vistas - forma descendente -->
+<div class="container">
+    <h5><i class="fas fa-home"></i>&nbsp; 
+    <a href="<?php echo SERVERURL?>dashboard/"> Home </a>
+    / 
+    <a href="<?php echo SERVERURL?>configuracion/"> Configuración </a>
+    / 
+    <a href="<?php echo SERVERURL?>modulos/"> Módulos </a></h5>
+</div>
+
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
@@ -32,7 +43,6 @@ include("./DatosTablas/obtenerDatos.php");
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Modulo</th>                               
                 <th>Descripción</th>  
                 <th>Tipo</th> 
@@ -48,7 +58,6 @@ include("./DatosTablas/obtenerDatos.php");
                 foreach ($resultado as $fila){
             ?>
             <tr>
-                <td><?php echo $fila['id_modulo']; ?></td>
                 <td><?php echo $fila['modulo']; ?></td>
                 <td><?php echo $fila['descripcion']; ?></td>
                 <td><?php echo $fila['tipo_modulo']; ?></td>

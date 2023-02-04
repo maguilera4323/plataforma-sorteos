@@ -24,6 +24,19 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
     <h2><i class="fas fa-industry"></i>&nbsp; Empleados</h2>
 </div>
 <br>
+
+<!-- Menu de desplazamiento de vistas - forma descendente -->
+<div class="container">
+    <h5><i class="fas fa-home"></i>&nbsp; 
+    <a href="<?php echo SERVERURL?>dashboard/"> Home </a>
+    / 
+    <a href="<?php echo SERVERURL?>configuracion/"> Configuración </a>
+    / 
+    <a href="<?php echo SERVERURL?>usuarios/"> Usuarios </a>
+    / 
+    <a href="<?php echo SERVERURL?>empleados/"> Empleados </a></h5>
+</div>
+
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
@@ -44,7 +57,6 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Usuario</th>                               
                 <th>Nombre</th>  
                 <th>Estado</th>
@@ -62,7 +74,6 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                 foreach ($resultado as $fila){
             ?>
             <tr>
-                <td><?php echo $fila['id_usuario']; ?></td>
                 <td><?php echo $fila['usuario']; ?></td>
                 <td><?php echo $fila['nombres'] . " " . $fila['apellidos']; ?></td>
                 <td><?php echo $fila['estado']; ?></td>

@@ -40,6 +40,15 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <h2><i class="fas fa-industry"></i>&nbsp; Empresas</h2>
 </div>
 <br>
+
+<!-- Menu de desplazamiento de vistas - forma descendente -->
+<div class="container">
+    <h5><i class="fas fa-home"></i>&nbsp; 
+    <a href="<?php echo SERVERURL?>dashboard/"> Home </a>
+    / 
+    <a href="<?php echo SERVERURL?>empresas/"> Empresas </a></h5>
+</div>
+
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
@@ -60,7 +69,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nombre</th>                               
                 <th>Direccion</th>  
                 <th>Teléfono</th>
@@ -77,7 +85,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                 foreach ($resultado as $fila){
             ?>
             <tr>
-                <td><?php echo $fila['id_empresa']; ?></td>
                 <td><?php echo $fila['nombre_empresa']; ?></td>
                 <td><?php echo $fila['direccion']; ?></td>
                 <td><?php echo $fila['telefono']; ?></td>

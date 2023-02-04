@@ -10,6 +10,17 @@ include("./DatosTablas/obtenerDatos.php");
 <br>
 <h2 class="nombre-vista"><i class="fas fa-users-cog"></i>&nbsp; Roles</h2>
 <br>
+
+<!-- Menu de desplazamiento de vistas - forma descendente -->
+<div class="container">
+    <h5><i class="fas fa-home"></i>&nbsp; 
+    <a href="<?php echo SERVERURL?>dashboard/"> Home </a>
+    / 
+    <a href="<?php echo SERVERURL?>configuracion/"> Configuración </a>
+    / 
+    <a href="<?php echo SERVERURL?>roles/"> Roles </a></h5>
+</div>
+
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
@@ -30,7 +41,6 @@ include("./DatosTablas/obtenerDatos.php");
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Rol</th>                               
                 <th>Descripción</th>  
                 <th>Actualizar</th>
@@ -45,7 +55,6 @@ include("./DatosTablas/obtenerDatos.php");
                 foreach ($resultado as $fila){
             ?>
             <tr>
-                <td><?php echo $fila['id_rol']; ?></td>
                 <td><?php echo $fila['rol']; ?></td>
                 <td><?php echo $fila['descripcion']; ?></td>
                 <td>

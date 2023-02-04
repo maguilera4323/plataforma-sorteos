@@ -9,5 +9,12 @@ class obtenerDatosTablas extends ConexionBD{
         $resultado=$this->conexion->query($sql) or die ($sql);
         return $resultado;
     }
+
+    public function contarRegistros($tabla){
+        $this->getConexion();
+        $sql="SELECT count(*) as contar_registros FROM $tabla";
+        $resultado=$this->conexion->query($sql) or die ($sql);
+        return $resultado;
+    }
     
 }

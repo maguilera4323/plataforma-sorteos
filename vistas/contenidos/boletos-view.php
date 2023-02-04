@@ -12,8 +12,18 @@ include("./DatosTablas/obtenerDatosSorteos.php");
 <div class="container">
     <h2><i class="fas fa-vote-yea"></i>&nbsp; Boletos Vendidos</h2>
 </div>
-
 <br>
+
+<!-- Menu de desplazamiento de vistas - forma descendente -->
+<div class="container">
+    <h5><i class="fas fa-home"></i>&nbsp; 
+    <a href="<?php echo SERVERURL?>dashboard/"> Home </a>
+    / 
+    <a href="<?php echo SERVERURL?>sorteos/"> Sorteos </a>
+    / 
+    <a href="<?php echo SERVERURL?>boletos/"> Boletos </a></h5>
+</div>
+
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
@@ -45,7 +55,6 @@ include("./DatosTablas/obtenerDatosSorteos.php");
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nombre</th>
                 <th>DNI</th>                                 
                 <th># Boleto</th>
@@ -60,7 +69,6 @@ include("./DatosTablas/obtenerDatosSorteos.php");
                 foreach ($resultado as $fila){
             ?>
             <tr>
-                <td><?php echo $fila['id_boleto']; ?></td>
                 <td><?php echo $fila['nombres'] . ' ' . $fila['apellidos']; ?></td>
                 <td><?php echo $fila['dni']; ?></td>
                 <td><?php echo $fila['numero_boleto']; ?></td>

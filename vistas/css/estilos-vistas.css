@@ -96,9 +96,6 @@ body{
   margin-left:var(--width);
 }
 
-#main-container{
-  color:white;
-}
 
 @font-face{
   font-family: 'Quicksand-Regular';

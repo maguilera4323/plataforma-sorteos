@@ -15,6 +15,15 @@ include("./DatosTablas/obtenerDatosSorteos.php");
     <h2><i class="fas fa-medal"></i>&nbsp; Sorteos</h2>
 </div>
 <br>
+
+<!-- Menu de desplazamiento de vistas - forma descendente -->
+<div class="container">
+    <h5><i class="fas fa-home"></i>&nbsp; 
+    <a href="<?php echo SERVERURL?>dashboard/"> Home </a>
+    / 
+    <a href="<?php echo SERVERURL?>sorteos/"> Sorteos </a></h5>
+</div>
+
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
@@ -35,7 +44,6 @@ include("./DatosTablas/obtenerDatosSorteos.php");
     <table id="datos-usuario" class="table table-bordered table-striped text-center">
         <thead>
             <tr>
-                <th>ID</th>                             
                 <th>Nombre de sorteo</th>  
                 <th>Rango Inicial</th>
                 <th>Rango Final</th>
@@ -53,7 +61,6 @@ include("./DatosTablas/obtenerDatosSorteos.php");
                 foreach ($resultado as $fila){
             ?>
             <tr>
-                <td><?php echo $fila['id_sorteo']; ?></td>
                 <td><?php echo $fila['nombre_sorteo']; ?></td>
                 <td><?php echo $fila['rango_inicial']; ?></td>
                 <td><?php echo $fila['rango_final']; ?></td>
