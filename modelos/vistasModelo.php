@@ -13,7 +13,8 @@
 				}else{
 					$contenido="404";
 				}
-			}elseif($vistas=="inicio" || $vistas=="index" || $vistas=="login" || $vistas=="recuperacion-clave" || $vistas=="registro"){
+			}elseif($vistas=="inicio" || $vistas=="index" || $vistas=="login" || $vistas=="recuperacion-clave" || $vistas=="registro"
+			|| $vistas=="verifica-codigo"){
 				switch($vistas){
 					case 'inicio':
 						$contenido="inicio";
@@ -30,9 +31,13 @@
 					case 'registro':
 						$contenido="registro";
 					break;
+					case 'verifica-codigo':
+						$contenido="verifica-codigo";
+					break;
 				}
 
-			}elseif($vistas=="inicio" || $vistas=="index" || $vistas=="login" || $vistas=="recuperacion-clave" || $vistas=="registro"){
+			}elseif($vistas=="inicio" || $vistas=="index" || $vistas=="login" || $vistas=="recuperacion-clave" || $vistas=="registro"
+			|| $vistas=="verifica-codigo"){
 				$contenido="inicio";
 
 			}else{

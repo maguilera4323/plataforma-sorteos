@@ -19,6 +19,13 @@ class Usuario extends ConexionBD{
         return $resultado;
     }
 
+    public function verificaUsuarioExistente($email) {
+		$this->getConexion();
+		$sql="SELECT * FROM usuarios WHERE BINARY correo_electronico = '".$email. "' LIMIT 1";
+        $resultado=$this->conexion->query($sql) or die ($sql);
+        return $resultado;
+	}
+
   /*   public function verificarEstado($user) {
 		$this->getConexion();
 		$sql = "SELECT usuario, estado_usuario FROM usuarios WHERE usuario = '".$user. "' LIMIT 1";

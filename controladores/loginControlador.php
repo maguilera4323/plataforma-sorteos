@@ -3,6 +3,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
    session_start();
 }
 require_once ("./modelos/loginModelo.php");
+require_once "./controladores/emailControlador.php";
 
 class loginUsuarios extends Usuario{
 
@@ -75,6 +76,36 @@ class loginUsuarios extends Usuario{
                die();
                }
    }
+
+
+   //función que se encarga de validar el usuario ingresado para la recuperacion de contraseña
+		public function verificaUsuarioExistente($email){
+			$correoEnviado=ConexionBD::limpiar_cadena($email);
+			$array=array();
+
+			$verificarUsuario = new Usuario(); //se crea una instancia en el archivo modelo de Login
+			$respuesta = $verificarUsuario->verificaUsuarioExistente($correoEnviado);
+			foreach ($respuesta as $fila) { 
+				$array['usuario'] = $fila['usuario'];
+				$array['estado'] = $fila['estado'];
+			}
+
+			//Se valida si el usuario no está inactivo para realizar la recuperacion de contraseña
+			if (isset($array['usuario'])>0){
+				//se revisa la existencia del usuario y el metodo de recuperacion seleccionado
+						$_SESSION['usuario_rec']=$array['usuario'];
+						$_SESSION['respuesta'] = 'Correo enviado';
+						$agg_correo = new Correo(); 
+      				$respuesta = $agg_correo->enviarCorreo($correoEnviado);
+                  return "<script> window.location.href='".SERVERURL."recuperacion-clave/'; </script>";
+					die();
+			}else{
+				$_SESSION['respuesta'] = 'Usuario no existe';
+				return header("Location:".SERVERURL."recuperacion-clave/");
+				die();
+			}
+		}
+
 
 
     //funcion encargada de redirigir al login siempre que se detecte que no hay una sesion activa

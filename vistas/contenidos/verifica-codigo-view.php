@@ -2,6 +2,8 @@
 	if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
+
+  $_SESSION['respuesta']='';
 	//llamado al controlador de login
     require_once './controladores/loginControlador.php';
     $usuario = new loginUsuarios(); //se crea nueva instancia de usuario
@@ -60,6 +62,7 @@
 					 	}
 				 	}
 			 	?>
+         <h5>Ingrese el código de recuperación</h5>
           <input class="controls" type="text" name="txtcorreo" placeholder="Ingrese su correo" required>
           <input class="buttons"  type="submit" name="acceder" value="ENVIAR">
         </section>
