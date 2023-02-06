@@ -70,7 +70,6 @@ class Correo extends ConexionBD{
         $mail->Encoding = 'base64';
           $mail->send();
           //instancia que llama a la función para guardar los datos de recuperacion
-            
             $_SESSION['respuesta'] = 'Correo enviado';
             $_SESSION['codigo']=$codigo;
             $_SESSION['correo']=$correo;
@@ -80,36 +79,19 @@ class Correo extends ConexionBD{
     }
 
     //funcion para verificar los dato de recuperacion insertados en la tabla
-    //TBL_restablece_clave_email
     public function verificaCodigoToken($codigo){
-        $codigo_verificacion=mainModel::limpiar_cadena($codigo);
-       /*  $token_verificacion=$_SESSION['token']; */
+        $codigo_verificacion=ConexionBD::limpiar_cadena($codigo);
         $correo_verificacion=$_SESSION['correo'];
+        $horasVigencia=24;
         $array=array();
-
-        //parametros obtenidos para el tamaño maximo y minimo de la contraseña
-        $parametroMinContrasena=new Usuario();
-		$valorParametroMin=$parametroMinContrasena->minContrasena();
-			foreach ($valorParametroMin as $fila) { //se recorre el arreglo recibido
-			//datos guardados para ser usados posteriormenete en el sistema
-			    $_SESSION['min_contrasena'] = $fila['valor'];
-		}
-			
-		$parametroMaxContrasena=new Usuario();
-		$valorParametroMax=$parametroMaxContrasena->maxContrasena();
-			foreach ($valorParametroMax as $fila) { //se recorre el arreglo recibido
-			//datos guardados para ser usados posteriormenete en el sistema
-				$_SESSION['max_contrasena'] = $fila['valor'];
-		}
 
         //Parametro para la vigencia del codigo de seguridad ingresado
         //configurado actualmente en 24 horas
-        $parametroVigenciaCodigo=new Usuario();
+/*         $parametroVigenciaCodigo=new Usuario();
 		$valorParametroVigencia=$parametroVigenciaCodigo->VigenciaCodigo();
-			foreach ($valorParametroVigencia as $fila) { //se recorre el arreglo recibido
-			//datos guardados para ser usados posteriormenete en el sistema
+			foreach ($valorParametroVigencia as $fila) { 
 				$horasVigencia = $fila['valor'];
-		}
+		} */
 
         //se instancia y llama a la funcion que hara un select para verificar si los datos que se envian coinciden con los registrados en la bd
         $enviarCodigoVerif = new Usuario(); 
@@ -122,24 +104,27 @@ class Correo extends ConexionBD{
 
         //se obtiene la fecha del momento en que se llama la funcion
         //se resta la fecha en la que se envio el correo para validar que el codigo siga valido de acuerdo al tiempo asignado
-        $fecha_actual=date('y-m-d h:i:s');
-        $segundos=strtotime($fecha_actual)-strtotime($array['fecha']);
-        $horas=$segundos/3600;
+        if(isset($array['fecha'])!=''){
+            $fecha_actual=date('y-m-d h:i:s');
+            $segundos=strtotime($fecha_actual)-strtotime($array['fecha']);
+            $horas=$segundos/3600;
+        }
+        
 
         //condicion que verifica si el codigo coincide con el guardado en la bd
         if(isset($array['codigo'])==''){
             $_SESSION['respuesta'] = 'codigo invalido';
-            return header("Location:".SERVERURL."verifica-codigo/");
+            return "<script> window.location.href='".SERVERURL."verifica-codigo/'; </script>";
             die();
         //condicion que verifica si el codigo fue ingresado antes del tiempo limite
         }else if (isset($array['codigo'])>0 && $horas<=$horasVigencia){
                 $_SESSION['respuesta'] = 'codigo valido';
-                return header("Location:".SERVERURL."verifica-codigo/");
+                return "<script> window.location.href='".SERVERURL."verifica-codigo/'; </script>";
                 die();
          //condicion que indica que el codigo ya no es válido al ser usado después del tiempo limite
             }else if(isset($array['codigo'])>0 && $horas>$horasVigencia){
                 $_SESSION['respuesta'] = 'token vencido';
-                return header("Location:".SERVERURL."verifica-codigo/");
+                return "<script> window.location.href='".SERVERURL."verifica-codigo/'; </script>";
                 die();
             }
 
@@ -165,7 +150,7 @@ class Correo extends ConexionBD{
             $mail->Port       = PUERTO_SMTP;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('citycoffeehn1@gmail.com', 'City Coffe');
+            $mail->setFrom('maynoraguileraosorto@gmail.com', 'Sorteos Reales');
             $mail->addAddress($correo);     //Add a recipient
 
             //Content

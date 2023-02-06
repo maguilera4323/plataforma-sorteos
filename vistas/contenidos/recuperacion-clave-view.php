@@ -46,7 +46,7 @@
 						break;
 						case 'Correo enviado':
 							echo "<script>
-              setTimeout(function(){location.href='".SERVERURL."verifica-codigo/'} , 10000); </script>";
+              setTimeout(function(){location.href='".SERVERURL."verifica-codigo/'} , 2500); </script>";
 							echo '<style>
               .recuperacion-form .form-login{
                 width: 25rem;

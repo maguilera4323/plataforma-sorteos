@@ -107,6 +107,46 @@ class loginUsuarios extends Usuario{
 		}
 
 
+   //Función para realizar el cambio de contraseña en el sistema
+		public function modificarContrasena($datos){
+			$contrasena_nueva=ConexionBD::limpiar_cadena($datos['contrasena_nueva']);
+			$conf_contrasena_nueva=ConexionBD::limpiar_cadena($datos['conf_contrasena_nueva']);
+         $correo=ConexionBD::limpiar_cadena($datos['email']);
+			$array=array();
+
+
+			//se hace un select para obtener la contraseña y el correo del usuario de recuperacion o que ingresa por primera vez
+			$cambioContrasena = new Usuario(); 
+			$respuesta = $cambioContrasena->verificarContrasenaActual($correo);
+			foreach($respuesta as $fila){
+				$hash_contrasenaActual=$fila['contrasena'];
+            $usuario=$fila['usuario'];
+			}
+
+			//verificacion para revisar que la nueva contraseña sea distinta a la que ya está registrada
+			$hash_contrasenaNueva=ConexionBD::EncriptaClave($contrasena_nueva);
+			if(($hash_contrasenaNueva==$hash_contrasenaActual)){
+				$_SESSION['respuesta'] = 'Contraseña nueva igual a la actual';
+            return "<script> window.location.href='".SERVERURL."cambio-contrasena/'; </script>";
+				die();
+			}
+			
+			//verificacion para revisar que la contraseña y la confirmacion de la contraseña sean iguales
+			//de ser así se procede al cambio de contraseña y se envia un correo de confirmación con el usuario y contraseña
+			if($contrasena_nueva!=$conf_contrasena_nueva){
+				$_SESSION['respuesta'] = 'Contraseñas no coinciden';
+            return "<script> window.location.href='".SERVERURL."cambio-contrasena/'; </script>";
+				die();
+			}else{
+				$_SESSION['respuesta'] = 'Cambio de contraseña exitoso';
+					$respuesta = $cambioContrasena->cambioContrasena($correo,$hash_contrasenaNueva,$usuario);
+					$envioCorreo = new Correo();
+					$respuesta = $envioCorreo->CorreoCambioContrasena($correo,$contrasena_nueva);
+					return "<script> window.location.href='".SERVERURL."cambio-contrasena/'; </script>";
+				die();
+			}
+					 
+		}
 
     //funcion encargada de redirigir al login siempre que se detecte que no hay una sesion activa
     //o que no esten identificados todos los datos de sesion que deberian estar 

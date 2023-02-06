@@ -3,16 +3,15 @@
 		session_start();
 	}
 
-  $_SESSION['respuesta']='';
-	//llamado al controlador de login
-    require_once './controladores/loginControlador.php';
-    $usuario = new loginUsuarios(); //se crea nueva instancia de usuario
+  //llamado al controlador de login
+  require_once 'controladores/emailControlador.php';
+  $enviarCodigo = new Correo(); //se crea nueva instancia de usuario
 
-	//valdacion para ver si se recibieron datos de ingreso
-    if (isset($_POST['acceder'])) {
-		  $email = $_POST['txtcorreo'];
-      $respuesta = $usuario->verificaUsuarioExistente($email); //se envian los datos a la funcion accesoUsuario de modelo Login
-    }
+//valdacion para ver si se recibieron datos de ingreso
+  if (isset($_POST['acceder'])) {
+  $codigo =  $_POST['txtcodigo'];
+      $respuesta = $enviarCodigo->verificaCodigoToken($codigo); //se envian los datos a la funcion accesoUsuario de modelo Login
+  }
 	?>
 
 <style>
@@ -24,46 +23,52 @@
 
 </style>
   
-  <div class="recuperacion-form">
+  <div class="codigo-form">
     <form method="POST" action="">
         <section class="form-login">
           <h5>RECUPERACION DE CONTRASEÑA</h5>
-          <?php
-				  if(isset($_SESSION['respuesta'])){
+
+        <?php
+				if(isset($_SESSION['respuesta'])){
 					switch($_SESSION['respuesta']){
-						case 'Usuario no existe':
-							echo ' <style>
-              .recuperacion-form .form-login{
-                width: 25rem;
-                height: 20rem;
-              }
-              </style>
-
-              <div div class="alert alert-danger text-center justify-content-center" role="alert">El correo ingresado no existe en el sistema</div>';
-             
-						break;
-						case 'Usuario esta inactivo':
-							echo '<div div class="alert alert-danger text-center justify-content-center" role="alert">El usuario está inactivo, por lo que no se puede realizar
-							la recuperación de contraseña</div>';
-						break;
-						case 'Correo enviado':
-							echo "<script>
-              setTimeout(function(){location.href='".SERVERURL."verifica-codigo/'} , 10000); </script>";
+						case 'codigo valido':
+              echo "<script>
+              setTimeout(function(){location.href='".SERVERURL."cambio-contrasena/'} , 2500); </script>";
 							echo '<style>
-              .recuperacion-form .form-login{
+              .codigo-form .form-login{
                 width: 25rem;
-                height: 20rem;
+                height: 23rem;
               }
               </style>
 
-              <div class="alert alert-success text-center">Se envió un código de seguridad a la 
-							dirección de correo del usuario ingresado.</div>';
+              <div class="alert alert-success text-center">Código correcto. Será redireccionado en unos segundos...</div>';
+						break;
+						case 'codigo invalido':
+							echo '<style>
+              .codigo-form .form-login{
+                width: 25rem;
+                height: 23rem;
+              }
+              </style>
+
+              <div class="alert alert-danger text-center">El código ingresado es incorrecto.</div>';
+						break;
+						case 'token vencido':
+							echo '<style>
+              .codigo-form .form-login{
+                width: 25rem;
+                height: 23rem;
+              }
+              </style>
+
+              <div class="alert alert-danger text-center">El código ya está vencido. Realice el proceso nuevamente.</div>';
 						break;
 					 	}
 				 	}
-			 	?>
-         <h5>Ingrese el código de recuperación</h5>
-          <input class="controls" type="text" name="txtcorreo" placeholder="Ingrese su correo" required>
+			 		?>
+          
+          <p><b>Ingrese el código enviado para realizar la verificación correspondiente</p></b>
+          <input class="controls text-center" style="font-size:1rem;"type="number" name="txtcodigo" placeholder="Ingrese codigo" required>
           <input class="buttons"  type="submit" name="acceder" value="ENVIAR">
         </section>
     </form>

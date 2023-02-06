@@ -274,7 +274,7 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                     <br>
 						<div class="form-group">
                             <label class="color-label">DNI</label>
-					        <input type="number" class="form-control" name="dni_nuevo" id="nombre_usuario" required="" >
+					        <input type="number" class="form-control" name="dni_nuevo" id="dni" mask="0000-0000-00000"required="" >
 						</div>
 					</div>
                     <div class="col-10 col-md-6">

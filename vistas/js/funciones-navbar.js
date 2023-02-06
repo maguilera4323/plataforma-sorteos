@@ -29,3 +29,28 @@
       });
     }); 
   })(jQuery); 
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    applyInputMask('dni', '0000-0000-00000');
+  });
+
+
+  function applyInputMask(elementId, mask) {
+    let inputElement = document.getElementById(elementId);
+    let content = '';
+    let maxChars = numberCharactersPattern(mask);
+    
+    inputElement.addEventListener('keydown', function(e) {
+      e.preventDefault();
+      if (isNumeric(e.key) && content.length < maxChars) {
+        content += e.key;
+      }
+      if(e.keyCode == 8) {
+        if(content.length > 0) {
+          content = content.subst(0, content.length - 1);
+        }
+      }
+      inputElement.value = maskIt('0000-0000-00000', content);
+    })
+  }

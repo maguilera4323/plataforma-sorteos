@@ -14,7 +14,7 @@
 					$contenido="404";
 				}
 			}elseif($vistas=="inicio" || $vistas=="index" || $vistas=="login" || $vistas=="recuperacion-clave" || $vistas=="registro"
-			|| $vistas=="verifica-codigo"){
+			|| $vistas=="verifica-codigo" || $vistas=="cambio-contrasena"){
 				switch($vistas){
 					case 'inicio':
 						$contenido="inicio";
@@ -34,10 +34,13 @@
 					case 'verifica-codigo':
 						$contenido="verifica-codigo";
 					break;
+					case 'cambio-contrasena':
+						$contenido="cambio-contrasena";
+					break;
 				}
 
 			}elseif($vistas=="inicio" || $vistas=="index" || $vistas=="login" || $vistas=="recuperacion-clave" || $vistas=="registro"
-			|| $vistas=="verifica-codigo"){
+			|| $vistas=="verifica-codigo" || $vistas=="cambio-contrasena"){
 				$contenido="inicio";
 
 			}else{
