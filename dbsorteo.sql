@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `empresas` (
   PRIMARY KEY (`id_empresa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.empresas: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.empresas: ~2 rows (aproximadamente)
 INSERT INTO `empresas` (`id_empresa`, `nombre_empresa`, `direccion`, `telefono`, `correo_electronico`) VALUES
 	(1, 'SULA', 'Col. Victor F. Ardon, Tegucigalpa M.D.C', '22021294', 'contacto@sula.hn'),
 	(2, 'CINEMARK', 'Res. Las Uvas', '22091298', 'soporte@cinemark.hn'),
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `permisos` (
   KEY `Índice 2` (`id_modulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.permisos: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.permisos: ~3 rows (aproximadamente)
 INSERT INTO `permisos` (`id_rol`, `id_modulo`, `tipo_modulo`, `permiso_insercion`, `permiso_actualizacion`, `permiso_eliminacion`, `permiso_consulta`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
 	(1, 1, 'Home', '1', '1', '1', '1', 'prueba', '2023-01-27 10:19:47', 'prueba', '2023-01-27 10:38:19'),
 	(3, 1, 'Home', '1', '0', '0', '1', 'prueba', '2023-01-27 10:20:13', NULL, NULL),
@@ -135,13 +135,13 @@ CREATE TABLE IF NOT EXISTS `personas` (
   PRIMARY KEY (`id_persona`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.personas: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.personas: ~4 rows (aproximadamente)
 INSERT INTO `personas` (`id_persona`, `nombres`, `apellidos`, `dni`, `telefono`, `sexo`, `direccion`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
-	(1, 'PRUEBA', 'USUARIOS', '80819991034', '98762301', 'Masculino', 'Col. San Angel, Tegucigalpa M.D.C', 'prueba', '2023-01-29 16:02:09', NULL, NULL),
-	(2, 'TAYLOR', 'SWIFT', '0701238712845', '97652301', 'Femenino', 'USA', 'prueba', '2023-01-29 16:04:59', NULL, NULL),
-	(3, 'SERJ', 'TANKIAN', '1208199790012', '33120973', 'Masculino', 'Col. Arturo Quezada, zona 3, casa 17, bloque 12. Tegucigalpa M.D.C', 'prueba', '2023-01-29 16:07:07', NULL, NULL),
-	(4, 'JUAN ANDRÉS', 'PEREZ ZEPEDA', '0610198923081', '99903456', 'Masculino', 'Residencial Plaza, Tegucigalpa M.D.C', 'prueba', '2023-01-29 16:13:01', NULL, NULL),
-	(5, 'WILSON', 'RIOS', '1202198500092', '32412679', 'Masculino', 'Col. Las Acacias, Arizona, Atlántida', 'prueba', '2023-01-29 17:46:50', NULL, NULL);
+	(1, 'PRUEBA', 'USUARIOS', '0102-1990-00832', '98762301', 'Masculino', 'Col. San Angel, Tegucigalpa M.D.C', 'prueba', '2023-01-29 16:02:09', NULL, NULL),
+	(2, 'TAYLOR', 'SWIFT', '0701-1994-12845', '97652301', 'Femenino', 'USA', 'prueba', '2023-01-29 16:04:59', NULL, NULL),
+	(3, 'SERJ', 'TANKIAN', '1208-1997-00012', '33120973', 'Masculino', 'Col. Arturo Quezada, zona 3, casa 17, bloque 12. Tegucigalpa M.D.C', 'prueba', '2023-01-29 16:07:07', NULL, NULL),
+	(4, 'JUAN ANDRÉS', 'PEREZ ZEPEDA', '0610-1989-23081', '99903456', 'Masculino', 'Residencial Plaza, Tegucigalpa M.D.C', 'prueba', '2023-01-29 16:13:01', NULL, NULL),
+	(5, 'WILSON', 'RIOS', '1202-1985-00092', '32412679', 'Masculino', 'Col. Las Acacias, Arizona, Atlántida', 'prueba', '2023-01-29 17:46:50', NULL, NULL);
 
 -- Volcando estructura para tabla dbsorteo.premios
 CREATE TABLE IF NOT EXISTS `premios` (
@@ -177,6 +177,23 @@ CREATE TABLE IF NOT EXISTS `premios_sorteo` (
 
 -- Volcando datos para la tabla dbsorteo.premios_sorteo: ~0 rows (aproximadamente)
 
+-- Volcando estructura para tabla dbsorteo.restablece_clave_email
+CREATE TABLE IF NOT EXISTS `restablece_clave_email` (
+  `id_restablecer` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
+  `codigo` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_restablecer`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+-- Volcando datos para la tabla dbsorteo.restablece_clave_email: ~4 rows (aproximadamente)
+INSERT INTO `restablece_clave_email` (`id_restablecer`, `email`, `codigo`, `fecha`) VALUES
+	(1, 'karimhernandez233@gmail.com', 8381, '2023-02-04 18:16:40'),
+	(2, 'karimhernandez233@gmail.com', 3881, '2023-02-04 18:17:57'),
+	(3, 'karimhernandez233@gmail.com', 8308, '2023-02-04 18:20:59'),
+	(4, 'karimhernandez233@gmail.com', 1875, '2023-02-04 18:25:04'),
+	(5, 'karimhernandez233@gmail.com', 1308, '2023-02-04 18:28:07');
+
 -- Volcando estructura para tabla dbsorteo.roles
 CREATE TABLE IF NOT EXISTS `roles` (
   `id_rol` int(11) NOT NULL AUTO_INCREMENT,
@@ -189,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`id_rol`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.roles: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.roles: ~4 rows (aproximadamente)
 INSERT INTO `roles` (`id_rol`, `rol`, `descripcion`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
 	(1, 'ADMINISTRADOR', 'Administrador del sistema', 'prueba', '2023-01-18 20:42:58', NULL, NULL),
 	(2, 'EMPLEADO', 'Encargado de monitorear actividad de usuarios', 'prueba', '2023-01-19 07:42:09', NULL, NULL),
@@ -205,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `sorteos` (
   PRIMARY KEY (`id_sorteo`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.sorteos: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.sorteos: ~2 rows (aproximadamente)
 INSERT INTO `sorteos` (`id_sorteo`, `nombre_sorteo`, `rango_inicial`, `rango_final`, `estado_sorteo`) VALUES
 	(1, '1ER MARATON DE VERANO SULA', 1, 1200, 'Activo'),
 	(2, 'PREMIERE UNA LOCA NAVIDAD CATRACHA 2', 1201, 1850, 'Inactivo'),
@@ -234,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 -- Volcando datos para la tabla dbsorteo.usuarios: ~5 rows (aproximadamente)
 INSERT INTO `usuarios` (`id_usuario`, `id_persona`, `usuario`, `estado`, `contrasena`, `id_rol`, `fecha_ultima_conexion`, `correo_electronico`, `creado_por`, `fecha_creacion`, `modificado_por`, `fecha_modificacion`) VALUES
-	(1, 1, 'prueba', 'Activo', '$2y$12$i836qbF5sxjT0I2VHP13XeLQ7ZdbVu28cmy1bKjsxQUM9mk6aBV/S', 1, NULL, 'prueba@prueba.com', 'prueba', '2023-01-29 16:03:30', NULL, NULL),
+	(1, 1, 'prueba', 'Activo', '$2y$12$i836qbF5sxjT0I2VHP13XeLQ7ZdbVu28cmy1bKjsxQUM9mk6aBV/S', 1, NULL, 'karimhernandez233@gmail.com', 'prueba', '2023-01-29 16:03:30', NULL, NULL),
 	(2, 2, 'SWIFTIE', 'Activo', '$2y$12$DfRsD1/Qf1FisI/VwQWrve5iZ2GboPhH7BCtLloE5p53q1S8aqmB.', 2, NULL, 'swift@taylor.com', 'prueba', '2023-01-29 16:04:59', NULL, NULL),
 	(3, 3, 'TANKIAN', 'Activo', '$2y$12$TypNeC35UbRFM0wMYfpi9.WapmQiOvmDPv6Fymktb/W4jfxf0TucG', 1, NULL, 'serjtankian@gmail.es', 'prueba', '2023-01-29 16:07:07', NULL, NULL),
 	(4, 4, 'JUANP', 'Activo', '$2y$12$i836qbF5sxjT0I2VHP13XeLQ7ZdbVu28cmy1bKjsxQUM9mk6aBV/S', 3, NULL, 'juanperez@hotmail.com', 'prueba', '2023-01-29 16:13:30', NULL, NULL),
