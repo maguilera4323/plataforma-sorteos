@@ -1,5 +1,11 @@
 <?php
-require_once("./config/conexion.php");
+
+if($peticionAjax){
+	require_once("../config/conexion.php");
+}else{
+	require_once("./config/conexion.php");
+}
+
 
 class Usuario extends ConexionBD{
 

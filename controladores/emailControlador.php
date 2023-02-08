@@ -177,7 +177,7 @@ class Correo extends ConexionBD{
         }
     }
 
-    public function CorreoCreacionUsuario($correo,$usuario,$contrasena){
+    public function CorreoCreacionUsuario($correo,$usuario){
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
         $fecha=date('YmdHis');
@@ -195,13 +195,13 @@ class Correo extends ConexionBD{
             $mail->Port       = PUERTO_SMTP;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('citycoffeehn1@gmail.com', 'City Coffe');
+            $mail->setFrom('maynoraguileraosorto@gmail.com', 'Sorteos Reales');
             $mail->addAddress($correo);     //Add a recipient
 
             //Content
             $mail->isHTML(true); 
             $mail -> charSet = 'UTF-8';                                 //Set email format to HTML
-            $mail->Subject = 'Creacion de Usuario';
+            $mail->Subject = '¡Te damos la bienvenida!';
             $mail->Body    = '<html>
             <head>
                 <title>Restablecer</title>
@@ -209,11 +209,10 @@ class Correo extends ConexionBD{
         
             <body>
                 <div style="text-align: center; background-color: #E5E5E5; font-size:16px;">
-                    <p>Su usuario ha sido creado exitosamente en el sistema.</p>
-                    Las credenciales de ingreso son:<br/>
-                    <p>Usuario: <b>'.$usuario.'</b></p>
-                    <p>Contraseña: <b>'.$contrasena.'</b></p>
-                    <small>Cualquier duda o pregunta comunicarse con el administrador del sistema.</small>
+                    <p>Por medio de este correo te damos la bienvenida a Sorteos Reales <b>'.$usuario.'</b>.
+                    </p>
+                    <p>Puedes realizar tu inicio de sesión desde <a href="http://localhost/plataforma-sorteos/login/">este link.</a> </p>
+                    <p>Cualquier duda o pregunta no dudes en contactarnos e intentaremos responderte a la brevedad posible.</p>
                 </div>
             </body>
         </html>';

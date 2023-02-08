@@ -2,8 +2,8 @@
 	$peticionAjax=true;
 	require_once "../config/app.php";
 
-	if(isset($_POST['nombre_nuevo']) || isset($_POST['user_empleado_act']) || isset($_POST['id_empleado_del'])|| isset($_POST['usuario_perfil_act']))
-	{
+	if(isset($_POST['nombre_nuevo']) || isset($_POST['user_empleado_act']) || isset($_POST['id_empleado_del'])
+	|| isset($_POST['usuario_perfil_act']) || isset($_POST['usuario_autoregistro'])){
 		/*--------- Instancia al controlador ---------*/
 		require_once "../controladores/usuarioControlador.php";
 		$ins_usuario = new usuarioControlador();
@@ -30,6 +30,12 @@
 		/*--------- Actualizar informacion de perfil ---------*/
 		if(isset($_POST['usuario_perfil_act']) ){
 			echo $ins_usuario->actualizarPerfil();
+			die();
+		}
+
+		/*--------- Autoregistro de participante ---------*/
+		if(isset($_POST['usuario_autoregistro']) ){
+			echo $ins_usuario->autoregistroUsuario();
 			die();
 		}
 	}

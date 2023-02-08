@@ -1,9 +1,14 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 
 if($peticionAjax){
 	require_once "../modelos/usuarioModelo.php";
+	require_once "../controladores/emailControlador.php";
 }else{
 	require_once "./modelos/usuarioModelo.php";
+	require_once "./controladores/emailControlador.php";
 }
 
 
@@ -454,6 +459,85 @@ class usuarioControlador extends usuarioModelo{
 				];
 			}
 			echo json_encode($alerta);
+	} 
+
+
+	public function autoregistroUsuario(){
+		//datos para la tabla de Usuarios
+		$usuario=ConexionBD::limpiar_cadena(strtolower($_POST['usuario_autoregistro']));
+		$persona=ConexionBD::limpiar_cadena($_POST['idPersona']);
+		$estado=1;
+		$contrasena=ConexionBD::limpiar_cadena($_POST['contrasena_autoregistro']);
+		$correo=ConexionBD::limpiar_cadena($_POST['correo_autoregistro']);
+		$rol=3;
+		$creado_por='Autoregistro de usuario';
+		$creacion=date('y-m-d H:i:s');
+		
+		$clave=ConexionBD::EncriptaClave($contrasena);
+
+		//datos para la tabla de Personas
+		$nombres=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_autoregistro']));
+		$apellidos=ConexionBD::limpiar_cadena(strtoupper($_POST['apellido_autoregistro']));
+		$dni=ConexionBD::limpiar_cadena($_POST['dni_autoregistro']);
+		$telefono=ConexionBD::limpiar_cadena($_POST['tel_autoregistro']);
+		$sexo=ConexionBD::limpiar_cadena($_POST['sexo_autoregistro']);
+		$direccion=ConexionBD::limpiar_cadena($_POST['dir_autoregistro']);
+
+		
+		/* //validaciones de datos */
+
+		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT usuario FROM usuarios WHERE usuario='$usuario'");
+			if($revisarUsuario->rowCount()>0){
+				$_SESSION['respuesta'] = 'Usuario ya existe';
+		  		return "<script> window.location.href='".SERVERURL."registro/'; </script>";
+				die();
+			}
+		
+		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT correo_electronico FROM usuarios WHERE 
+		correo_electronico='$correo'");
+		if($revisarUsuario->rowCount()>0){
+			$_SESSION['respuesta'] = 'Correo ya existe';
+			return "<script> window.location.href='".SERVERURL."registro/'; </script>";
+		  	die();
+			}		
+	
+			//arreglo enviado al modelo para ser usado en una sentencia INSERT
+			$datos_empleado_reg=[
+				"usuario"=>$usuario,
+				"persona"=>$persona,
+				"est"=>$estado,
+				"cont"=>$clave,
+				"correo"=>$correo,
+				"rol"=>$rol,
+				"fecha_creacion"=>$creacion,
+				"creado_por"=>$creado_por
+			];
+
+			$datos_persona_reg=[
+				"nombres"=>$nombres,
+				"apellidos"=>$apellidos,
+				"dni"=>$dni,
+				"telefono"=>$telefono,
+				"sexo"=>$sexo,
+				"direccion"=>$direccion,
+				"fecha_creacion"=>$creacion,
+				"creado_por"=>$creado_por
+			];
+
+			$agregar_persona=usuarioModelo::agregarPersonaModelo($datos_persona_reg);
+			$agregar_usuario=usuarioModelo::agregarUsuarioModelo($datos_empleado_reg);
+
+			if(($agregar_usuario->rowCount()==1) && ($agregar_persona->rowCount()==1) ){
+				$_SESSION['respuesta'] = 'Usuario creado';
+				$envioCorreo = new Correo();
+				$respuesta = $envioCorreo->CorreoCreacionUsuario($correo,$usuario);
+		  		return "<script> window.location.href='".SERVERURL."registro/'; </script>";
+				die();
+			}else{
+				$_SESSION['respuesta'] = 'Error al crear usuario';
+		  		return "<script> window.location.href='".SERVERURL."registro/'; </script>";
+				die();
+			}
 	} 
 	
 }
