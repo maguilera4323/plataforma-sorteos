@@ -371,41 +371,47 @@ class usuarioControlador extends usuarioModelo{
 
 
 	public function actualizarPerfil(){	
-		$usuario=ConexionBD::limpiar_cadena(strtoupper($_POST['usuario_perfil_act']));
-		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_usuario_act']));
-		$correo=ConexionBD::limpiar_cadena($_POST['correo_electronico_act']);
-		$contrasena=ConexionBD::limpiar_cadena($_POST['contrasena_act']);
-		$modif_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
+		//datos para la tabla de Usuarios
+		$usuario=ConexionBD::limpiar_cadena(strtolower($_POST['user_perfil_act']));
+		$correo=ConexionBD::limpiar_cadena($_POST['correo_perfil_act']);
+		$modif_por=ConexionBD::limpiar_cadena($_POST['user_perfil_act']);
 		$modificacion=date('y-m-d H:i:s');
-		$id_actualizacion=ConexionBD::limpiar_cadena($_POST['usuario_id']);
-		$clave=ConexionBD::EncriptaClave($contrasena);
 
+		//datos para la tabla de Personas
+		$nombres=ConexionBD::limpiar_cadena(strtoupper($_POST['nombre_perfil_act']));
+		$apellidos=ConexionBD::limpiar_cadena(strtoupper($_POST['apellido_perfil_act']));
+		$dni=ConexionBD::limpiar_cadena($_POST['dni_perfil_act']);
+		$telefono=ConexionBD::limpiar_cadena($_POST['telefono_perfil_act']);
+		$sexo=ConexionBD::limpiar_cadena($_POST['sexo_perfil_act']);
+		$direccion=ConexionBD::limpiar_cadena($_POST['direccion_perfil_act']);
 
-		//validacion para comprobar si se guardó una imagen nueva
-		if(isset($_FILES['imagen_act']['name'])){
-			$nombre_img=($_FILES['imagen_act']['name']);//ADQUIERE LA IMAGEN
-			$temporal=$_FILES['imagen_act']['tmp_name'];
-			$carpeta='../vistas/assets/usuarios';
-			$ruta=$carpeta.'/'.$nombre_img;
-			move_uploaded_file($temporal,$carpeta.'/'. $nombre_img);
-		}else{
-			$ruta='';
-		}
+		$id_actualizacion=ConexionBD::limpiar_cadena($_POST['user_perfil_id']);
 		
-
-		//validaciones de datos
-		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,30}",$nombre)){
+		/* //validaciones de datos */
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,50}",$nombres)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Nombre solo acepta letras y espacios",
+				"Texto"=>"El campo Nombres solo acepta letras y espacios",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 
-		if(ConexionBD::verificar_datos("[A-Z]{1,30}",$usuario)){
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,50}",$apellidos)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Apellidos solo acepta letras y espacios",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+
+		if(ConexionBD::verificar_datos("[A-Za-z]{1,30}",$usuario)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
@@ -414,37 +420,94 @@ class usuarioControlador extends usuarioModelo{
 			];
 			echo json_encode($alerta);
 			exit();
-		}	
+		}
 
-		if(ConexionBD::verificar_datos("[a-zA-Z0-9$@.-]{5,10}",$contrasena) ){
+		if(ConexionBD::verificar_datos("[0-9-]{1,20}",$dni)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"La contraseña no coincide con el formato solicitado",
+				"Texto"=>"El campo DNI solo acepta números y guiones",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
-		} 
+		}
+
+		if(ConexionBD::verificar_datos("[0-9-]{1,15}",$telefono)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Teléfono solo acepta números y guiones",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚa-záéíóúÑñ0-9 .,]{1,300}",$direccion)){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"El campo Dirección no coincide con el formato solicitado",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
+		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT usuario FROM usuarios WHERE usuario='$usuario'
+		and id_usuario!='$id_actualizacion'");
+			if($revisarUsuario->rowCount()>0){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"El usuario ingresado ya se encuentra registrado en el sistema",
+					"Tipo"=>"error"
+					];
+					echo json_encode($alerta);
+					exit();
+			}
+		
+		$revisarUsuario=ConexionBD::consultaComprobacion("SELECT correo_electronico FROM usuarios WHERE 
+		correo_electronico='$correo' and id_usuario!='$id_actualizacion'");
+		if($revisarUsuario->rowCount()>0){
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"El correo electrónico ingresado ya se encuentra registrado en el sistema",
+					"Tipo"=>"error"
+					];
+					echo json_encode($alerta);
+					exit();
+			}
 					
 			//arreglo enviado al modelo para ser usado en una sentencia INSERT
-			
-			$datos_perfil_act=[
+			$datos_usuario_act=[
 				"usuario"=>$usuario,
-				"nom"=>$nombre,
 				"correo"=>$correo,
-				"clave"=>$clave,
-				"imagen"=>$ruta,
 				"fecha_modif"=>$modificacion,
 				"modif_por"=>$modif_por
 			];
 
-			$actualizar_perfil=usuarioModelo::actualizar_perfil_modelo($datos_perfil_act,$id_actualizacion);
+			$datos_persona_act=[
+				"nombres"=>$nombres,
+				"apellidos"=>$apellidos,
+				"dni"=>$dni,
+				"telefono"=>$telefono,
+				"sexo"=>$sexo,
+				"direccion"=>$direccion,
+				"fecha_modif"=>$modificacion,
+				"modif_por"=>$modif_por
+			];
 
-			if($actualizar_perfil->rowCount()==1){
+			$actualizar_persona=usuarioModelo::actualizarPersonaPerfil($datos_persona_act,$id_actualizacion);
+			$actualizar_usuario=usuarioModelo::actualizarUsuarioPerfil($datos_usuario_act,$id_actualizacion);
+
+			if(($actualizar_persona->rowCount()==1) && ($actualizar_usuario->rowCount()==1)){
+				$_SESSION['usuario_login']=$usuario;
 				$alerta=[
 					"Alerta"=>"recargar",
-					"Titulo"=>"Perfil de Usuario Actualizado",
+					"Titulo"=>"Perfil Actualizado",
 					"Texto"=>"Los datos del usuario han sido actualizados con exito",
 					"Tipo"=>"success"
 				];
@@ -454,7 +517,7 @@ class usuarioControlador extends usuarioModelo{
 				$alerta=[
 					"Alerta"=>"simple",
 					"Titulo"=>"Ocurrió un error inesperado",
-					"Texto"=>"No hemos podido actualizar los datos del usuario",
+					"Texto"=>"Ha ocurrido un problema al momento de actualizar la información del usuario",
 					"Tipo"=>"error"
 				];
 			}
