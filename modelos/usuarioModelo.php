@@ -116,6 +116,17 @@
 		}
 
 
+		protected function actualizarContrasenaUsuario($dato,$id){
+			$sql=ConexionBD::getConexion()->prepare("UPDATE usuarios SET contrasena=?, modificado_por=?,
+			fecha_modificacion=? WHERE id_usuario=?");
+				
+			$sql->bindParam(1,$dato['clave']);
+			$sql->bindParam(2,$dato['modif']);
+			$sql->bindParam(3,$dato['fecha_modif']);
+			$sql->bindParam(4,$id);
+			$sql->execute();
+			return $sql;
+		}
 		
 		
 	}

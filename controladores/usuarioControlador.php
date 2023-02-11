@@ -132,7 +132,7 @@ class usuarioControlador extends usuarioModelo{
 					exit();
 			}
 
-		if(ConexionBD::verificar_datos("[a-zA-Z0-9$@.-]{5,10}",$contrasena) ){
+		if(ConexionBD::verificar_datos("[a-zA-Z0-9$@.-]{5,25}",$contrasena) ){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
@@ -523,6 +523,71 @@ class usuarioControlador extends usuarioModelo{
 			}
 			echo json_encode($alerta);
 	} 
+
+
+	public function cambioContrasena(){
+		$contrasena=ConexionBD::limpiar_cadena($_POST['contrasena_perfil_act']);
+		$conf_contrasena=ConexionBD::limpiar_cadena($_POST['confcontr_perfil_act']);
+		$modif_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
+		$modificacion=date('y-m-d H:i:s');
+		$id_actualizacion=ConexionBD::limpiar_cadena($_POST['user_perfil_id']);
+
+		$clave=ConexionBD::EncriptaClave($contrasena);
+
+	
+		if(ConexionBD::verificar_datos("[a-zA-Z0-9$@.-]{5,25}",$contrasena) ){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"La contraseña no coincide con el formato solicitado",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		} 
+
+		if($contrasena!=$conf_contrasena){
+			$alerta=[
+				"Alerta"=>"simple",
+				"Titulo"=>"Ocurrió un error inesperado",
+				"Texto"=>"Las contraseñas no coinciden. Ingreselas nuevamente.",
+				"Tipo"=>"error"
+			];
+			echo json_encode($alerta);
+			exit();
+		} 
+
+		$datos_clave_act=[
+			"clave"=>$clave,
+			"modif"=>$modif_por,
+			"fecha_modif"=>$modificacion,
+		];
+
+
+		$actualizarContrasena=usuarioModelo::actualizarContrasenaUsuario($datos_clave_act,$id_actualizacion);
+
+			if(($actualizarContrasena->rowCount()==1)){
+				$alerta=[
+					"Alerta"=>"recargar",
+					"Titulo"=>"Contraseña Actualizada",
+					"Texto"=>"Su contraseña ha sido actualizada con exito",
+					"Tipo"=>"success"
+				];
+
+				
+			}else{
+				$alerta=[
+					"Alerta"=>"simple",
+					"Titulo"=>"Ocurrió un error inesperado",
+					"Texto"=>"Ha ocurrido un problema al momento de actualizar su contraseña",
+					"Tipo"=>"error"
+				];
+			}
+			echo json_encode($alerta);
+
+		
+}
+
 
 
 	public function autoregistroUsuario(){

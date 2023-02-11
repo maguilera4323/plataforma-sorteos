@@ -3,7 +3,8 @@
 	require_once "../config/app.php";
 
 	if(isset($_POST['nombre_nuevo']) || isset($_POST['user_empleado_act']) || isset($_POST['id_empleado_del'])
-	|| isset($_POST['nombre_perfil_act']) || isset($_POST['usuario_autoregistro'])){
+	|| isset($_POST['nombre_perfil_act']) || isset($_POST['usuario_autoregistro']) 
+	|| isset($_POST['contrasena_perfil_act'])){
 		/*--------- Instancia al controlador ---------*/
 		require_once "../controladores/usuarioControlador.php";
 		$ins_usuario = new usuarioControlador();
@@ -30,6 +31,12 @@
 		/*--------- Actualizar informacion de perfil ---------*/
 		if(isset($_POST['nombre_perfil_act']) ){
 			echo $ins_usuario->actualizarPerfil();
+			die();
+		}
+
+		/*--------- Cambio de contraseña ---------*/
+		if(isset($_POST['contrasena_perfil_act']) ){
+			echo $ins_usuario->cambioContrasena();
 			die();
 		}
 

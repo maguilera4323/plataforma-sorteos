@@ -2,19 +2,27 @@
 
 $conexion=mysqli_connect('localhost','root','','dbsorteo');
 mysqli_set_charset($conexion, "utf8");
-$valor=0;
-$json=array();
+$valor=1;
+$labels=array();
+$cantidades=array();
 
-    $query="SELECT sexo, count(*) as contar_personas FROM personas where sexo=2";
+$labels=['Masculino','Femenino'];
+
+while($valor<3){
+	$query="SELECT count(*) as contar_personas FROM personas where sexo=$valor";
 	$resultado=mysqli_query($conexion,$query);
 
 	while($fila=mysqli_fetch_array($resultado)){
-		$json[]=array(
-            'sexo'=>$fila['sexo'],
-			'total'=>$fila['contar_personas'],
-		);
+		$cantidades[$valor-1]=$fila['contar_personas'];
 	}
+	$valor++;
+}
 
+$respuesta=[
+	"labels"=>$labels,
+	"cantidades"=>$cantidades,
+];
 
-	$hola= json_encode($json);
-    echo $hola;
+echo json_encode($respuesta);
+
+	
