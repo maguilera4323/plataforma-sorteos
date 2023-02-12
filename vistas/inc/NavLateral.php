@@ -44,13 +44,18 @@ if (session_status() == PHP_SESSION_NONE) {
         </a>
 
         <a href="<?php echo SERVERURL?>configuracion/">
-          <div class="icon"><i class="fas fa-wrench"></i></div>
+          <div class="icon"><i class="fas fa-tools"></i></div>
           <div class="title">Configuración</div>
         </a>
 
         <a href="<?php echo SERVERURL?>administracion/">
-          <div class="icon"><i class="fas fa-wrench"></i></div>
+          <div class="icon"><i class="fas fa-archive"></i></div>
           <div class="title">Administracion</div>
+        </a>
+
+        <a href="<?php echo SERVERURL?>estadisticas/">
+          <div class="icon"><i class="fas fa-chart-area"></i></div>
+          <div class="title">Estadísticas</div>
         </a>
       </div>
     </div>

@@ -22,7 +22,7 @@
 		}
 
 
-		protected function actualizarPermisoModelo($dato,$id_rol,$id_mod){
+		protected function actualizarPermisoModelo($dato,$id_mod, $id_rol){
 			$sql=ConexionBD::getConexion()->prepare("UPDATE permisos SET permiso_insercion=?,permiso_actualizacion=?,
 			permiso_eliminacion=?, permiso_consulta=?, modificado_por=?, fecha_modificacion=? WHERE id_rol=? and id_modulo=?");
 

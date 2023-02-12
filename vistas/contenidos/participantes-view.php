@@ -8,16 +8,31 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 include ("./DatosTablas/obtenerDatos.php");
 include("./DatosTablas/obtenerDatosUsuarios.php"); 
 
-    $contar=new obtenerDatosUsuarios();
-    $resultadoContar=$contar->contarUsuarios();
-        foreach ($resultadoContar as $fila){
-            $idPersonaActual=$fila['id_usuario']+1;
-        }
-    
-    if (!isset($idPersonaActual)){
-        $idPersonaActual=1;
-    }
+//archivo para obtener los permisos del rol conectado al sistema en la vista a la que ha accedido
+include("./DatosTablas/obtenerDatosPermisos.php"); 
 
+//verificación de permisos
+//se revisa si el usuario tiene acceso a una vista específica por medio del rol que tiene y el objeto al que quiere acceder
+	$id_rol=$_SESSION['id_rol'];
+	$datos=new obtenerDatosPermisos();
+    $resultado=$datos->datosPermisosID($id_rol,9);
+
+    foreach ($resultado as $fila){
+		$permiso_con=$fila['permiso_consulta'];
+	}
+
+//valida si el query anterior no retornó ningún valor
+//en este caso no había un permiso registrado del objeto para el rol del usuario conectado
+	if(!isset($permiso_con)){
+		echo '<div class="modal-body" id="modal-actualizar" style="display:none">;';
+		echo "<script>
+              setTimeout(function(){location.href='".SERVERURL."404/'} , 0000); </script>";
+//valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
+	}else if($permiso_con==0){
+		echo '<div class="modal-body" id="modal-actualizar" style="display:none">;';
+		echo "<script>
+              setTimeout(function(){location.href='".SERVERURL."404/'} , 0000); </script>";
+	}
 ?>
 <br>
 <div class="container">

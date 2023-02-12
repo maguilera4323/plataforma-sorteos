@@ -7,6 +7,33 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 //llamado al archivo de funciones para obtener los datos de la tabla
 include("./DatosTablas/obtenerDatos.php"); 
 include("./DatosTablas/obtenerDatosPermisos.php"); 
+
+
+//verificación de permisos
+//se revisa si el usuario tiene acceso a una vista específica por medio del rol que tiene y el objeto al que quiere acceder
+	$id_rol=$_SESSION['id_rol'];
+	$datos=new obtenerDatosPermisos();
+    $resultado=$datos->datosPermisosID($id_rol,11);
+
+    foreach ($resultado as $fila){
+		$permiso_in=$fila['permiso_insercion'];
+		$permiso_act=$fila['permiso_actualizacion'];
+		$permiso_eli=$fila['permiso_eliminacion'];
+		$permiso_con=$fila['permiso_consulta'];
+	}
+
+//valida si el query anterior no retornó ningún valor
+//en este caso no había un permiso registrado del objeto para el rol del usuario conectado
+	if(!isset($permiso_con)){
+		echo '<div class="modal-body" id="modal-actualizar" style="display:none">;';
+		echo "<script>
+              setTimeout(function(){location.href='".SERVERURL."404/'} , 0000); </script>";
+//valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
+	}else if($permiso_con==0){
+		echo '<div class="modal-body" id="modal-actualizar" style="display:none">;';
+		echo "<script>
+              setTimeout(function(){location.href='".SERVERURL."404/'} , 0000); </script>";
+	}
 ?>
 <br>
 <div class="container">
@@ -113,6 +140,18 @@ include("./DatosTablas/obtenerDatosPermisos.php");
                 </button>
 						<!-- Modal actualizar-->
                     <div class="modal fade" id="ModalAct<?php echo $fila['id_rol'];?><?php echo $fila['id_modulo'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <?php
+                            if(!isset($permiso_act)){
+                                echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para editar la información del permiso</div>';
+                                echo "<script> window.location.href='".SERVERURL."home/'; </script>";	
+                            //valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
+                            }else if($permiso_act==0){
+                                echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para editar la información del permiso
+                                <button type="button" class="close" data-bs-dismiss="alert" onclick="window.location.reload()">X</button>
+                                </div>
+                                <div class="modal-dialog" style="display:none">;';
+                            }else{
+                        ?>
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -167,6 +206,9 @@ include("./DatosTablas/obtenerDatosPermisos.php");
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 </form>
                             </div>
+                            <?php
+                                }
+                            ?>
                         </div>
 			    </td>
                 <td>
@@ -196,76 +238,91 @@ include("./DatosTablas/obtenerDatosPermisos.php");
    
 <!-- Modal Crear -->
 <div class="modal fade" id="ModalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo Módulo</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <?php
+        if(!isset($permiso_in)){
+            echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para añadir un permiso</div>';
+            echo "<script> window.location.href='".SERVERURL."home/'; </script>";	
+        //valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
+        }else if($permiso_in==0){
+            echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para añadir un permiso
+            <button type="button" class="close" data-bs-dismiss="alert" onclick="window.location.reload()">X</button>
+            </div>
+            <div class="modal-dialog" style="display:none">;';
+        }else{
+    ?>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nuevo Módulo</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
 
-      </div>
-      <div class="modal-body" id="modal-actualizar">
-		    <form action="<?php echo SERVERURL; ?>ajax/permisoAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
-            <div class="form-group">
-                <label class="color-label">Rol</label>
-                    <select class="form-control" name="rol_nuevo" required>
-                        <option value="" selected="" disabled="">Seleccione una opción</option>
-                            <?php
-                                $datos=new obtenerDatosTablas();
-                                $resultado=$datos->datosTablas('roles');
-                                foreach ($resultado as $fila){
-                                    echo '<option value="'.$fila['id_rol'].'">'.$fila['rol'].'</option>';
-                                }
-                            ?>
-                    </select>
-				</div>
-                <br>
+        </div>
+        <div class="modal-body" id="modal-actualizar">
+                <form action="<?php echo SERVERURL; ?>ajax/permisoAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
                 <div class="form-group">
-                <label class="color-label">Módulo</label>
-                    <select class="form-control" name="modulo_nuevo" required>
-                        <option value="" selected="" disabled="">Seleccione una opción</option>
-                            <?php
-                                $datos=new obtenerDatosTablas();
-                                $resultado=$datos->datosTablas('modulos');
-                                foreach ($resultado as $fila){
-                                    echo '<option value="'.$fila['id_modulo'].'">'.$fila['modulo'].'</option>';
-                                }
-                            ?>
-                    </select>
-				</div>
-                <br>
-                <label>Permisos</label>
-				<div class="form-group">
-                    <div class="form-check form-check-inline">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="insertar_permiso" value="1">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Insertar</label>
+                    <label class="color-label">Rol</label>
+                        <select class="form-control" name="rol_nuevo" required>
+                            <option value="" selected="" disabled="">Seleccione una opción</option>
+                                <?php
+                                    $datos=new obtenerDatosTablas();
+                                    $resultado=$datos->datosTablas('roles');
+                                    foreach ($resultado as $fila){
+                                        echo '<option value="'.$fila['id_rol'].'">'.$fila['rol'].'</option>';
+                                    }
+                                ?>
+                        </select>
                     </div>
-                    <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="actualizar_permiso" value="1">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Actualizar</label>
+                    <br>
+                    <div class="form-group">
+                    <label class="color-label">Módulo</label>
+                        <select class="form-control" name="modulo_nuevo" required>
+                            <option value="" selected="" disabled="">Seleccione una opción</option>
+                                <?php
+                                    $datos=new obtenerDatosTablas();
+                                    $resultado=$datos->datosTablas('modulos');
+                                    foreach ($resultado as $fila){
+                                        echo '<option value="'.$fila['id_modulo'].'">'.$fila['modulo'].'</option>';
+                                    }
+                                ?>
+                        </select>
                     </div>
+                    <br>
+                    <label>Permisos</label>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="insertar_permiso" value="1">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Insertar</label>
+                        </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="eliminar_permiso" value="1">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Eliminar</label>
-                    </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="consultar_permiso" value="1">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Consultar</label>
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="actualizar_permiso" value="1">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Actualizar</label>
+                        </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="eliminar_permiso" value="1">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Eliminar</label>
+                        </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="consultar_permiso" value="1">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Consultar</label>
+                        </div>
+                        
                     </div>
                     
                 </div>
-				
-			</div>
-            <br>
-            <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
-            <button type="submit" class="btn btn-danger">Guardar</button>
-			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-			</form>
-      </div>
+                <br>
+                <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
+                <button type="submit" class="btn btn-danger">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </form>
+        </div>
+        </div>
     </div>
-  </div>
+    <?php
+		}
+	?>
 </div>
 
 

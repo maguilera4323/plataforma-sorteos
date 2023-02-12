@@ -22,7 +22,8 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
 </div>
 
 <div class="container perfil-contenedor">
-    <h5 style="padding:1rem;">Datos del usuario</h5>
+    <h5 style="padding:0.6rem;"> <i class="fas fa-user"></i></i>&nbsp; Datos del usuario</h5>
+    <hr/>
     <br>
     <?php
     //variables para generar la url completa del sitio y obtener el id del registro
@@ -99,7 +100,8 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
         ?>
         <div class="row row-cols-auto">
         <div class="col">
-            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $id;?>">Editar Datos</button>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $id;?>">
+            <i class="fas fa-user-edit"></i>&nbsp; Editar Datos</button>
             <!-- Modal actualizar-->
                 <div class="modal fade" id="ModalAct<?php echo $id;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -186,7 +188,8 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
             </div>
         </div>
         <div class="col">
-        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalCambioClave<?php echo $id;?>">Cambiar Contraseña</button>
+        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalCambioClave<?php echo $id;?>">
+        <i class="fas fa-unlock"></i> &nbsp; Cambiar Contraseña</button>
             <!-- Modal actualizar-->
                 <div class="modal fade" id="ModalCambioClave<?php echo $id;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -209,8 +212,8 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                                 <input type="password" class="form-control" name="confcontr_perfil_act" required="">
                             </div>
                             <br>
-                            <input type="hidden" value="<?php echo $fila['id_usuario']; ?>" class="form-control" name="user_perfil_id">
-                            <input type="hidden" value="<?php echo $SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
+                            <input type="hidden" value="<?php echo $fila['id_usuario']; ?>" name="user_perfil_id">
+                            <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" name="usuario_login">
                             <button type="submit" class="btn btn-danger">Guardar</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                             </form>

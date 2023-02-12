@@ -17,7 +17,7 @@ class usuarioControlador extends usuarioModelo{
 	
 	public function agregarEmpleado(){
 		//datos para la tabla de Usuarios
-		$usuario=ConexionBD::limpiar_cadena(strtoupper($_POST['user_empleado_nuevo']));
+		$usuario=ConexionBD::limpiar_cadena(strtolower($_POST['user_empleado_nuevo']));
 		$persona=ConexionBD::limpiar_cadena($_POST['idPersona']);
 		$estado=1;
 		$contrasena=ConexionBD::limpiar_cadena($_POST['contrasena_nuevo']);
@@ -63,33 +63,34 @@ class usuarioControlador extends usuarioModelo{
 		}
 
 
-		if(ConexionBD::verificar_datos("[A-Z]{1,30}",$usuario)){
+		if(ConexionBD::verificar_datos("[áéíóúña-z_0-9]{1,30}",$usuario)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Usuario solo acepta letras, sin espacios ni carácteres especiales",
+				"Texto"=>"El campo Usuario solo acepta letras, numeros y guiones, sin espacios ni 
+				otros carácteres especiales",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 
-		if(ConexionBD::verificar_datos("[0-9]{1,20}",$dni)){
+		if(ConexionBD::verificar_datos("[0-9-]{1,20}",$dni)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo DNI solo acepta números",
+				"Texto"=>"El campo DNI solo acepta números y guiones, sin espacios",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 
-		if(ConexionBD::verificar_datos("[0-9]{1,15}",$telefono)){
+		if(ConexionBD::verificar_datos("[0-9-]{1,15}",$telefono)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Teléfono solo acepta números",
+				"Texto"=>"El campo Teléfono solo acepta números y guiones, sin espacios",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
@@ -205,7 +206,7 @@ class usuarioControlador extends usuarioModelo{
 
 	public function actualizarEmpleado(){	
 		//datos para la tabla de Usuarios
-		$usuario=ConexionBD::limpiar_cadena(strtoupper($_POST['user_empleado_act']));
+		$usuario=ConexionBD::limpiar_cadena(strtolower($_POST['user_empleado_act']));
 		$estado=ConexionBD::limpiar_cadena($_POST['estado_act']);
 		$correo=ConexionBD::limpiar_cadena($_POST['correo_electronico_act']);
 		$rol=ConexionBD::limpiar_cadena($_POST['rol_act']);
@@ -246,33 +247,34 @@ class usuarioControlador extends usuarioModelo{
 		}
 
 
-		if(ConexionBD::verificar_datos("[A-Z]{1,30}",$usuario)){
+		if(ConexionBD::verificar_datos("[áéíóúña-z_0-9]{1,30}",$usuario)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Usuario solo acepta letras, sin espacios ni carácteres especiales",
+				"Texto"=>"El campo Usuario solo acepta letras, numeros y guiones, sin espacios ni 
+				otros carácteres especiales",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 
-		if(ConexionBD::verificar_datos("[0-9]{1,20}",$dni)){
+		if(ConexionBD::verificar_datos("[0-9-]{1,20}",$dni)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo DNI solo acepta números",
+				"Texto"=>"El campo DNI solo acepta números y guiones, sin espacios",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
 			exit();
 		}
 
-		if(ConexionBD::verificar_datos("[0-9]{1,15}",$telefono)){
+		if(ConexionBD::verificar_datos("[0-9-]{1,15}",$telefono)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Teléfono solo acepta números",
+				"Texto"=>"El campo Teléfono solo acepta números y guiones, sin espacios",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
@@ -411,11 +413,12 @@ class usuarioControlador extends usuarioModelo{
 		}
 
 
-		if(ConexionBD::verificar_datos("[A-Za-z]{1,30}",$usuario)){
+		if(ConexionBD::verificar_datos("[áéíóúña-z_0-9]{1,30}",$usuario)){
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Usuario solo acepta letras, sin espacios ni carácteres especiales",
+				"Texto"=>"El campo Usuario solo acepta letras, numeros y guiones, sin espacios ni 
+				otros carácteres especiales",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
@@ -426,7 +429,7 @@ class usuarioControlador extends usuarioModelo{
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo DNI solo acepta números y guiones",
+				"Texto"=>"El campo DNI solo acepta números y guiones, sin espacios",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);
@@ -437,7 +440,7 @@ class usuarioControlador extends usuarioModelo{
 			$alerta=[
 				"Alerta"=>"simple",
 				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Teléfono solo acepta números y guiones",
+				"Texto"=>"El campo Teléfono solo acepta números y guiones, sin espacios",
 				"Tipo"=>"error"
 			];
 			echo json_encode($alerta);

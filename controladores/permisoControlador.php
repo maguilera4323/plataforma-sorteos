@@ -80,7 +80,7 @@ class permisoControlador extends permisoModelo{
 		$modif_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
 		$modificacion=date('y-m-d H:i:s');
 		$id_modulo_actualizar=ConexionBD::limpiar_cadena($_POST['modulo_id']);
-		$id_rol_actualizar=ConexionBD::limpiar_cadena($_POST['modulo_id']);
+		$id_rol_actualizar=ConexionBD::limpiar_cadena($_POST['rol_id']);
 
 					
 		//arreglo enviado al modelo para ser usado en una sentencia INSERT

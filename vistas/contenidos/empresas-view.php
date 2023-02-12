@@ -25,14 +25,14 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 //valida si el query anterior no retornó ningún valor
 //en este caso no había un permiso registrado del objeto para el rol del usuario conectado
 	if(!isset($permiso_con)){
-		echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene acceso autorizado a esta vista</div>
-        <div class="modal-body" id="modal-actualizar" style="display:none">;';
-		echo "<script> setTimeout(function(){window.location.href='".SERVERURL."404/'} , 3000); </script>";
+		echo '<div class="modal-body" id="modal-actualizar" style="display:none">;';
+		echo "<script>
+              setTimeout(function(){location.href='".SERVERURL."404/'} , 0000); </script>";
 //valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
 	}else if($permiso_con==0){
-		echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene acceso autorizado a esta vista</div>
-        <div class="modal-body" id="modal-actualizar" style="display:none">;';
-		echo "<script> setTimeout(function(){window.location.href='".SERVERURL."404/'} , 3000); </script>";
+		echo '<div class="modal-body" id="modal-actualizar" style="display:none">;';
+		echo "<script>
+              setTimeout(function(){location.href='".SERVERURL."404/'} , 0000); </script>";
 	}
 ?>
 <br>
@@ -62,117 +62,118 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     </div>
     </div>
 
-<div class="table-responsive">
-    <br>
-        <input type="text" id="searchBox" class="form-control" placeholder="Filtrar empresas" onkeyup="filterTable()">
-        <p id="message"></p>
-    <table id="datos-usuario" class="table table-bordered table-striped text-center">
-        <thead>
-            <tr>
-                <th>Nombre</th>                               
-                <th>Direccion</th>  
-                <th>Teléfono</th>
-                <th>Correo</th>
-                <th>Actualizar</th>
-                <th>Eliminar</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-            //se hace una instancia a la clase
-                $datos=new obtenerDatosTablas();
-                $resultado=$datos->datosTablas('empresas');
-                foreach ($resultado as $fila){
-            ?>
-            <tr>
-                <td><?php echo $fila['nombre_empresa']; ?></td>
-                <td><?php echo $fila['direccion']; ?></td>
-                <td><?php echo $fila['telefono']; ?></td>
-                <td><?php echo $fila['correo_electronico']; ?></td>
-                <td>
-				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_empresa'];?>">
-					<i class="fas fa-sync-alt"></i>
-                </button>
-						<!-- Modal actualizar-->
-                    <div class="modal fade" id="ModalAct<?php echo $fila['id_empresa'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <?php
-                        if(!isset($permiso_act)){
-                            echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para editar la información de la empresa</div>';
-                            echo "<script> window.location.href='".SERVERURL."home/'; </script>";	
-                        //valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
-                        }else if($permiso_act==0){
-                            echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para editar la información de la empresa
-                            <button type="button" class="close" data-bs-dismiss="alert" onclick="window.location.reload()">X</button>
-                            </div>
-                            <div class="modal-dialog" style="display:none">;';
-                        }else{
-                    ?>    
-                    <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Actualizar Empresa</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-
-                            </div>
-                            <div class="modal-body" id="modal-actualizar">
-                            <form action="<?php echo SERVERURL; ?>ajax/empresasAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
-                                <div class="form-group">
-                                    <label class="label-actualizar">Nombre</label>
-                                    <input type="text" class="form-control" name="nombre_act" 
-                                    style="text-transform:uppercase;" value="<?php echo $fila['nombre_empresa']; ?>" required="">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label class="label-actualizar">Direccion</label>
-                                    <input type="text" class="form-control" name="direccion_act"
-                                    value="<?php echo $fila['direccion']; ?>" required="">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label class="label-actualizar">Teléfono</label>
-                                    <input type="number" class="form-control" name="telefono_act" 
-                                     value="<?php echo $fila['telefono']; ?>" required="">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label class="label-actualizar">Correo electrónico</label>
-                                    <input type="email" class="form-control" name="correo_electronico_act" 
-                                    value="<?php echo $fila['correo_electronico']; ?>" required="">
-                                </div>
-                                    <br>
-                                    <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
-                                    <input type="hidden" value="<?php echo $fila['id_empresa']; ?>" class="form-control" name="empresa_id">
-                                    <button type="submit" class="btn btn-danger">Guardar</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                </form>
-                            </div>
-                            <?php
-								}
-							?>
-                        </div>
-			    </td>
-                <td>
-                    
-					<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresasAjax.php" method="POST" data-form="delete" autocomplete="off">
-					<input type="hidden" pattern="" class="form-control" name="id_empresa_del" value="<?php echo $fila['id_empresa'] ?>">	
-					<button type="submit" class="btn btn-danger">
-						<i class="far fa-trash-alt"></i>
-					</button>
-					</form>
-				</td>
+    <div class="table-responsive">
+        <br>
+            <input type="text" id="searchBox" class="form-control" placeholder="Filtrar empresas" onkeyup="filterTable()">
+            <p id="message"></p>
+        <table id="datos-usuario" class="table table-bordered table-striped text-center">
+            <thead>
+                <tr>
+                    <th>Nombre</th>                               
+                    <th>Direccion</th>  
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
                 </tr>
-
-
+            </thead>
+            <tbody>
             <?php
-                    }
-            ?>
-        </tbody>
+                //se hace una instancia a la clase
+                    $datos=new obtenerDatosTablas();
+                    $resultado=$datos->datosTablas('empresas');
+                    foreach ($resultado as $fila){
+                ?>
+                <tr>
+                    <td><?php echo $fila['nombre_empresa']; ?></td>
+                    <td><?php echo $fila['direccion']; ?></td>
+                    <td><?php echo $fila['telefono']; ?></td>
+                    <td><?php echo $fila['correo_electronico']; ?></td>
+                    <td>
+                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_empresa'];?>">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                            <!-- Modal actualizar-->
+                        <div class="modal fade" id="ModalAct<?php echo $fila['id_empresa'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <?php
+                            if(!isset($permiso_act)){
+                                echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para editar la información de la empresa</div>';
+                                echo "<script> window.location.href='".SERVERURL."home/'; </script>";	
+                            //valida si el permiso tiene valor de cero, lo que significa que no puede acceder a la vista	
+                            }else if($permiso_act==0){
+                                echo '<div class="alert alert-warning text-center" style="font-size: 28px;">Usted no tiene autorización para editar la información de la empresa
+                                <button type="button" class="close" data-bs-dismiss="alert" onclick="window.location.reload()">X</button>
+                                </div>
+                                <div class="modal-dialog" style="display:none">;';
+                            }else{
+                        ?>    
+                        <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Empresa</h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
 
-    </table>
-</div>
-<div id="paginador" class=""></div>	
+                                </div>
+                                <div class="modal-body" id="modal-actualizar">
+                                <form action="<?php echo SERVERURL; ?>ajax/empresasAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
+                                    <div class="form-group">
+                                        <label class="label-actualizar">Nombre</label>
+                                        <input type="text" class="form-control" name="nombre_act" 
+                                        style="text-transform:uppercase;" value="<?php echo $fila['nombre_empresa']; ?>" required="">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="label-actualizar">Direccion</label>
+                                        <input type="text" class="form-control" name="direccion_act"
+                                        value="<?php echo $fila['direccion']; ?>" required="">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="label-actualizar">Teléfono</label>
+                                        <input type="number" class="form-control" name="telefono_act" 
+                                        value="<?php echo $fila['telefono']; ?>" required="">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="label-actualizar">Correo electrónico</label>
+                                        <input type="email" class="form-control" name="correo_electronico_act" 
+                                        value="<?php echo $fila['correo_electronico']; ?>" required="">
+                                    </div>
+                                        <br>
+                                        <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">
+                                        <input type="hidden" value="<?php echo $fila['id_empresa']; ?>" class="form-control" name="empresa_id">
+                                        <button type="submit" class="btn btn-danger">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </form>
+                                </div>
+                                <?php
+                                    }
+                                ?>
+                            </div>
+                    </td>
+                    <td>
+                        
+                        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresasAjax.php" method="POST" data-form="delete" autocomplete="off">
+                        <input type="hidden" pattern="" class="form-control" name="id_empresa_del" value="<?php echo $fila['id_empresa'] ?>">	
+                        <button type="submit" class="btn btn-danger">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                        </form>
+                    </td>
+                    </tr>
+
+
+                <?php
+                        }
+                ?>
+            </tbody>
+
+        </table>
+    </div>
+    <div id="paginador" class=""></div>	
+    </div>
 </div>
 <br>
 <br>
