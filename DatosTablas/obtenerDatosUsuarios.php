@@ -27,7 +27,7 @@ class obtenerDatosUsuarios extends ConexionBD{
 
     public function contarUsuarios(){
         $this->getConexion();
-        $sql="SELECT id_usuario from usuarios";
+        $sql="SELECT * from usuarios";
         $resultado=$this->conexion->query($sql) or die ($sql);
         return $resultado;
     }

@@ -7,10 +7,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 //archivo para obtener los permisos del rol conectado al sistema en la vista a la que ha accedido
 include("./DatosTablas/obtenerDatosPermisos.php"); 
 
-//llamado al archivo de la bitacora
-include ("./modelos/bitacoraActividades.php");
-$registroEntrada = new bitacora();
-
 //verificación de permisos
 //se revisa si el usuario tiene acceso a una vista específica por medio del rol que tiene y el objeto al que quiere acceder
 	$id_rol=$_SESSION['id_rol'];
@@ -32,17 +28,7 @@ $registroEntrada = new bitacora();
 		echo '<div class="modal-body" id="modal-actualizar" style="display:none">;';
 		echo "<script>
               setTimeout(function(){location.href='".SERVERURL."404/'} , 0000); </script>";
-	}else{
-        $datos_bitacora = [
-            "id_modulo" => 7,
-            "fecha" => date('Y-m-d H:i:s'),
-            "id_usuario" => $_SESSION['id_login'],
-            "accion" => "Cambio de vista",
-            "descripcion" => "El usuario ".$_SESSION['usuario_login']." entró a la vista de Usuarios"
-        ];
-        $resultado=$registroEntrada->guardar_bitacora($datos_bitacora);
-    }
-
+	}
 ?>
 
 <div class="container tarjeta-contenedor">
@@ -51,9 +37,9 @@ $registroEntrada = new bitacora();
         <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
             <div class="card-header"><img class="card-img-top" src="../vistas/assets/img/img-empleado.png" alt="Card image cap"></div>
             <div class="card-body">
-            <h5 class="card-title">EMPLEADOS</h5>
-            <p class="card-text">Gestión y revisión de las cuentas de usuario de los encargados de la plataforma</p>
-            <a href="<?php echo SERVERURL?>empleados/" class="btn btn-primary">INGRESAR</a>
+            <h5 class="card-title">BITÁCORA</h5>
+            <p class="card-text">Vista que contiene los eventos realizados dentro de la plataforma</p>
+            <a href="<?php echo SERVERURL?>bitacora/" class="btn btn-primary">INGRESAR</a>
             </div>
         </div>
     </div>
@@ -61,9 +47,9 @@ $registroEntrada = new bitacora();
         <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
             <div class="card-header"><img class="card-img-top" src="../vistas/assets/img/img-empresa.png" alt="Card image cap"></div>
             <div class="card-body">
-            <h5 class="card-title">PARTICIPANTES</h5>
-            <p class="card-text">Gestión y revisión de las personas registradas en la plataforma para participar en los sorteos</p>
-            <a href="<?php echo SERVERURL?>participantes/" class="btn btn-primary">INGRESAR</a>
+            <h5 class="card-title">BACKUP Y RESPALDOS</h5>
+            <p class="card-text">Realice respaldos y restaure datos de la base de datos</p>
+            <a href="<?php echo SERVERURL?>backup/" class="btn btn-primary">INGRESAR</a>
             </div>
         </div>
     </div>

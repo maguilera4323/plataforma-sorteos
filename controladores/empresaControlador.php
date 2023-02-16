@@ -1,9 +1,14 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 
 if($peticionAjax){
 	require_once "../modelos/empresaModelo.php";
+	include ("../modelos/bitacoraActividades.php");
 }else{
 	require_once "./modelos/empresaModelo.php";
+	include ("./modelos/bitacoraActividades.php");
 }
 
 
@@ -90,6 +95,16 @@ class empresaControlador extends empresaModelo{
 			$agregar_empresa=empresaModelo::agregarEmpresaModelo($datos_empresa_reg);
 
 			if($agregar_empresa->rowCount()==1){
+				$registroEvento = new bitacora();
+				$datos_bitacora = [
+					"id_modulo" => 3,
+					"fecha" => date('Y-m-d H:i:s'),
+					"id_usuario" => $_SESSION['id_login'],
+					"accion" => "Inserción",
+					"descripcion" => "El usuario ".$_SESSION['usuario_login']." agregó una nueva empresa al sistema"
+				];
+				$resultado=$registroEvento->guardar_bitacora($datos_bitacora);
+
 				$alerta=[
 					"Alerta"=>"recargar",
 					"Titulo"=>"Empresa Registrado",

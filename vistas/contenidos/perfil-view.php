@@ -10,8 +10,9 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
 <br>
 <div class="container">
     <h2><i class="fas fa-user-edit"></i>&nbsp; Perfil</h2>
+    <hr/>
+    <br>
 </div>
-<br>
 
 <!-- Menu de desplazamiento de vistas - forma descendente -->
 <div class="container">
@@ -223,7 +224,11 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                 </div>
             </div>
         </div>
-        <div class="col"></div>
+        <div class="col">
+            <form action="<?php echo SERVERURL; ?>modelos/respaldo.php">
+                <button class="btn btn-danger">Respaldo</button>
+            </form>
+        </div>
         <div class="col"></div>
         <br>
         <br>

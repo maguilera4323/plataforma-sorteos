@@ -6,6 +6,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 //llamado al archivo de funciones para obtener los datos de la tabla
     include("./DatosTablas/obtenerDatos.php"); 
+
+//llamado al archivo de la bitacora
+include ("./modelos/bitacoraActividades.php");
+$registroEntrada = new bitacora();
+
 //archivo para obtener los permisos del rol conectado al sistema en la vista a la que ha accedido
     include("./DatosTablas/obtenerDatosPermisos.php"); 
 
@@ -33,7 +38,16 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 		echo '<div class="modal-body" id="modal-actualizar" style="display:none">;';
 		echo "<script>
               setTimeout(function(){location.href='".SERVERURL."404/'} , 0000); </script>";
-	}
+	}else{
+        $datos_bitacora = [
+            "id_modulo" => 3,
+            "fecha" => date('Y-m-d H:i:s'),
+            "id_usuario" => $_SESSION['id_login'],
+            "accion" => "Cambio de vista",
+            "descripcion" => "El usuario ".$_SESSION['usuario_login']." entró a la vista de Empresas"
+        ];
+        $resultado=$registroEntrada->guardar_bitacora($datos_bitacora);
+    }
 ?>
 <br>
 <div class="container">
