@@ -128,11 +128,6 @@ include("./DatosTablas/obtenerDatosPermisos.php");
     </div>
     <br>
     <br>
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-4"><canvas id="grafica" width="500" height="350"></canvas></div>
-        <div class="col-8"></div>
-    </div>
 
 </div>
 

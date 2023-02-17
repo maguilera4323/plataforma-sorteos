@@ -26,10 +26,10 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/funciones-navbar.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/alertas.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/camposContrasena.js"></script>
-<script src="<?php echo SERVERURL; ?>vistas/js/cargarDatatable.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/paginador.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/buscador-registros.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/navlateral.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/graficos.js"></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/funciones-participantes.js"></script>
 
 
