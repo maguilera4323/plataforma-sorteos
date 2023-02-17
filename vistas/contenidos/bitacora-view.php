@@ -50,57 +50,44 @@ include("./DatosTablas/obtenerDatosPermisos.php");
 </div>
 
 <div class="container contenedor-tabla">
-    <div class="container">
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-6">
-            <a href="<?php echo SERVERURL?>sorteos/">
-            <div class="btn btn-outline-primary btn-lg"><i class="fas fa-reply"></i> &nbsp; Regresar a pestaña de Sorteos</div>
-            </a>
-        </div>
-        <div class="col-2"></div>
-    </div>
-    </div>
-
-
-<div class="table-responsive">
-    <br>
-        <input type="text" id="searchBox" class="form-control" onkeyup="filterTable()" placeholder="Filtrar boletos vendidos">
-        <p id="message"></p>
-    <table id="datos-usuario" class="table table-bordered table-striped text-center">
-        <thead>
-            <tr>
-                <th>Módulo</th>
-                <th>Fecha</th>                                 
-                <th>Usuario</th>
-                <th>Acción</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody class="body">
-        <?php
-            //se hace una instancia a la clase
-                $datos=new obtenerDatosTablas();
-                $resultado=$datos->datosBitacora();
-                foreach ($resultado as $fila){
-            ?>
-            <tr>
-                <td><?php echo $fila['modulo']; ?></td>
-                <td><?php echo $fila['fecha']; ?></td>
-                <td><?php echo $fila['usuario']; ?></td>
-                <td><?php echo $fila['accion']; ?></td>
-                <td><?php echo $fila['descripcion']; ?></td>
-            </tr>
-
-
+    <div class="table-responsive">
+        <br>
+            <input type="text" id="searchBox" class="form-control" onkeyup="filterTable()" placeholder="Filtrar registros">
+            <p id="message"></p>
+        <table id="datos-usuario" class="table table-bordered table-striped text-center">
+            <thead>
+                <tr>
+                    <th>Módulo</th>
+                    <th>Fecha</th>                                 
+                    <th>Usuario</th>
+                    <th>Acción</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody class="body">
             <?php
-                    }
-            ?>
-        </tbody>
+                //se hace una instancia a la clase
+                    $datos=new obtenerDatosTablas();
+                    $resultado=$datos->datosBitacora();
+                    foreach ($resultado as $fila){
+                ?>
+                <tr>
+                    <td><?php echo $fila['modulo']; ?></td>
+                    <td><?php echo $fila['fecha']; ?></td>
+                    <td><?php echo $fila['usuario']; ?></td>
+                    <td><?php echo $fila['accion']; ?></td>
+                    <td><?php echo $fila['descripcion']; ?></td>
+                </tr>
 
-    </table>
-</div>
-<div id="paginador" class=""></div>	
+
+                <?php
+                        }
+                ?>
+            </tbody>
+
+        </table>
+    </div>
+    <div id="paginador" class=""></div>	
 </div>
 <br>
 <br>

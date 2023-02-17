@@ -46,7 +46,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <h5><i class="fas fa-home"></i>&nbsp; 
     <a href="<?php echo SERVERURL?>dashboard/"> Home </a>
     / 
-    <a href="<?php echo SERVERURL?>empresas/"> Empresas </a></h5>
+    <a href="<?php echo SERVERURL?>estadisticas/"> Estadísticas </a></h5>
 </div>
 <br>
 <div class="row">
