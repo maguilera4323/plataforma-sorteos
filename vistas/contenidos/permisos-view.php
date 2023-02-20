@@ -52,7 +52,7 @@ $registroEntrada = new bitacora();
 <div class="container">
     <h2><i class="fas fa-tasks"></i>&nbsp; Permisos</h2>
 </div>
-<br>
+<hr/>
 
 <!-- Menu de desplazamiento de vistas - forma descendente -->
 <div class="container">
@@ -63,6 +63,8 @@ $registroEntrada = new bitacora();
     / 
     <a href="<?php echo SERVERURL?>permisos/"> Permisos </a></h5>
 </div>
+<br>
+
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">

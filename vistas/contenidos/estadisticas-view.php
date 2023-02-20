@@ -39,7 +39,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 <div class="container">
     <h2><i class="fas fa-chart-area"></i>&nbsp; Estadísticas</h2>
 </div>
-<br>
+<hr/>
 
 <!-- Menu de desplazamiento de vistas - forma descendente -->
 <div class="container">
@@ -49,6 +49,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <a href="<?php echo SERVERURL?>estadisticas/"> Estadísticas </a></h5>
 </div>
 <br>
+
 <div class="row">
     <div class="col-1"></div>
     <div class="col-4">

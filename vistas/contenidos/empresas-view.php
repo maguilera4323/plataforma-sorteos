@@ -53,7 +53,7 @@ $registroEntrada = new bitacora();
 <div class="container">
     <h2><i class="fas fa-industry"></i>&nbsp; Empresas</h2>
 </div>
-<br>
+<hr/>
 
 <!-- Menu de desplazamiento de vistas - forma descendente -->
 <div class="container">
@@ -62,6 +62,7 @@ $registroEntrada = new bitacora();
     / 
     <a href="<?php echo SERVERURL?>empresas/"> Empresas </a></h5>
 </div>
+<br>
 
 <div class="container contenedor-tabla">
     <div class="container">

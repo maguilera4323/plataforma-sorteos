@@ -66,8 +66,8 @@ include("./DatosTablas/obtenerDatosPermisos.php");
 <br>
 <div class="container">
     <h2><i class="fas fa-industry"></i>&nbsp; Empleados</h2>
-
 </div>
+<hr/>
 
 <!-- Menu de desplazamiento de vistas - forma descendente -->
 <div class="container">
@@ -80,6 +80,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
     / 
     <a href="<?php echo SERVERURL?>empleados/"> Empleados </a></h5>
 </div>
+<br>
 
 <div class="container contenedor-tabla">
     <div class="container">

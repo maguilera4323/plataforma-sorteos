@@ -19,6 +19,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 <a href="<?php echo SERVERURL?>compra-boleto/" class="btn btn-primary">COMPRAR</a>
 
+<?php
+	include "./vistas/inc/footer.php";
+?>
 
 
 

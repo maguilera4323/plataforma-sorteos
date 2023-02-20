@@ -51,7 +51,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
 <div class="container">
     <h2><i class="fas fa-vote-yea"></i>&nbsp; Boletos Vendidos</h2>
 </div>
-<br>
+<hr/>
 
 <!-- Menu de desplazamiento de vistas - forma descendente -->
 <div class="container">
@@ -62,18 +62,19 @@ include("./DatosTablas/obtenerDatosPermisos.php");
     / 
     <a href="<?php echo SERVERURL?>boletos/"> Boletos </a></h5>
 </div>
+<br>
 
 <div class="container contenedor-tabla">
     <div class="container">
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-6">
-            <a href="<?php echo SERVERURL?>sorteos/">
-            <div class="btn btn-outline-primary btn-lg"><i class="fas fa-reply"></i> &nbsp; Regresar a pestaña de Sorteos</div>
-            </a>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-6">
+                <a href="<?php echo SERVERURL?>sorteos/">
+                <div class="btn btn-outline-primary btn-lg"><i class="fas fa-reply"></i> &nbsp; Regresar a pestaña de Sorteos</div>
+                </a>
+            </div>
+            <div class="col-2"></div>
         </div>
-        <div class="col-2"></div>
-    </div>
     </div>
 
 

@@ -53,7 +53,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
 <div class="container">
     <h2><i class="fas fa-table"></i>&nbsp; Módulos</h2>
 </div>
-<br>
+<hr/>
 
 <!-- Menu de desplazamiento de vistas - forma descendente -->
 <div class="container">
@@ -64,6 +64,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
     / 
     <a href="<?php echo SERVERURL?>modulos/"> Módulos </a></h5>
 </div>
+<br>
 
 <div class="container contenedor-tabla">
     <div class="container">

@@ -52,7 +52,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
 ?>
 <br>
 <h2 class="nombre-vista"><i class="fas fa-users-cog"></i>&nbsp; Roles</h2>
-<br>
+<hr/>
 
 <!-- Menu de desplazamiento de vistas - forma descendente -->
 <div class="container">
@@ -63,6 +63,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
     / 
     <a href="<?php echo SERVERURL?>roles/"> Roles </a></h5>
 </div>
+<br>
 
 <div class="container contenedor-tabla">
     <div class="container">

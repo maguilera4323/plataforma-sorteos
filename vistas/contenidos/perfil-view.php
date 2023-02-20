@@ -10,9 +10,8 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
 <br>
 <div class="container">
     <h2><i class="fas fa-user-edit"></i>&nbsp; Perfil</h2>
-    <hr/>
-    <br>
 </div>
+<hr/>
 
 <!-- Menu de desplazamiento de vistas - forma descendente -->
 <div class="container">
@@ -21,6 +20,7 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
     / 
     <a href="<?php echo SERVERURL?>empresas/"> Perfil </a></h5>
 </div>
+<br>
 
 <div class="container perfil-contenedor">
     <h5 style="padding:0.6rem;"> <i class="fas fa-user"></i></i>&nbsp; Datos del usuario</h5>

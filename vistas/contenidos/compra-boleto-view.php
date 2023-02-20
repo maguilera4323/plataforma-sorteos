@@ -22,7 +22,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
     </form>
 
-
+<?php
+	include "./vistas/inc/footer.php";
+?>
 
 
 
