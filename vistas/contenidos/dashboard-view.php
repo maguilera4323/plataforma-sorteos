@@ -47,7 +47,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
     }
 ?>
 
-<div class="container dashboard-contenedor">
+<div class="container-sm dashboard-contenedor">
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col">
             <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
@@ -128,6 +128,9 @@ include("./DatosTablas/obtenerDatosPermisos.php");
     </div>
     <br>
     <br>
+    <div class="container-fluid text-center">
+        <img src="../vistas/assets/img/logo-compania.png" width="536" height="361" alt="" style="margin:0 auto;">
+    </div>
 
 </div>
 

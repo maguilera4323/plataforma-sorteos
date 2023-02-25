@@ -32,3 +32,8 @@
   })(jQuery); 
 
 
+  //Funcion para navbar de la pagina de inicio
+  function toggleMobileMenu() {
+    let menu=document.getElementById('hamburger-icon');
+    menu.classList.toggle('open');
+}

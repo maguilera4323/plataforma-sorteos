@@ -189,16 +189,15 @@
 
 
 .boton-inicio, .botones-abajo:nth-child(2){
-    color: #1D212B;
+    color: #fffefe;
     background: #fff;
 }
 
 
-.botones-abajo .container{
-}
 
 
-.botones-abajo h2{
+
+.boton-inicio h2{
     font-size: 40px;
     text-align: center;
     text-transform: uppercase;
@@ -206,17 +205,22 @@
 }
 
 
-.botones-abajo .cards{
+.boton-inicio .cards{
     display: flex;
 }
 
-.botones-abajo .cards .text-card{
-    background: #2996E9;
+.boton-inicio .cards .text-card{
+    background: #469bdb;
     margin: 20px;
-    padding: 20px;
+    padding: 30px;
+    font-family: verdana;
+    border: 2px solid #3e9acf;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    padding: 10px;
 }
 
-.botones-abajo .cards .text-card .h3{
+.boton-inicio .cards .text-card .h3{
    font-size: 30px;
    text-align: center;
    text-transform: uppercase;
@@ -224,11 +228,11 @@
 }
 
 @media (max-width:900px){
-    .botones-abajo h1{
+  .boton-inicio h1{
         font-size: 40px;
     }
 
-    .botones-abajo .cards{
+    .boton-inicio .cards{
         flex-direction: column;
     }
 }
@@ -569,91 +573,4 @@ estilos para contenedor de vista Configuracion */
   }
 
 
- /*  Estilos para navbar inicio */
- /*   DESKTOP DEMO OF SVG EFFECTS. */
-
-@import url("https://fonts.googleapis.com/css?family=Lato");
-
-
-.header {
-    font: 400 10px;
-	text-align: center;
-	width: 100%;
-	height: 80px;
-	background: #17141d;
-	opacity: 0.95;
-	overflow: hidden;
-	-webkit-box-shadow: #333 1px 3px 4px;
-	-moz-box-shadow: #333 1px 3px 4px;
-	box-shadow: #333 1px 3px 4px;
-}
-
-.header .content {
-	width: 100%;
-	height: calc(100% - 75px);
-	background-image: url(https://picsum.photos/1000/700);
-	background-size: cover;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	background-color: #9387ab;
-}
-.header h1 {
-	letter-spacing: 4px;
-	padding: 1em;
-	color: white;
-	background-color: #17141d;
-	opacity: 0.8;
-}
-
-.header svg.line-top {
-	width: 100%;
-	background-color: #17141d;
-}
-.header svg.line-bottom {
-	width: 100%;
-}
-.header .menu {
-	width:50rem;
-	margin: 0 auto;
-}
-
-.header ul li {
-	margin: 0;
-	padding: 10px;
-	width: 25%;
-	height: 20px;
-	text-align: center;
-	text-transform: uppercase;
-	text-decoration: none;
-	color: white;
-	cursor: pointer;
-	display: inline-block;
-	letter-spacing: 3.5px;
-}
-
-.header li.active {
-	color: orange;
-	transform: scale(1.1);
-}
-
-.header polygon {
-	stroke-width: 2px;
-	stroke: orange;
-	fill: orange;
-}
-
-@media (max-device-width: 991px) {
-	.header {
-		height: 64px;
-	}
-
-	.header .content {
-		height: calc(100% - 64px);
-	}
-}
-
-.header li:hover{
-    color: red;
-}
+ 

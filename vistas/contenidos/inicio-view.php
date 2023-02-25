@@ -3,22 +3,10 @@
 ?>
 
 <div id="inicio">
-    <section class="boton-inicio" style="background-image: url('../vistas/assets/img/Ganadores.jpg')">
-            <a href="<?php echo SERVERURL?>login/"><button class= "button1" type="submit" >PARTICIPAR</button></a>
-    </section>
-
-<div class="container carousel">
-    <div class="carousel__container">
-        <img src="<?php echo SERVERURL?>vistas/assets/img/Diunsa.jpg" width="400" height="300" alt="Imagen 1">
-        <img src="<?php echo SERVERURL?>vistas/assets/img/Pizza.jpg" width="400" height="300" alt="Imagen 2">
-    </div>
-    <button class="carousel__button carousel__button--prev">&#10094;</button>
-    <button class="carousel__button carousel__button--next">&#10095;</button>
-</div>
-
-    <section class="botones-abajo">
-        <div class="container">
-            <h2>INFORMACION ADICIONAL</h2>
+    <section class="boton-inicio" style="background-image: url('../vistas/assets/img/bingo-4472302_1280.jpg')">
+            
+      <div class="container-fluid text-center" style="display: flex; align-items: center; justify-content: center;">
+            
 
             <div class="cards">
                 <div class="text-card">
@@ -38,8 +26,9 @@
                     <p>Lo que sea que vaya aqui :)</p>
                 </div>
             </div>
-        </div>
+        </div> 
     </section>
+
 </div>
 
 <?php
