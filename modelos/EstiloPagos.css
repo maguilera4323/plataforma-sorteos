@@ -1,0 +1,61 @@
+body{
+
+    background: yellow;
+    background: linear-gradient(to right, #ffa751,#ffe259 );
+
+}
+
+
+.form-login{
+    width: 200px;
+    height: 400px;
+    background: white;
+    margin: auto;
+    margin-top: 15%;
+    box-shadow: 7px 13px 37px #000;
+    padding: 100px 100px;
+    border-radius: 15px;
+    /* border-top: 4px solid #017bab; */
+    color: white;
+  }
+
+
+  .form-login h5{
+
+    margin: 0;
+    text-align: center;
+    height: 40px;
+    color: #000;
+    margin-bottom: 30px;
+    border-bottom: 1px solid;
+    font-size: 20px;
+  }
+
+  .form-login label{
+    text-align: left;
+    color: #000;
+   
+  }
+
+
+
+  .imagen-redonda {
+    width: 25%;
+    height: 40%;
+    margin: auto;
+    border-radius: 12%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .imagen-redonda img {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+
+
