@@ -31,5 +31,6 @@
 <script src="<?php echo SERVERURL; ?>vistas/js/navlateral.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/graficos.js"></script>
 <script src="<?php echo SERVERURL; ?>vistas/js/funciones-participantes.js"></script>
+<script src="<?php echo SERVERURL; ?>vistas/js/datosPayPal.js"></script>
 
 

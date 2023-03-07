@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title><?php echo COMPANY; ?></title>
 	<?php include "./vistas/inc/archivos_css.php"; ?>
+	<script src="https://www.paypal.com/sdk/js?client-id=AY8ZdCX_D1xBvYT5-ThAjwKHC26ECXTReASlTO98lkYJCy5CscrlwE3bXKwS1VR_L1XtYopUOQVT3Pfm&currency=USD"></script>
 </head>
 <body>
 	<?php
