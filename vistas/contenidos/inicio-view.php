@@ -3,7 +3,7 @@
 ?>
 
 <div id="inicio">
-    <section class="boton-inicio" style="background-image: url('../vistas/assets/img/bingo-4472302_1280.jpg')">
+    <section class="boton-inicio">
             
       <div class="container-fluid text-center" style="display: flex; align-items: center; justify-content: center;">
             

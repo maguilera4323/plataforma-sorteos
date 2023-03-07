@@ -573,4 +573,23 @@ estilos para contenedor de vista Configuracion */
   }
 
 
- 
+/* Estilos para imagen responsive de inicio */
+#inicio .boton-inicio{
+  background-image: url('../assets/img/bingo-4472302.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center; 
+  background-attachment: fixed;
+}
+
+@media only screen and (max-device-width:767px){
+    .boton-inicio{
+    background-image: url('../vistas/assets/img/Pizza.jpg');
+    }
+  }
+
+@media only screen and (max-width:767px){
+    .boton-inicio{
+    background-image: url('../vistas/assets/img/Pizza.jpg');
+    }
+  }

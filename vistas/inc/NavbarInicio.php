@@ -10,7 +10,7 @@ header a {
 header {
   padding: 0 20px;
   background-color: #1d1f1d;
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
 }
@@ -134,7 +134,7 @@ header ul li:hover {
 </style>
 
 <header>
-      <div id="brand"><a href="/">Sorteos Reales</a></div>
+      <div id="brand"><img src="../vistas/assets/img/logo-compania.png" width="90" height="50" alt=""></div>
       <nav>
         <ul>
           <li><a href="<?php echo SERVERURL?>inicio/"><i class="fas fa-home"></i>&nbsp; Inicio</a></li>
