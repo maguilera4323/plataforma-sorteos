@@ -8,10 +8,47 @@ if($peticionAjax){
 
 
 class Usuario extends ConexionBD{
+        private $user;
+        private $password;
+        private $email;
+        private $code;
+
+        //Se realiza un get y set de las variables para otorgar más seguridad a los datos obtenidos
+        function getUsuario() {
+            return $this->user;
+        }
+
+        function getContrasena() {
+            return $this->password;
+        }
+
+        function getCorreo() {
+            return $this->email;
+        }
+
+        function getCodigo() {
+            return $this->code;
+        }
+
+        function setUsuario($user) {
+            $this->user = $user;
+        }
+
+        function setContrasena($password) {
+            $this->password = $password;
+        }
+
+        function setCorreo($email) {
+            $this->email = $email;
+        }
+
+        function setCodigo($code) {
+            $this->code = $code;
+        }
 
     public function obtenerContrasenaHash($user) {
 		$this->getConexion();
-        $sql="SELECT contrasena FROM usuarios WHERE usuario = '".$user. "' LIMIT 1";
+        $sql="SELECT contrasena FROM usuarios WHERE BINARY usuario = '".$user. "' LIMIT 1";
 		$resultado=$this->conexion->query($sql) or die ($sql);
         return $resultado;
 	}
@@ -20,7 +57,7 @@ class Usuario extends ConexionBD{
         $this->getConexion();
         $sql="SELECT u.id_usuario, u.usuario, u.estado,u.id_rol,r.rol FROM usuarios u
         inner join roles r on r.id_rol=u.id_rol
-        WHERE usuario='$user' AND contrasena='$password' AND estado!=4";
+        WHERE BINARY usuario='$user' AND contrasena='$password' AND estado!=4";
         $resultado=$this->conexion->query($sql) or die ($sql);
         return $resultado;
     }

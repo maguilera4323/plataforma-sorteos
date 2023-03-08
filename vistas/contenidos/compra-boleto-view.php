@@ -12,7 +12,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
         </div>
         <label for="cantidad">Sorteo Numero: </label><br>
         <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" min="1" value="1" required>
+        <input type="number" id="cantidad" class="cantidad"min="1" value="1" required>
         <br>
         <br>
             <div id="paypal-button-container"> </div>
@@ -20,9 +20,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 </form>
 <br>
 
-<?php
-	include "./vistas/inc/footer.php";
-?>
+
 
 
 

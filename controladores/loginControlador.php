@@ -8,7 +8,7 @@ require_once "./controladores/emailControlador.php";
 class loginUsuarios extends Usuario{
 
     public function accesoSistema($datos){
-        $usuario=ConexionBD::limpiar_cadena(strtoupper($datos['usuario']));
+        $usuario=ConexionBD::limpiar_cadena(strtolower($datos['usuario']));
         $contrasena=ConexionBD::limpiar_cadena($datos['password']);
         $array=array();
         $hash='';

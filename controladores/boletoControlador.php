@@ -14,10 +14,31 @@ class boletoControlador extends boletoModelo{
 
 	
 	public function agregarBoleto(){
-		$usuario=$_SESSION['id_login'];
-		$sorteo=1;
-		$numero_boleto=3;
-		$fecha=date('y-m-d H:i:s');
+		$cantidad=$_SESSION['cantidad_boletos'];
+
+		//ciclo que se encarga de registrar lo cantidad de boletos que adquiera un usuario
+		for($i=0;$i<$cantidad;$i++){
+
+			//consulta que extrae el numero del ultimo boleto adquirido y le suma 1 para obtener el siguiente numero de boleto
+			$extraerNumeroBoleto=ConexionBD::consultaComprobacion("SELECT numero_boleto FROM boletos");
+			if($extraerNumeroBoleto->rowCount()>0){
+				foreach ($extraerNumeroBoleto as $fila){
+					$numero_boleto=$fila['numero_boleto']+1;
+				}
+			}else{
+				$numero_boleto=1;
+			}
+
+			//consulta que extrae el numero del ultimo boleto adquirido y le suma 1 para obtener el siguiente numero de boleto
+			$extraerSorteoActivo=ConexionBD::consultaComprobacion("SELECT id_sorteo FROM sorteos where estado_sorteo=1");
+			if($extraerSorteoActivo->rowCount()>0){
+				foreach ($extraerSorteoActivo as $fila){
+					$sorteo=$fila['id_sorteo'];
+				}
+			}
+
+			$usuario=$_SESSION['id_login'];
+			$fecha=date('y-m-d H:i:s');
 	
 					
 			//arreglo enviado al modelo para ser usado en una sentencia INSERT
@@ -29,106 +50,9 @@ class boletoControlador extends boletoModelo{
 			];
 
 			$agregar_boleto=boletoModelo::agregarBoletoModelo($datos_mod_reg);
-	} 
-
-
-
-	public function actualizarModulo(){	
-		$nombre=ConexionBD::limpiar_cadena(strtoupper($_POST['modulo_act']));
-		$descripcion=ConexionBD::limpiar_cadena($_POST['desc_act']);
-		$tipo=ConexionBD::limpiar_cadena($_POST['tipo_modulo_act']);
-		$modif_por=ConexionBD::limpiar_cadena($_POST['usuario_login']);
-		$modificacion=date('y-m-d H:i:s');
-		$id_actualizacion=ConexionBD::limpiar_cadena($_POST['modulo_id']);
-
-		/* //validaciones de datos */
-		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚÑ ]{1,100}",$nombre)){
-			$alerta=[
-				"Alerta"=>"simple",
-				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"El campo Nombre solo acepta letras y espacios",
-				"Tipo"=>"error"
-			];
-			echo json_encode($alerta);
-			exit();
 		}
-
-
-		if(ConexionBD::verificar_datos("[A-ZÁÉÍÓÚa-záéíóúnÑ .,]{1,100}",$descripcion)){
-			$alerta=[
-				"Alerta"=>"simple",
-				"Titulo"=>"Ocurrió un error inesperado",
-				"Texto"=>"Ingresó carácteres no válidos en el campo Descripción",
-				"Tipo"=>"error"
-			];
-			echo json_encode($alerta);
-			exit();
-		}
-
-					
-			//arreglo enviado al modelo para ser usado en una sentencia INSERT
-			$datos_mod_act=[
-				"nom"=>$nombre,
-				"desc"=>$descripcion,
-				"tipo"=>$tipo,
-				"fecha_modif"=>$modificacion,
-				"modif_por"=>$modif_por
-			];
-
-			$actualizar_mod=moduloModelo::actualizarModuloModelo($datos_mod_act,$id_actualizacion);
-
-			if($actualizar_mod->rowCount()==1){
-				$alerta=[
-					"Alerta"=>"recargar",
-					"Titulo"=>"Módulo Actualizado",
-					"Texto"=>"Los datos del módulo han sido actualizados con exito",
-					"Tipo"=>"success"
-				];
-
-				
-			}else{
-				$alerta=[
-					"Alerta"=>"simple",
-					"Titulo"=>"Ocurrió un error inesperado",
-					"Texto"=>"Ha ocurrido un problema al momento de actualizar la información del módulo",
-					"Tipo"=>"error"
-				];
-			}
-			echo json_encode($alerta);
-	} 
-
-
-
-	public function eliminarModulo(){
-			$id=ConexionBD::limpiar_cadena(($_POST['id_mod_del']));
-			$array=array();
-			$valor='';
 		
-		$eliminarMod=moduloModelo::eliminarModuloModelo($id);
-			if($eliminarMod->rowCount()==1){
-				$alerta=[
-					"Alerta"=>"recargar",
-					"Titulo"=>"Módulo Eliminado",
-					"Texto"=>"El módulo seleccionado fue eliminado",
-					"Tipo"=>"success"
-				];
-
-				echo json_encode($alerta);
-
-			
-			}else{
-				$alerta=[
-					"Alerta"=>"simple",
-					"Titulo"=>"Ha ocurrido un error",
-					"Texto"=>"Ha ocurrido un problema al momento de eliminar el módulo seleccionado",
-					"Tipo"=>"error"
-				];echo json_encode($alerta);
-			}
-			
-			exit();
-
-			
-	}
+	} 
 
 }
 

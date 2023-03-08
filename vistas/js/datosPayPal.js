@@ -22,11 +22,27 @@ paypal.Buttons({
     });
   },
   onApprove: function(data, actions) {
+    $.ajax({
+      method: "POST",
+      url: "../ajax/boletoAjax.php",
+      data: { cantidad: $("input.cantidad").val() }
+    })
     // Capturar el pago aprobado
     return actions.order.capture().then(function(details) {
       // Mostrar una confirmación de pago al usuario
-      alert('Pago realizado con éxito. ID de transacción: ' + details.payer.name.given_name + '!');
-      window.location.href = "../home/";
+      /* Swal.fire(
+        'Pago realizado con éxito',
+        'ID de transacción: ' + details.payer.name.given_name + '!',
+        'success'
+      ) */
+      Swal.fire({
+				title: "Pago realizado con éxito",
+				text: "ID de transacción: " + details.payer.name.given_name + "!",
+				icon: "success"
+			}).then(function() {
+				window.location.href = "../home";
+			})
+      
     });
   }
 }).render('#paypal-button-container');
