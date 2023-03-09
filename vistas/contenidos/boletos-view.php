@@ -80,15 +80,6 @@ include("./DatosTablas/obtenerDatosPermisos.php");
 
 <div class="table-responsive">
     
-<?php
-	//variables para generar la url completa del sitio y obtener el id del registro
-	$host= $_SERVER["HTTP_HOST"];
-	$url= $_SERVER["REQUEST_URI"];
-	$url_completa="http://" . $host . $url; 
-			//variable que contiene el id de la compra a editar
-	$id = explode('=',$url_completa)[1]; 
-
-	?>
     <br>
         <input type="text" id="searchBox" class="form-control" onkeyup="filterTable()" placeholder="Filtrar boletos vendidos">
         <p id="message"></p>
@@ -105,7 +96,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
         <?php
             //se hace una instancia a la clase
                 $datos=new obtenerDatosSorteos();
-                $resultado=$datos->boletosComprados($id);
+                $resultado=$datos->boletosComprados();
                 foreach ($resultado as $fila){
             ?>
             <tr>

@@ -70,7 +70,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
         </div>
         <div class="col">
             <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-            <a href="<?php echo SERVERURL?>usuarios/">
+            <a href="<?php echo SERVERURL?>boletos/">
                 <div class="card-body">
                 <?php
                 //se hace una instancia a la clase

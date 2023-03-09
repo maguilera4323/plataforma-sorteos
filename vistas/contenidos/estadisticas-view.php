@@ -50,25 +50,25 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 </div>
 <br>
 
-<div class="row">
-    <div class="col-1"></div>
-    <div class="col-4">
-        <h5 class="text-center">Usuarios Registrados por Sexo</h5>
-        <canvas id="grafica" style="width:3rem; height:2.5rem;"></canvas>
-    </div>
-    <div class="col-1"></div>
-    <div class="col-5">
-        <h5 class="text-center">Usuarios Registrados por Mes</h5>
-        <canvas id="grafica2" width="500" height="350"></canvas>
-    </div>
-</div>
-<br>
-<br>
-<div class="row">
+<div class="container">
+    <div class="row">
         <div class="col-1"></div>
         <div class="col-4">
-            <h5 class="text-center">Usuarios Registrados por Edad</h5>
-            <canvas id="grafica3" width="500" height="350"></canvas></div>
+            <h5 class="text-center">Usuarios Registrados por Sexo</h5>
+            <canvas id="grafica" style="width:3rem; height:2.5rem;"></canvas>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-5">
+            <h5 class="text-center">Usuarios Registrados por Mes</h5>
+            <canvas id="grafica2" width="500" height="350"></canvas>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
             <div class="col-1"></div>
-        <div class="col-4"><canvas id="grafica4" width="500" height="350"></canvas></div></div>
+            <div class="col-4">
+                <h5 class="text-center">Usuarios Registrados por Edad</h5>
+                <canvas id="grafica3" width="500" height="350"></canvas></div>
+    </div>
 </div>

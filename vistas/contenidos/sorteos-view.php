@@ -71,13 +71,15 @@ include("./DatosTablas/obtenerDatosPermisos.php");
 <div class="container contenedor-tabla">
     <div class="container">
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-7">
+        <div class="col-2"></div>
+        <div class="col-10">
             <div class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar</div>
             <div class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-pdf"></i> &nbsp; Exportar a PDF</div>
             <div class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#ModalCrear"><i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel</div>
+            <a href="<?php echo SERVERURL?>boletos/">
+            <div class="btn btn-light btn-lg"><i class="fas fa-vote-yea"></i> &nbsp; Ver Boletos Vendidos</div>
+            </a>
         </div>
-        <div class="col-2"></div>
     </div>
     </div>
 
@@ -89,9 +91,6 @@ include("./DatosTablas/obtenerDatosPermisos.php");
         <thead>
             <tr>
                 <th>Nombre de sorteo</th>  
-                <th>Rango Inicial</th>
-                <th>Rango Final</th>
-                <th>Ver boletos vendidos</th>
                 <th>Estado</th> 
                 <th>Actualizar</th>
                 <th>Eliminar</th>
@@ -106,10 +105,6 @@ include("./DatosTablas/obtenerDatosPermisos.php");
             ?>
             <tr>
                 <td><?php echo $fila['nombre_sorteo']; ?></td>
-                <td><?php echo $fila['rango_inicial']; ?></td>
-                <td><?php echo $fila['rango_final']; ?></td>
-                <td><a href="<?php echo SERVERURL?>boletos?id=<?php echo $fila['id_sorteo']; ?>">
-                <i class="fas fa-info-circle"></i></a></td>
                 <td><?php echo $fila['estado_sorteo']; ?></td>
                 <td>
 				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_sorteo'];?>">
