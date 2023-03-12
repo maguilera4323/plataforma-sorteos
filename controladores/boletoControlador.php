@@ -31,7 +31,7 @@ class boletoControlador extends boletoModelo{
 			}
 
 			//consulta que extrae el numero del ultimo boleto adquirido y le suma 1 para obtener el siguiente numero de boleto
-			$extraerSorteoActivo=ConexionBD::consultaComprobacion("SELECT id_sorteo FROM sorteos");
+			$extraerSorteoActivo=ConexionBD::consultaComprobacion("SELECT id_sorteo FROM sorteos where estado_sorteo=1");
 			if($extraerSorteoActivo->rowCount()>0){
 				foreach ($extraerSorteoActivo as $fila){
 					$sorteo=$fila['id_sorteo'];
@@ -40,7 +40,7 @@ class boletoControlador extends boletoModelo{
 
 			//consulta que extrae los premios registrados en el sistema siempre que tengan relacion con el sorteo activo
 			//y que tengan cantidad superior a cero
-			$extraerPremioGanado=ConexionBD::consultaComprobacion("SELECT id_premio FROM premios where cantidad_disponible>=1");
+			$extraerPremioGanado=ConexionBD::consultaComprobacion("SELECT id_premio FROM premios where id_sorteo='$sorteo' and cantidad_disponible>=1");
 			if($extraerPremioGanado->rowCount()>0){
 				foreach ($extraerPremioGanado as $fila){
 					$arregloPremios[]=$fila['id_premio'];
