@@ -411,12 +411,12 @@ estilos para contenedor de vista Configuracion */
 
 /*   Estilos para compra de boleto */
 .form-boleto{
-    width: 400px;
-    height: 380px;
+    width: 25rem;
+    height: 24rem;
     background: white;
     margin: auto;
-    margin-top: 5%;
-    margin-bottom: 15%;
+    margin-top: 8%;
+    margin-bottom: 10%;
     box-shadow: 7px 13px 37px #000;
     padding: 20px 30px;
     border-radius: 15px;
@@ -487,6 +487,7 @@ estilos para contenedor de vista Configuracion */
     padding:50px 0;
     color:#f0f9ff;
     background-color:#282d32;
+    z-index:1;
   }
   
   .footer-dark h3 {
@@ -593,4 +594,8 @@ estilos para contenedor de vista Configuracion */
     .boton-inicio{
     background-image: url('../vistas/assets/img/Pizza.jpg');
     }
+  }
+
+  #paypal-button-container{
+    margin-bottom: 1500px;
   }

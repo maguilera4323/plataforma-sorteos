@@ -102,13 +102,13 @@
         label: "Usuarios registrados",
         // Pasar los datos igualmente desde PHP
         data: respuesta.cantidades, // <- Aquí estamos pasando el valor traído usando AJAX
-        backgroundColor:['rgba(249, 148, 85, 0.96)','rgba(154, 116, 190, 0.96)','rgba(76, 193, 234, 0.96)',
-        'rgba(233, 67, 69, 0.86)'], // Color de fondo
+        backgroundColor:['rgba(10, 152, 136, 0.88)','rgba(235, 63, 26, 0.88)','rgba(24, 137, 3, 0.88)',
+        'rgba(233, 67, 69, 0.86)','rgba(97, 68, 143, 0.88)'], // Color de fondo
         borderColor: 'rgba(54, 162, 235, 1)', // Color del borde
         borderWidth: 1, // Ancho del borde
     };
     new Chart($grafica, {
-        type: 'bar', // Tipo de gráfica
+        type: 'pie', // Tipo de gráfica
         data: {
             labels: etiquetas,
             datasets: [

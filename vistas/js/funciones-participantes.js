@@ -33,17 +33,45 @@ setInterval(() => {
 
 
 //funciones para cantidad de boletos comprados
-function decrementValue(){
-    var value = parseInt(document.getElementById('cantidad').value, 10);
-    value = isNaN(value) ? 1 : value;
-    value--;
-    document.getElementById('cantidad').value = value;
+
+function aumentar(){ 
+    let valorActual = document.getElementById("cantidad").value;
+    let nuevoValor = parseInt(valorActual) + 1;
+  
+    document.getElementById("cantidad").value = nuevoValor;
+  
+}
+
+function disminuir(){ 
+  let valorActual = document.getElementById("cantidad").value;
+
+  //validacion que comprueba que no exista un valor menor de cero en el input
+  if(valorActual>=1){
+    let nuevoValor = parseInt(valorActual) - 1;
+    document.getElementById("cantidad").value = nuevoValor;
+  } 
+  
 }
 
 
-function incrementValue(){
-    var value = parseInt(document.getElementById('cantidad').value, 10);
-    value = isNaN(value) ? 1 : value;
-    value++;
-    document.getElementById('cantidad').value = value;
+//funcion para verificar que las contraseñas ingresadas durante el registro sean iguales
+function validarContrasenas() {
+  const password1 = document.getElementById('contrasena_autoregistro');
+  const password2 = document.getElementById('conf_contrasena');
+  const message = document.getElementById('message');
+
+  password2.addEventListener('input', () => {
+    if (password1.value === password2.value) {
+      message.textContent = 'Contraseñas iguales';
+      message.style.color = 'green';
+      message.style.display = 'block';
+    } else {
+      message.textContent = 'Las contraseñas no coinciden';
+      message.style.color = 'red';
+      message.style.display = 'block';
+    }
+  });
 }
+
+validarContrasenas(); // llamada a la función
+

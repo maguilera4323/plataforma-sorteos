@@ -181,6 +181,16 @@ class empresaControlador extends empresaModelo{
 			$actualizar_empresa=empresaModelo::actualizarEmpresaModelo($datos_empresa_act,$id_actualizar);
 
 			if($actualizar_empresa->rowCount()==1){
+				$registroEvento = new bitacora();
+				$datos_bitacora = [
+					"id_modulo" => 3,
+					"fecha" => date('Y-m-d H:i:s'),
+					"id_usuario" => $_SESSION['id_login'],
+					"accion" => "Actualización",
+					"descripcion" => "El usuario ".$_SESSION['usuario_login']." actualizó la información de una empresa"
+				];
+				$resultado=$registroEvento->guardar_bitacora($datos_bitacora);
+
 				$alerta=[
 					"Alerta"=>"recargar",
 					"Titulo"=>"Empresa Actualizada",

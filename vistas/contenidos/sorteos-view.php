@@ -92,7 +92,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
             <tr>
                 <th>Nombre de sorteo</th>  
                 <th>Estado</th> 
-                <th>Actualizar</th>
+                <th>Cambiar estado</th>
                 <th>Eliminar</th>
             </tr>
         </thead>
@@ -106,6 +106,7 @@ include("./DatosTablas/obtenerDatosPermisos.php");
             <tr>
                 <td><?php echo $fila['nombre_sorteo']; ?></td>
                 <td><?php echo $fila['estado_sorteo']; ?></td>
+                
                 <td>
 				<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAct<?php echo $fila['id_sorteo'];?>">
 					<i class="fas fa-sync-alt"></i>
@@ -127,29 +128,13 @@ include("./DatosTablas/obtenerDatosPermisos.php");
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Sorteo</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Activar o Inactivar Sorteo</h5>
                                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body" id="modal-actualizar">
                                 <form action="<?php echo SERVERURL; ?>ajax/sorteoAjax.php" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
-                                    <div class="form-group">
-                                        <label class="label-actualizar">Nombre</label>
-                                        <input type="text" class="form-control" name="nombre_act" style="text-transform:uppercase;" 
-                                        value="<?php echo $fila['nombre_sorteo']?>" required="" >
-                                    </div>
-                                    <br>
-                                    <div class="form-group">
-                                        <label class="label-actualizar">Rango Inicial</label>
-                                        <input type="number" class="form-control" name="rango_inicial_act" value="<?php echo $fila['rango_inicial']?>" required="" >
-                                    </div>
-                                    <br>
-                                    <div class="form-group">
-                                        <label class="label-actualizar">Rango Final</label>
-                                        <input type="number" class="form-control" value="<?php echo $fila['rango_final']?>" name="rango_final_act" required="" >
-                                    </div>
-                                    <br>
                                     <div class="form-group">
                                         <label class="label-actualizar">Estado</label>
                                             <select class="form-control" name="estado_act">
@@ -221,16 +206,6 @@ include("./DatosTablas/obtenerDatosPermisos.php");
                         <div class="form-group">
                             <label class="color-label">Nombre</label>
                             <input type="text" class="form-control" name="nombre_nuevo" style="text-transform:uppercase;" required="" >
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label class="color-label">Rango Inicial</label>
-                            <input type="number" class="form-control" name="rango_inicial_nuevo" required="" >
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label class="color-label">Rango Final</label>
-                            <input type="number" class="form-control" name="rango_final_nuevo" required="" >
                         </div>
                         <br>
                     <input type="hidden" value="<?php echo $_SESSION['usuario_login']; ?>" class="form-control" name="usuario_login">

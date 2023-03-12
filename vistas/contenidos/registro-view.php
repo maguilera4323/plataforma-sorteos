@@ -97,7 +97,7 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                     <div class="col-10 col-md-6">
                     <br>
 						<div class="form-group">
-                            <label class="color-label">DNI (con guiones)</label>
+                            <label class="color-label">ID (con guiones)</label>
 				            <input type="text" class="form-control" name="dni_autoregistro" id="nom_usuario" 
                             placeholder="0000-0000-00000" required="" >
 						</div>
@@ -118,14 +118,25 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
                 style="text-transform:lowercase;" placeholder="Ingrese su usuario" required="" >
 			</div>
             <br>
-            <div class="form-group">
-            <label class="color-label">Sexo</label>
-				<select class="form-control" name="sexo_autoregistro">
-                    <option value="">Seleccione una opcion...</option>    
-                    <option value="1">Masculino</option>
-                    <option value="2">Femenino</option>
-                </select>
-			</div>
+            <div class="row">
+				<div class="col-10 col-md-6">
+                    <div class="form-group">
+                        <label class="color-label">Sexo</label>
+                        <select class="form-control" name="sexo_autoregistro">
+                            <option value="">Seleccione una opcion...</option>    
+                            <option value="1">Masculino</option>
+                            <option value="2">Femenino</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-10 col-md-6">
+                    <div class="form-group">
+                        <label class="color-label">Edad</label>
+				        <input type="number" class="form-control" name="edad_autoregistro" 
+                        placeholder="Ingrese su edad" required="" >
+			        </div>
+                </div>
+            </div>
             <br>
             <div class="form-group">
 				<label class="color-label">Correo</label>
@@ -135,14 +146,14 @@ include("./DatosTablas/obtenerDatosUsuarios.php");
             <br>
             <div class="form-group">
 				<label class="color-label">Contraseña</label>
-				<input type="password" class="form-control" name="contrasena_autoregistro" id="correo_electronico"
+				<input type="password" class="form-control" name="contrasena_autoregistro" id="contrasena_autoregistro"
                 placeholder="Ingrese su contraseña" required="">
 			</div>
             <br>
             <div class="form-group">
-				<label class="color-label">Dirección</label>
+				<label class="color-label">Ciudad/Municipio</label>
 				<input type="text" class="form-control" name="dir_autoregistro" id="correo_electronico" 
-                placeholder="Ingrese su dirección completa" required="">
+                placeholder="Ingrese su lugar de residencia" required="">
 			</div>
             <br>
           <input type="hidden" name="idPersona" class="form-control" value="<?php echo $idPersonaActual; ?>">

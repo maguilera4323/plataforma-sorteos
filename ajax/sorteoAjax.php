@@ -2,7 +2,7 @@
 	$peticionAjax=true;
 	require_once "../config/app.php";
 
-	if(isset($_POST['nombre_nuevo']) || isset($_POST['nombre_act']) || isset($_POST['id_sorteo_del']))
+	if(isset($_POST['nombre_nuevo']) || isset($_POST['sorteo_id']) || isset($_POST['id_sorteo_del']))
 	{
 		/*--------- Instancia al controlador ---------*/
 		require_once "../controladores/sorteoControlador.php";
@@ -15,7 +15,7 @@
 		}
 		
 
-		if(isset($_POST['nombre_act'])){
+		if(isset($_POST['sorteo_id'])){
 			echo $ins_sorteo->actualizarSorteo();
 			die();
 		}

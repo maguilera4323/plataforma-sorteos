@@ -9,11 +9,15 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 //archivo para obtener los permisos del rol conectado al sistema en la vista a la que ha accedido
     include("./DatosTablas/obtenerDatosPermisos.php"); 
 
+//llamado al archivo de la bitacora
+include ("./modelos/bitacoraActividades.php");
+$registroEntrada = new bitacora();
+
 //verificación de permisos
 //se revisa si el usuario tiene acceso a una vista específica por medio del rol que tiene y el objeto al que quiere acceder
 	$id_rol=$_SESSION['id_rol'];
 	$datos=new obtenerDatosPermisos();
-    $resultado=$datos->datosPermisosID($id_rol,3);
+    $resultado=$datos->datosPermisosID($id_rol,14);
 
     foreach ($resultado as $fila){
 		$permiso_in=$fila['permiso_insercion'];
@@ -33,7 +37,16 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 		echo '<div class="modal-body" id="modal-actualizar" style="display:none">;';
 		echo "<script>
               setTimeout(function(){location.href='".SERVERURL."404/'} , 0000); </script>";
-	}
+	}else{
+        $datos_bitacora = [
+            "id_modulo" => 14,
+            "fecha" => date('Y-m-d H:i:s'),
+            "id_usuario" => $_SESSION['id_login'],
+            "accion" => "Cambio de vista",
+            "descripcion" => "El usuario ".$_SESSION['usuario_login']." entró a la vista de Estadísticas"
+        ];
+        $resultado=$registroEntrada->guardar_bitacora($datos_bitacora);
+    }
 ?>
 <br>
 <div class="container">

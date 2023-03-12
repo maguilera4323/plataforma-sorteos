@@ -5,7 +5,7 @@ class obtenerDatosSorteos extends ConexionBD{
 
     public function datosSorteos(){
         $this->getConexion();
-        $sql="SELECT id_sorteo, nombre_sorteo, rango_inicial, rango_final, estado_sorteo from sorteos";
+        $sql="SELECT id_sorteo, nombre_sorteo, estado_sorteo from sorteos";
         $resultado=$this->conexion->query($sql) or die ($sql);
         return $resultado;
     }

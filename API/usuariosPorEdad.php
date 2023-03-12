@@ -8,9 +8,9 @@ $contador_registros=0;
 $labels=array();
 $cantidades=array();
 
-$labels=['18-27','28-36','37-45','46-54','54-63'];
+$labels=['18-27','28-36','37-45','46-54','54-63','más de 63'];
 
-while($valor_inicial<55 && $valor_final<64){
+while($valor_inicial<64){
 	$query="SELECT count(*) as contar_personas FROM personas where edad between $valor_inicial and $valor_final";
 	$resultado=mysqli_query($conexion,$query);
 
@@ -19,7 +19,7 @@ while($valor_inicial<55 && $valor_final<64){
 		$nombre_mes[$contador_registros]=$labels[$contador_registros];
 	}
 	$contador_registros++;
-	$valor_inicial+=9;
+	$valor_inicial=$valor_final+1;
 	$valor_final+=9;
 }
 

@@ -5,18 +5,19 @@
 	class usuarioModelo extends ConexionBD{
 
 		protected function agregarPersonaModelo($datos){
-			$sql=ConexionBD::getConexion()->prepare("INSERT INTO personas(nombres,apellidos,dni,telefono,sexo,
+			$sql=ConexionBD::getConexion()->prepare("INSERT INTO personas(nombres,apellidos,dni,edad,telefono,sexo,
 			direccion,creado_por,fecha_creacion)
-			VALUES(?,?,?,?,?,?,?,?)");
+			VALUES(?,?,?,?,?,?,?,?,?)");
 
 			$sql->bindParam(1,$datos['nombres']);
 			$sql->bindParam(2,$datos['apellidos']);
 			$sql->bindParam(3,$datos['dni']);
-			$sql->bindParam(4,$datos['telefono']);
-			$sql->bindParam(5,$datos['sexo']);
-			$sql->bindParam(6,$datos['direccion']);
-			$sql->bindParam(7,$datos['creado_por']);
-			$sql->bindParam(8,$datos['fecha_creacion']);
+			$sql->bindParam(4,$datos['edad']);
+			$sql->bindParam(5,$datos['telefono']);
+			$sql->bindParam(6,$datos['sexo']);
+			$sql->bindParam(7,$datos['direccion']);
+			$sql->bindParam(8,$datos['creado_por']);
+			$sql->bindParam(9,$datos['fecha_creacion']);
 			$sql->execute();
 			return $sql;								
 		}

@@ -21,11 +21,12 @@
 
 		}else{
 			session_start();
-			$pagina=explode("/", $_GET['views']);//LA VARIABLE PAGINA YA TIENEN TODOS LOS PARAMETROS DE LA URL MAS LA PLECA /
+			$pagina=explode("/", $_GET['views']);
 			require_once './controladores/loginControlador.php';
 			$lc= new loginUsuarios();
 			
-			if(!isset($_SESSION['usuario_login']) || !isset($_SESSION['token_login'])){
+			if(!isset($_SESSION['usuario_login']) || !isset($_SESSION['token_login']) || !isset($_SESSION['id_login'])
+			|| !isset($_SESSION['estado']) || !isset($_SESSION['rol']) || !isset($_SESSION['id_rol'])){
 				echo $lc->forzarCierreSesionControlador();
 				exit;
 			}
@@ -34,6 +35,8 @@
 	<main class="full-box main-container">
 		<!-- Nav lateral -->
 		<?php 
+		//si el usuario conectado no tiene el rol de participante
+		//se manda a llamar el menu de navlateral presente en la parte administrativa de la plataforma
 		if($_SESSION['rol']!='PARTICIPANTE'){
 			include "./vistas/inc/NavLateral.php";
 		}
@@ -42,6 +45,7 @@
 		<!-- Page content -->
 		<section class="full-box page-content">
 			<?php
+			//validacion para verificar que navbar se debe mostrar segun el rol del usuario conectado
 			if($_SESSION['rol']!='PARTICIPANTE'){
 				include "./vistas/inc/NavbarAdm.php"; 
 				include  $vistas;

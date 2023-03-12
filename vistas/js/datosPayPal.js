@@ -2,11 +2,15 @@
 paypal.Buttons({
   createOrder: function(data, actions) {
     // Obtener el valor del campo de entrada de cantidad
-    var cantidad = document.getElementById('cantidad').value;
+    let cantidad = document.getElementById('cantidad').value;
 
     // Validar que la cantidad sea mayor que cero
     if (cantidad <= 0) {
-      alert('Ingrese una cantidad válida.');
+      Swal.fire({
+				title: "Error",
+				text: "La cantidad de boletos no puede ser cero",
+				icon: "error"
+			})
       return;
     }
 

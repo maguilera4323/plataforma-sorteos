@@ -613,6 +613,7 @@ class usuarioControlador extends usuarioModelo{
 		$telefono=ConexionBD::limpiar_cadena($_POST['tel_autoregistro']);
 		$sexo=ConexionBD::limpiar_cadena($_POST['sexo_autoregistro']);
 		$direccion=ConexionBD::limpiar_cadena($_POST['dir_autoregistro']);
+		$edad=ConexionBD::limpiar_cadena($_POST['edad_autoregistro']);
 
 		
 		/* //validaciones de datos */
@@ -652,7 +653,8 @@ class usuarioControlador extends usuarioModelo{
 				"sexo"=>$sexo,
 				"direccion"=>$direccion,
 				"fecha_creacion"=>$creacion,
-				"creado_por"=>$creado_por
+				"creado_por"=>$creado_por,
+				"edad"=>$edad
 			];
 
 			$agregar_persona=usuarioModelo::agregarPersonaModelo($datos_persona_reg);
