@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS `bitacora` (
   PRIMARY KEY (`id_bitacora`) USING BTREE,
   KEY `FK_bitacora_usuarios` (`id_usuario`) USING BTREE,
   CONSTRAINT `FK_bitacora_usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.bitacora: ~175 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.bitacora: ~194 rows (aproximadamente)
 INSERT INTO `bitacora` (`id_bitacora`, `id_modulo`, `fecha`, `id_usuario`, `accion`, `descripcion`) VALUES
 	(1, 1, '2023-02-16 13:10:55', 1, 'Cambio de vista', 'El usuario prueba entró al dashboard'),
 	(2, 1, '2023-02-16 13:11:33', 1, 'Cambio de vista', 'El usuario prueba entró al dashboard'),
@@ -208,7 +208,31 @@ INSERT INTO `bitacora` (`id_bitacora`, `id_modulo`, `fecha`, `id_usuario`, `acci
 	(172, 4, '2023-03-08 09:46:31', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
 	(173, 5, '2023-03-08 09:46:33', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Boletos Comprados'),
 	(174, 4, '2023-03-08 09:46:38', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
-	(175, 5, '2023-03-08 09:46:40', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Boletos Comprados');
+	(175, 5, '2023-03-08 09:46:40', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Boletos Comprados'),
+	(176, 2, '2023-03-09 09:08:07', 1, 'Cambio de vista', 'El usuario prueba entró al dashboard'),
+	(177, 4, '2023-03-09 09:08:10', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(178, 5, '2023-03-09 09:08:16', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Boletos Comprados'),
+	(179, 4, '2023-03-09 09:10:20', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(180, 2, '2023-03-09 09:30:48', 1, 'Cambio de vista', 'El usuario prueba entró al dashboard'),
+	(181, 4, '2023-03-09 09:30:56', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(182, 4, '2023-03-09 09:31:53', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(183, 2, '2023-03-09 09:35:19', 1, 'Cambio de vista', 'El usuario prueba entró al dashboard'),
+	(184, 7, '2023-03-09 09:35:22', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Usuarios'),
+	(185, 2, '2023-03-09 09:35:24', 1, 'Cambio de vista', 'El usuario prueba entró al dashboard'),
+	(186, 2, '2023-03-09 09:35:47', 1, 'Cambio de vista', 'El usuario prueba entró al dashboard'),
+	(187, 5, '2023-03-09 09:35:49', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Boletos Comprados'),
+	(188, 4, '2023-03-09 09:37:05', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(189, 4, '2023-03-09 09:38:28', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(190, 4, '2023-03-09 09:38:40', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(191, 4, '2023-03-09 09:39:32', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(192, 4, '2023-03-09 09:39:47', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(193, 4, '2023-03-09 09:40:35', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(194, 5, '2023-03-09 09:40:38', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Boletos Comprados'),
+	(195, 4, '2023-03-09 09:41:19', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(196, 4, '2023-03-09 09:41:49', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(197, 5, '2023-03-09 09:41:55', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Boletos Comprados'),
+	(198, 4, '2023-03-09 09:41:57', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Sorteos'),
+	(199, 5, '2023-03-09 09:41:59', 1, 'Cambio de vista', 'El usuario prueba entró a la vista de Boletos Comprados');
 
 -- Volcando estructura para tabla dbsorteo.boletos
 CREATE TABLE IF NOT EXISTS `boletos` (
@@ -222,9 +246,9 @@ CREATE TABLE IF NOT EXISTS `boletos` (
   KEY `Índice 3` (`id_sorteo`),
   CONSTRAINT `FK_boletos_sorteos` FOREIGN KEY (`id_sorteo`) REFERENCES `sorteos` (`id_sorteo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_boletos_usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.boletos: ~26 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.boletos: ~47 rows (aproximadamente)
 INSERT INTO `boletos` (`id_boleto`, `id_usuario`, `id_sorteo`, `numero_boleto`, `fecha_compra`) VALUES
 	(1, 4, 1, 1, '2023-01-29 16:35:14'),
 	(2, 5, 1, 2, '2023-01-29 17:49:45'),
@@ -251,16 +275,30 @@ INSERT INTO `boletos` (`id_boleto`, `id_usuario`, `id_sorteo`, `numero_boleto`, 
 	(23, 4, 3, 23, '2023-03-08 08:54:52'),
 	(24, 4, 3, 24, '2023-03-08 09:17:19'),
 	(25, 4, 3, 25, '2023-03-08 09:19:53'),
-	(26, 5, 3, 26, '2023-03-08 09:46:00');
-
--- Volcando estructura para tabla dbsorteo.boletos_adquiridos
-CREATE TABLE IF NOT EXISTS `boletos_adquiridos` (
-  `id_sorteo` int(11) NOT NULL AUTO_INCREMENT,
-  `boletos_adquiridos` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_sorteo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Volcando datos para la tabla dbsorteo.boletos_adquiridos: ~0 rows (aproximadamente)
+	(26, 5, 3, 26, '2023-03-08 09:46:00'),
+	(27, 4, 3, 27, '2023-03-09 08:08:06'),
+	(28, 4, 3, 28, '2023-03-09 08:10:57'),
+	(29, 4, 3, 29, '2023-03-09 08:13:30'),
+	(30, 4, 3, 30, '2023-03-09 08:15:04'),
+	(31, 4, 3, 31, '2023-03-09 08:15:04'),
+	(32, 4, 3, 32, '2023-03-09 08:24:33'),
+	(33, 4, 3, 33, '2023-03-09 08:53:08'),
+	(34, 4, 3, 34, '2023-03-09 08:53:08'),
+	(35, 4, 3, 35, '2023-03-09 08:53:08'),
+	(36, 4, 3, 36, '2023-03-09 08:53:09'),
+	(37, 4, 3, 37, '2023-03-09 08:53:09'),
+	(38, 4, 3, 38, '2023-03-09 09:05:46'),
+	(39, 4, 3, 39, '2023-03-09 09:05:46'),
+	(40, 4, 3, 40, '2023-03-09 09:05:46'),
+	(41, 4, 3, 41, '2023-03-09 09:15:42'),
+	(42, 4, 3, 42, '2023-03-09 09:15:42'),
+	(43, 4, 3, 43, '2023-03-09 09:15:43'),
+	(44, 4, 3, 44, '2023-03-09 09:15:43'),
+	(45, 4, 3, 45, '2023-03-09 09:15:43'),
+	(46, 4, 3, 46, '2023-03-09 09:17:34'),
+	(47, 4, 3, 47, '2023-03-09 09:17:34'),
+	(48, 4, 3, 48, '2023-03-09 09:17:34'),
+	(49, 4, 3, 49, '2023-03-09 09:17:34');
 
 -- Volcando estructura para tabla dbsorteo.empresas
 CREATE TABLE IF NOT EXISTS `empresas` (
@@ -403,9 +441,9 @@ CREATE TABLE IF NOT EXISTS `premios` (
 
 -- Volcando datos para la tabla dbsorteo.premios: ~3 rows (aproximadamente)
 INSERT INTO `premios` (`id_premio`, `id_sorteo`, `id_empresa`, `nombre_premio`, `cantidad_disponible`, `foto_premio`) VALUES
-	(1, 1, 1, 'CAMISA HOMBRE', 2, '../vistas/assets/premios/camisa.jpg'),
-	(2, 1, 1, 'JUGOS', 80, '../vistas/assets/premios/jugo-naranja.jpg'),
-	(3, 1, 3, 'A', 24, '../vistas/assets/premios/Iconos-2-envio-08.jpg');
+	(1, 1, 1, 'CAMISA HOMBRE', 0, '../vistas/assets/premios/camisa.jpg'),
+	(2, 1, 1, 'JUGOS', 77, '../vistas/assets/premios/jugo-naranja.jpg'),
+	(3, 1, 3, 'A', 14, '../vistas/assets/premios/Iconos-2-envio-08.jpg');
 
 -- Volcando estructura para tabla dbsorteo.premios_sorteo
 CREATE TABLE IF NOT EXISTS `premios_sorteo` (
@@ -418,9 +456,33 @@ CREATE TABLE IF NOT EXISTS `premios_sorteo` (
   KEY `IdSorteo` (`id_sorteo`) USING BTREE,
   KEY `IdUsuario` (`id_usuario`) USING BTREE,
   KEY `FK_premios_sorteo_premios` (`id_premio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla dbsorteo.premios_sorteo: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla dbsorteo.premios_sorteo: ~23 rows (aproximadamente)
+INSERT INTO `premios_sorteo` (`id_premio_sorteo`, `id_sorteo`, `id_usuario`, `id_premio`, `estado`) VALUES
+	(1, 3, 4, NULL, 'Reclamado'),
+	(2, 3, 4, 1, 'Reclamado'),
+	(3, 3, 4, 0, 'Reclamado'),
+	(4, 3, 4, 0, 'Pendiente'),
+	(5, 3, 4, 1, 'Pendiente'),
+	(6, 3, 4, 1, 'Pendiente'),
+	(7, 3, 4, 3, 'Pendiente'),
+	(8, 3, 4, 3, 'Pendiente'),
+	(9, 3, 4, 3, 'Pendiente'),
+	(10, 3, 4, 3, 'Pendiente'),
+	(11, 3, 4, 3, 'Pendiente'),
+	(12, 3, 4, 1, 'Pendiente'),
+	(13, 3, 4, 3, 'Pendiente'),
+	(14, 3, 4, 2, 'Pendiente'),
+	(15, 3, 4, 3, 'Pendiente'),
+	(16, 3, 4, 1, 'Pendiente'),
+	(17, 3, 4, 3, 'Pendiente'),
+	(18, 3, 4, 2, 'Pendiente'),
+	(19, 3, 4, 3, 'Pendiente'),
+	(20, 3, 4, 3, 'Pendiente'),
+	(21, 3, 4, 1, 'Pendiente'),
+	(22, 3, 4, 1, 'Pendiente'),
+	(23, 3, 4, 2, 'Pendiente');
 
 -- Volcando estructura para tabla dbsorteo.restablece_clave_email
 CREATE TABLE IF NOT EXISTS `restablece_clave_email` (
